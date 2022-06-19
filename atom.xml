@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://yahalou.github.io</id>
     <title>long&apos;s blog</title>
-    <updated>2022-06-19T01:53:27.538Z</updated>
+    <updated>2022-06-19T08:21:37.892Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://yahalou.github.io"/>
     <link rel="self" href="https://yahalou.github.io/atom.xml"/>
@@ -10,6 +10,120 @@
     <logo>https://yahalou.github.io/images/avatar.png</logo>
     <icon>https://yahalou.github.io/favicon.ico</icon>
     <rights>All rights reserved 2022, long&apos;s blog</rights>
+    <entry>
+        <title type="html"><![CDATA[第二章 数据的表示和运算]]></title>
+        <id>https://yahalou.github.io/post/di-er-zhang-shu-ju-de-biao-shi-he-yun-suan/</id>
+        <link href="https://yahalou.github.io/post/di-er-zhang-shu-ju-de-biao-shi-he-yun-suan/">
+        </link>
+        <updated>2022-06-19T08:20:40.000Z</updated>
+        <content type="html"><![CDATA[<h1 id="数制与编码">数制与编码</h1>
+<h2 id="十进制转换为任意进制">十进制转换为任意进制</h2>
+<figure data-type="image" tabindex="1"><img src="https://myimagess.oss-cn-beijing.aliyuncs.com/202206191004723.png" alt="554DCF43991E684845EF094B25C15F76" loading="lazy"></figure>
+<h2 id="汉明码">汉明码</h2>
+<p>偶校验码</p>
+<figure data-type="image" tabindex="2"><img src="https://myimagess.oss-cn-beijing.aliyuncs.com/202206191019456.png" alt="image-20220619101946912" loading="lazy"></figure>
+<figure data-type="image" tabindex="3"><img src="https://myimagess.oss-cn-beijing.aliyuncs.com/202206191021842.png" alt="image-20220619102142960" loading="lazy"></figure>
+<figure data-type="image" tabindex="4"><img src="https://myimagess.oss-cn-beijing.aliyuncs.com/202206191022727.png" alt="image-20220619102241665" loading="lazy"></figure>
+<figure data-type="image" tabindex="5"><img src="https://myimagess.oss-cn-beijing.aliyuncs.com/202206191023511.png" alt="image-20220619102339773" loading="lazy"></figure>
+<p>最开头的bit的作用</p>
+<figure data-type="image" tabindex="6"><img src="https://myimagess.oss-cn-beijing.aliyuncs.com/202206191034644.png" alt="image-20220619103426389" loading="lazy"></figure>
+<p>例：画表格也可以，注意由低到高顺序 <img src="https://myimagess.oss-cn-beijing.aliyuncs.com/202206191101945.png" alt="97533D1A363E1A3429B3CB97408A4C41" loading="lazy"></p>
+<h1 id="定点数">定点数</h1>
+<h2 id="表示">表示</h2>
+<h3 id="定点小数">定点小数</h3>
+<figure data-type="image" tabindex="7"><img src="https://myimagess.oss-cn-beijing.aliyuncs.com/202206191109915.png" alt="image-20220619110951862" loading="lazy"></figure>
+<h3 id="定点整数">定点整数</h3>
+<figure data-type="image" tabindex="8"><img src="https://myimagess.oss-cn-beijing.aliyuncs.com/202206191110032.png" alt="image-20220619111004101" loading="lazy"></figure>
+<h3 id="原码">原码</h3>
+<p>符号位+绝对值</p>
+<figure data-type="image" tabindex="9"><img src="https://myimagess.oss-cn-beijing.aliyuncs.com/202206191112358.png" alt="image-20220619111221511" loading="lazy"></figure>
+<figure data-type="image" tabindex="10"><img src="https://myimagess.oss-cn-beijing.aliyuncs.com/202206191112388.png" alt="image-20220619111233909" loading="lazy"></figure>
+<h3 id="补码反码">补码，反码</h3>
+<figure data-type="image" tabindex="11"><img src="https://myimagess.oss-cn-beijing.aliyuncs.com/202206191119235.png" alt="E959C3F798B9C64BA4CAE91E44EAC102" loading="lazy"></figure>
+<p>转换最常用的是<strong>数值位取反加1</strong></p>
+<h3 id="移码">移码</h3>
+<p>见IEEE 754</p>
+<h2 id="计算">计算</h2>
+<h3 id="移位计算">移位计算</h3>
+<figure data-type="image" tabindex="12"><img src="https://myimagess.oss-cn-beijing.aliyuncs.com/202206191128769.png" alt="image-20220619112803831" loading="lazy"></figure>
+<h3 id="原码加减法">原码加减法</h3>
+<p><strong>当左边位出现溢出时，将溢出位丢掉</strong></p>
+<figure data-type="image" tabindex="13"><img src="https://myimagess.oss-cn-beijing.aliyuncs.com/202206191132078.png" alt="image-20220619113216287" loading="lazy"></figure>
+<h3 id="补码加减法">补码加减法</h3>
+<p>做加法，两数的补码直接相加</p>
+<p>做减法，将被减数与减数的<strong>机器负数</strong>（符号位取反，数值位取反+1）相加</p>
+<p>减法运算在机器中是用<strong>加法器</strong>实现的</p>
+<figure data-type="image" tabindex="14"><img src="https://myimagess.oss-cn-beijing.aliyuncs.com/202206191134674.png" alt="image-20220619113421627" loading="lazy"></figure>
+<h3 id="溢出判别">溢出判别</h3>
+<figure data-type="image" tabindex="15"><img src="https://myimagess.oss-cn-beijing.aliyuncs.com/202206191138335.png" alt="image-20220619113837482" loading="lazy"></figure>
+<p>变形补码（双符号位）负数符号位变为11，正数为00，相加后判断</p>
+<h3 id="乘法运算">乘法运算</h3>
+<h4 id="原码一位乘法间接补码">原码一位乘法（间接补码）</h4>
+<figure data-type="image" tabindex="16"><img src="https://myimagess.oss-cn-beijing.aliyuncs.com/202206191228417.png" alt="7E57F410854DFE82DF9B589E985A4BFC" loading="lazy"></figure>
+<h3 id="除法运算">除法运算</h3>
+<h4 id="原码除法运算不恢复余数法">原码除法运算（不恢复余数法）</h4>
+<figure data-type="image" tabindex="17"><img src="https://myimagess.oss-cn-beijing.aliyuncs.com/202206191239717.png" alt="C4D0B84354FCDE6C4555FA82251054F6" loading="lazy"></figure>
+<p>原理：先从被除数减去除数，看看能不能商1，不能就商0，加回去</p>
+<h3 id="强制类型转换">强制类型转换</h3>
+<p>c语言的数据在内存中为补码形式</p>
+<p>将所给数字写为二进制，然后按照转换成不同的码的规则进行读出</p>
+<h2 id="数据存储">数据存储</h2>
+<h3 id="大端小端">大端小端</h3>
+<p>大端小端不同数据的顺序不变，变得是每个数据内部的存储顺序</p>
+<figure data-type="image" tabindex="18"><img src="https://myimagess.oss-cn-beijing.aliyuncs.com/202206191305751.png" alt="F6C761DC02B13EBB0BEC87C4E67DFD98" loading="lazy"></figure>
+<h3 id="边界对齐">边界对齐</h3>
+<p>半字地址一定是 2 的整数倍，字地址一定是 4 的整数倍</p>
+<h1 id="浮点数">浮点数</h1>
+<h2 id="表示-2">表示</h2>
+<p>阶码：<strong>定点整数</strong></p>
+<p>尾数：<strong>定点小数</strong></p>
+<figure data-type="image" tabindex="19"><img src="https://myimagess.oss-cn-beijing.aliyuncs.com/202206191350281.png" alt="ABA0D65CA9F55261F981800CBAE92162" loading="lazy"></figure>
+<h2 id="浮点数规范化">浮点数规范化</h2>
+<p>尾数的最高数值必须是一个有效值，通过调整阶码实现规范化</p>
+<h2 id="ieee-754标准">IEEE 754标准</h2>
+<h3 id="转换">转换</h3>
+<p>阶码用<strong>移码</strong>表示</p>
+<p>移码=真值+偏置值</p>
+<p>尾数用<strong>原码</strong>表示</p>
+<p>默认最高位为1，免去规格化，所以尾数部分为 <strong>1.M</strong></p>
+<figure data-type="image" tabindex="20"><img src="https://myimagess.oss-cn-beijing.aliyuncs.com/202206191416708.png" alt="image-20220619141641715" loading="lazy"></figure>
+<figure data-type="image" tabindex="21"><img src="https://myimagess.oss-cn-beijing.aliyuncs.com/202206191424092.png" alt="1319835082B48CF397F37F3CC34667DB" loading="lazy"></figure>
+<h3 id="范围">范围</h3>
+<p>阶码 E 全 0 ，尾数M不全为0，表示非规格化小数</p>
+<figure data-type="image" tabindex="22"><img src="https://myimagess.oss-cn-beijing.aliyuncs.com/202206191438281.png" alt="9BC91E92E1BF48CD788A403057D97AF5" loading="lazy"></figure>
+<figure data-type="image" tabindex="23"><img src="https://myimagess.oss-cn-beijing.aliyuncs.com/202206191441781.png" alt="image-20220619144105833" loading="lazy"></figure>
+<h2 id="计算-2">计算</h2>
+<h3 id="加减运算">加减运算</h3>
+<figure data-type="image" tabindex="24"><img src="https://myimagess.oss-cn-beijing.aliyuncs.com/202206191448111.png" alt="image-20220619144808454" loading="lazy"></figure>
+<figure data-type="image" tabindex="25"><img src="https://myimagess.oss-cn-beijing.aliyuncs.com/202206191508027.png" alt="image-20220619150818281" loading="lazy"></figure>
+<h3 id="强制类型转换-2">强制类型转换</h3>
+<p>从 int 转为 float 可能发生精度损失和溢出</p>
+<p>从 float 转为 int 可能会发生数据舍入</p>
+<h3 id="日常写代码的帮助">日常写代码的帮助</h3>
+<pre><code class="language-c">计算2.0F-1.3F
+1.3F 规范化表示：	1.01001100110011001100110 * 2 ^ 0
+2.0F 规范化表示：	1.00000000000000000000000 * 2 ^ 1
+    
+首先对阶 1.3F变为 0.10100110011001100110011 * 2 ^ 1
+2.0F-1.3F =  	0.01011001100110011001101 * 2 ^ 1
+规范化表示：		1.01100110011001100110100 * 2 ^ -1
+    
+0.7F规范化表示： 	1.01100110011001100110011 * 2 ^ -1    
+    
+所以2.0F-1.3F!=0.7F
+    
+计算2.0F-1.4F
+2.0F-1.4F运算结果
+    规范化表示：	1.00110011001100110011010 * 2 ^ -1
+0.6F 规范化表示：	1.00110011001100110011010 * 2 ^ -1
+    
+2.0F-1.4F==0.7F
+</code></pre>
+<p><strong>浮点数计算，在存储和运算过程中都可能会有精度的丢失，故出现的结果和我们以为的结果就会有出入</strong></p>
+<p>比如1.3 F ，由于二进制为无限循环小数，精度限制后值就变了</p>
+<p>1.4 F ，值也变了，但舍入后相同，是巧合</p>
+]]></content>
+    </entry>
     <entry>
         <title type="html"><![CDATA[第一章 计算机系统概述]]></title>
         <id>https://yahalou.github.io/post/di-yi-zhang-ji-suan-ji-xi-tong-gai-shu/</id>

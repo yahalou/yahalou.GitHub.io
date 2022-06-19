@@ -1,0 +1,391 @@
+<html>
+  <head>
+    <meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>long&#39;s blog</title>
+<meta name="description" content="吾生也有涯，而知也无涯" />
+<link rel="shortcut icon" href="https://yahalou.github.io/favicon.ico?v=1655626893326">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
+<link href="https://cdn.jsdelivr.net/npm/remixicon@2.3.0/fonts/remixicon.css" rel="stylesheet">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Droid+Serif:400,700">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.min.css">
+
+<link rel="stylesheet" href="https://yahalou.github.io/styles/main.css">
+
+
+
+  </head>
+  <body>
+    <div id="app" class="main px-4 flex flex-col lg:flex-row">
+      <div id="sidebar" class="sidebar-wrapper lg:static lg:w-1/4">
+  <div class="lg:sticky top-0">
+    <div class="sidebar-content">
+      <div class="flex lg:block p-4 lg:px-0 items-center fixed lg:static lg:block top-0 right-0 left-0 bg-white z-50">
+        <i class="ri-menu-2-line lg:mt-4 text-2xl cursor-pointer animated fadeIn" onclick="openMenu()"></i>
+        <a href="https://yahalou.github.io">
+          <img class="animated fadeInLeft avatar rounded-lg mx-4 lg:mt-32 lg:mx-0 mt-0 lg:w-24 lg:h-24 w-12 w-12" src="https://yahalou.github.io/images/avatar.png?v=1655626893326" alt="">
+        </a>
+        <h1 class="animated fadeInLeft lg:text-4xl font-extrabold lg:mt-8 mt-0 text-xl" style="animation-delay: 0.2s">long&#39;s blog</h1>
+      </div>
+      
+        <div class="animated fadeInLeft" style="animation-delay: 0.4s">
+          <p class="my-4 text-gray-600 font-light hidden lg:block">
+            文章目录
+          </p>
+          <div class="toc-container hidden lg:block">
+            <ul class="markdownIt-TOC">
+<li><a href="#%E6%95%B0%E5%88%B6%E4%B8%8E%E7%BC%96%E7%A0%81">数制与编码</a>
+<ul>
+<li><a href="#%E5%8D%81%E8%BF%9B%E5%88%B6%E8%BD%AC%E6%8D%A2%E4%B8%BA%E4%BB%BB%E6%84%8F%E8%BF%9B%E5%88%B6">十进制转换为任意进制</a></li>
+<li><a href="#%E6%B1%89%E6%98%8E%E7%A0%81">汉明码</a></li>
+</ul>
+</li>
+<li><a href="#%E5%AE%9A%E7%82%B9%E6%95%B0">定点数</a>
+<ul>
+<li><a href="#%E8%A1%A8%E7%A4%BA">表示</a>
+<ul>
+<li><a href="#%E5%AE%9A%E7%82%B9%E5%B0%8F%E6%95%B0">定点小数</a></li>
+<li><a href="#%E5%AE%9A%E7%82%B9%E6%95%B4%E6%95%B0">定点整数</a></li>
+<li><a href="#%E5%8E%9F%E7%A0%81">原码</a></li>
+<li><a href="#%E8%A1%A5%E7%A0%81%E5%8F%8D%E7%A0%81">补码，反码</a></li>
+<li><a href="#%E7%A7%BB%E7%A0%81">移码</a></li>
+</ul>
+</li>
+<li><a href="#%E8%AE%A1%E7%AE%97">计算</a>
+<ul>
+<li><a href="#%E7%A7%BB%E4%BD%8D%E8%AE%A1%E7%AE%97">移位计算</a></li>
+<li><a href="#%E5%8E%9F%E7%A0%81%E5%8A%A0%E5%87%8F%E6%B3%95">原码加减法</a></li>
+<li><a href="#%E8%A1%A5%E7%A0%81%E5%8A%A0%E5%87%8F%E6%B3%95">补码加减法</a></li>
+<li><a href="#%E6%BA%A2%E5%87%BA%E5%88%A4%E5%88%AB">溢出判别</a></li>
+<li><a href="#%E4%B9%98%E6%B3%95%E8%BF%90%E7%AE%97">乘法运算</a>
+<ul>
+<li><a href="#%E5%8E%9F%E7%A0%81%E4%B8%80%E4%BD%8D%E4%B9%98%E6%B3%95%E9%97%B4%E6%8E%A5%E8%A1%A5%E7%A0%81">原码一位乘法（间接补码）</a></li>
+</ul>
+</li>
+<li><a href="#%E9%99%A4%E6%B3%95%E8%BF%90%E7%AE%97">除法运算</a>
+<ul>
+<li><a href="#%E5%8E%9F%E7%A0%81%E9%99%A4%E6%B3%95%E8%BF%90%E7%AE%97%E4%B8%8D%E6%81%A2%E5%A4%8D%E4%BD%99%E6%95%B0%E6%B3%95">原码除法运算（不恢复余数法）</a></li>
+</ul>
+</li>
+<li><a href="#%E5%BC%BA%E5%88%B6%E7%B1%BB%E5%9E%8B%E8%BD%AC%E6%8D%A2">强制类型转换</a></li>
+</ul>
+</li>
+<li><a href="#%E6%95%B0%E6%8D%AE%E5%AD%98%E5%82%A8">数据存储</a>
+<ul>
+<li><a href="#%E5%A4%A7%E7%AB%AF%E5%B0%8F%E7%AB%AF">大端小端</a></li>
+<li><a href="#%E8%BE%B9%E7%95%8C%E5%AF%B9%E9%BD%90">边界对齐</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#%E6%B5%AE%E7%82%B9%E6%95%B0">浮点数</a>
+<ul>
+<li><a href="#%E8%A1%A8%E7%A4%BA-2">表示</a></li>
+<li><a href="#%E6%B5%AE%E7%82%B9%E6%95%B0%E8%A7%84%E8%8C%83%E5%8C%96">浮点数规范化</a></li>
+<li><a href="#ieee-754%E6%A0%87%E5%87%86">IEEE 754标准</a>
+<ul>
+<li><a href="#%E8%BD%AC%E6%8D%A2">转换</a></li>
+<li><a href="#%E8%8C%83%E5%9B%B4">范围</a></li>
+</ul>
+</li>
+<li><a href="#%E8%AE%A1%E7%AE%97-2">计算</a>
+<ul>
+<li><a href="#%E5%8A%A0%E5%87%8F%E8%BF%90%E7%AE%97">加减运算</a></li>
+<li><a href="#%E5%BC%BA%E5%88%B6%E7%B1%BB%E5%9E%8B%E8%BD%AC%E6%8D%A2-2">强制类型转换</a></li>
+<li><a href="#%E6%97%A5%E5%B8%B8%E5%86%99%E4%BB%A3%E7%A0%81%E7%9A%84%E5%B8%AE%E5%8A%A9">日常写代码的帮助</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+          </div>
+        </div>
+      
+    </div>
+  </div>
+</div>
+
+<div class="menu-container">
+  <i class="ri-arrow-left-line text-2xl cursor-pointer animated fadeIn close-menu-btn" onclick="closeMenu()"></i>
+  <div>
+    
+      
+        <a href="/" class="menu" style="animation-delay: 0s">
+          首页
+        </a>
+      
+    
+      
+        <a href="https://yahalou.github.io/archives" class="menu" style="animation-delay: 0.2s">
+          归档
+        </a>
+      
+    
+      
+        <a href="https://yahalou.github.io/tags" class="menu" style="animation-delay: 0.4s">
+          标签
+        </a>
+      
+    
+      
+        <a href="/post/about" class="menu" style="animation-delay: 0.6000000000000001s">
+          关于
+        </a>
+      
+    
+  </div>
+  <div class="site-footer">
+    <div class="py-4 text-gray-700">Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a></div>
+    <a class="rss" href="https://yahalou.github.io/atom.xml" target="_blank">RSS</a>
+  </div>
+</div>
+<div class="mask" onclick="closeMenu()">
+</div>
+      <div class="content-wrapper py-32 lg:p-8 lg:w-3/4 post-detail animated fadeIn">
+        <h1 class="text-3xl font-bold lg:mt-16">第二章 数据的表示和运算</h1>
+        <div class="text-sm text-gray-700 lg:my-8">
+          2022-06-19 / 3 min read
+        </div>
+        
+        <div class="post-content yue">
+          <h1 id="数制与编码">数制与编码</h1>
+<h2 id="十进制转换为任意进制">十进制转换为任意进制</h2>
+<figure data-type="image" tabindex="1"><img src="https://myimagess.oss-cn-beijing.aliyuncs.com/202206191004723.png" alt="554DCF43991E684845EF094B25C15F76" loading="lazy"></figure>
+<h2 id="汉明码">汉明码</h2>
+<p>偶校验码</p>
+<figure data-type="image" tabindex="2"><img src="https://myimagess.oss-cn-beijing.aliyuncs.com/202206191019456.png" alt="image-20220619101946912" loading="lazy"></figure>
+<figure data-type="image" tabindex="3"><img src="https://myimagess.oss-cn-beijing.aliyuncs.com/202206191021842.png" alt="image-20220619102142960" loading="lazy"></figure>
+<figure data-type="image" tabindex="4"><img src="https://myimagess.oss-cn-beijing.aliyuncs.com/202206191022727.png" alt="image-20220619102241665" loading="lazy"></figure>
+<figure data-type="image" tabindex="5"><img src="https://myimagess.oss-cn-beijing.aliyuncs.com/202206191023511.png" alt="image-20220619102339773" loading="lazy"></figure>
+<p>最开头的bit的作用</p>
+<figure data-type="image" tabindex="6"><img src="https://myimagess.oss-cn-beijing.aliyuncs.com/202206191034644.png" alt="image-20220619103426389" loading="lazy"></figure>
+<p>例：画表格也可以，注意由低到高顺序 <img src="https://myimagess.oss-cn-beijing.aliyuncs.com/202206191101945.png" alt="97533D1A363E1A3429B3CB97408A4C41" loading="lazy"></p>
+<h1 id="定点数">定点数</h1>
+<h2 id="表示">表示</h2>
+<h3 id="定点小数">定点小数</h3>
+<figure data-type="image" tabindex="7"><img src="https://myimagess.oss-cn-beijing.aliyuncs.com/202206191109915.png" alt="image-20220619110951862" loading="lazy"></figure>
+<h3 id="定点整数">定点整数</h3>
+<figure data-type="image" tabindex="8"><img src="https://myimagess.oss-cn-beijing.aliyuncs.com/202206191110032.png" alt="image-20220619111004101" loading="lazy"></figure>
+<h3 id="原码">原码</h3>
+<p>符号位+绝对值</p>
+<figure data-type="image" tabindex="9"><img src="https://myimagess.oss-cn-beijing.aliyuncs.com/202206191112358.png" alt="image-20220619111221511" loading="lazy"></figure>
+<figure data-type="image" tabindex="10"><img src="https://myimagess.oss-cn-beijing.aliyuncs.com/202206191112388.png" alt="image-20220619111233909" loading="lazy"></figure>
+<h3 id="补码反码">补码，反码</h3>
+<figure data-type="image" tabindex="11"><img src="https://myimagess.oss-cn-beijing.aliyuncs.com/202206191119235.png" alt="E959C3F798B9C64BA4CAE91E44EAC102" loading="lazy"></figure>
+<p>转换最常用的是<strong>数值位取反加1</strong></p>
+<h3 id="移码">移码</h3>
+<p>见IEEE 754</p>
+<h2 id="计算">计算</h2>
+<h3 id="移位计算">移位计算</h3>
+<figure data-type="image" tabindex="12"><img src="https://myimagess.oss-cn-beijing.aliyuncs.com/202206191128769.png" alt="image-20220619112803831" loading="lazy"></figure>
+<h3 id="原码加减法">原码加减法</h3>
+<p><strong>当左边位出现溢出时，将溢出位丢掉</strong></p>
+<figure data-type="image" tabindex="13"><img src="https://myimagess.oss-cn-beijing.aliyuncs.com/202206191132078.png" alt="image-20220619113216287" loading="lazy"></figure>
+<h3 id="补码加减法">补码加减法</h3>
+<p>做加法，两数的补码直接相加</p>
+<p>做减法，将被减数与减数的<strong>机器负数</strong>（符号位取反，数值位取反+1）相加</p>
+<p>减法运算在机器中是用<strong>加法器</strong>实现的</p>
+<figure data-type="image" tabindex="14"><img src="https://myimagess.oss-cn-beijing.aliyuncs.com/202206191134674.png" alt="image-20220619113421627" loading="lazy"></figure>
+<h3 id="溢出判别">溢出判别</h3>
+<figure data-type="image" tabindex="15"><img src="https://myimagess.oss-cn-beijing.aliyuncs.com/202206191138335.png" alt="image-20220619113837482" loading="lazy"></figure>
+<p>变形补码（双符号位）负数符号位变为11，正数为00，相加后判断</p>
+<h3 id="乘法运算">乘法运算</h3>
+<h4 id="原码一位乘法间接补码">原码一位乘法（间接补码）</h4>
+<figure data-type="image" tabindex="16"><img src="https://myimagess.oss-cn-beijing.aliyuncs.com/202206191228417.png" alt="7E57F410854DFE82DF9B589E985A4BFC" loading="lazy"></figure>
+<h3 id="除法运算">除法运算</h3>
+<h4 id="原码除法运算不恢复余数法">原码除法运算（不恢复余数法）</h4>
+<figure data-type="image" tabindex="17"><img src="https://myimagess.oss-cn-beijing.aliyuncs.com/202206191239717.png" alt="C4D0B84354FCDE6C4555FA82251054F6" loading="lazy"></figure>
+<p>原理：先从被除数减去除数，看看能不能商1，不能就商0，加回去</p>
+<h3 id="强制类型转换">强制类型转换</h3>
+<p>c语言的数据在内存中为补码形式</p>
+<p>将所给数字写为二进制，然后按照转换成不同的码的规则进行读出</p>
+<h2 id="数据存储">数据存储</h2>
+<h3 id="大端小端">大端小端</h3>
+<p>大端小端不同数据的顺序不变，变得是每个数据内部的存储顺序</p>
+<figure data-type="image" tabindex="18"><img src="https://myimagess.oss-cn-beijing.aliyuncs.com/202206191305751.png" alt="F6C761DC02B13EBB0BEC87C4E67DFD98" loading="lazy"></figure>
+<h3 id="边界对齐">边界对齐</h3>
+<p>半字地址一定是 2 的整数倍，字地址一定是 4 的整数倍</p>
+<h1 id="浮点数">浮点数</h1>
+<h2 id="表示-2">表示</h2>
+<p>阶码：<strong>定点整数</strong></p>
+<p>尾数：<strong>定点小数</strong></p>
+<figure data-type="image" tabindex="19"><img src="https://myimagess.oss-cn-beijing.aliyuncs.com/202206191350281.png" alt="ABA0D65CA9F55261F981800CBAE92162" loading="lazy"></figure>
+<h2 id="浮点数规范化">浮点数规范化</h2>
+<p>尾数的最高数值必须是一个有效值，通过调整阶码实现规范化</p>
+<h2 id="ieee-754标准">IEEE 754标准</h2>
+<h3 id="转换">转换</h3>
+<p>阶码用<strong>移码</strong>表示</p>
+<p>移码=真值+偏置值</p>
+<p>尾数用<strong>原码</strong>表示</p>
+<p>默认最高位为1，免去规格化，所以尾数部分为 <strong>1.M</strong></p>
+<figure data-type="image" tabindex="20"><img src="https://myimagess.oss-cn-beijing.aliyuncs.com/202206191416708.png" alt="image-20220619141641715" loading="lazy"></figure>
+<figure data-type="image" tabindex="21"><img src="https://myimagess.oss-cn-beijing.aliyuncs.com/202206191424092.png" alt="1319835082B48CF397F37F3CC34667DB" loading="lazy"></figure>
+<h3 id="范围">范围</h3>
+<p>阶码 E 全 0 ，尾数M不全为0，表示非规格化小数</p>
+<figure data-type="image" tabindex="22"><img src="https://myimagess.oss-cn-beijing.aliyuncs.com/202206191438281.png" alt="9BC91E92E1BF48CD788A403057D97AF5" loading="lazy"></figure>
+<figure data-type="image" tabindex="23"><img src="https://myimagess.oss-cn-beijing.aliyuncs.com/202206191441781.png" alt="image-20220619144105833" loading="lazy"></figure>
+<h2 id="计算-2">计算</h2>
+<h3 id="加减运算">加减运算</h3>
+<figure data-type="image" tabindex="24"><img src="https://myimagess.oss-cn-beijing.aliyuncs.com/202206191448111.png" alt="image-20220619144808454" loading="lazy"></figure>
+<figure data-type="image" tabindex="25"><img src="https://myimagess.oss-cn-beijing.aliyuncs.com/202206191508027.png" alt="image-20220619150818281" loading="lazy"></figure>
+<h3 id="强制类型转换-2">强制类型转换</h3>
+<p>从 int 转为 float 可能发生精度损失和溢出</p>
+<p>从 float 转为 int 可能会发生数据舍入</p>
+<h3 id="日常写代码的帮助">日常写代码的帮助</h3>
+<pre><code class="language-c">计算2.0F-1.3F
+1.3F 规范化表示：	1.01001100110011001100110 * 2 ^ 0
+2.0F 规范化表示：	1.00000000000000000000000 * 2 ^ 1
+    
+首先对阶 1.3F变为 0.10100110011001100110011 * 2 ^ 1
+2.0F-1.3F =  	0.01011001100110011001101 * 2 ^ 1
+规范化表示：		1.01100110011001100110100 * 2 ^ -1
+    
+0.7F规范化表示： 	1.01100110011001100110011 * 2 ^ -1    
+    
+所以2.0F-1.3F!=0.7F
+    
+计算2.0F-1.4F
+2.0F-1.4F运算结果
+    规范化表示：	1.00110011001100110011010 * 2 ^ -1
+0.6F 规范化表示：	1.00110011001100110011010 * 2 ^ -1
+    
+2.0F-1.4F==0.7F
+</code></pre>
+<p><strong>浮点数计算，在存储和运算过程中都可能会有精度的丢失，故出现的结果和我们以为的结果就会有出入</strong></p>
+<p>比如1.3 F ，由于二进制为无限循环小数，精度限制后值就变了</p>
+<p>1.4 F ，值也变了，但舍入后相同，是巧合</p>
+
+        </div>
+
+        
+          <a class="animated fadeInUp p-2 items-center text-sm text-gray-700 border hover:bg-gray-300 leading-none rounded-full flex lg:inline-flex m-4 " href="https://yahalou.github.io/tag/CyGuQjdfm/">
+            <span class="flex-auto">大二下</span>
+          </a>
+        
+          <a class="animated fadeInUp p-2 items-center text-sm text-gray-700 border hover:bg-gray-300 leading-none rounded-full flex lg:inline-flex m-4 " href="https://yahalou.github.io/tag/nfyJZMoNz/">
+            <span class="flex-auto">计算机组成原理</span>
+          </a>
+        
+
+
+        <div class="flex justify-between py-8">
+          
+
+          
+            <div class="next-post">
+              <a href="https://yahalou.github.io/post/di-yi-zhang-ji-suan-ji-xi-tong-gai-shu/">
+                <h3 class="post-title">
+                  第一章 计算机系统概述
+                  <i class="ri-arrow-right-line"></i>
+                </h3>
+              </a>
+            </div>
+          
+        </div>
+
+        
+
+      </div>
+    </div>
+
+    <script src="https://yahalou.github.io/media/prism.js"></script>  
+<script>
+
+Prism.highlightAll()
+let mainNavLinks = document.querySelectorAll(".markdownIt-TOC a");
+
+// This should probably be throttled.
+// Especially because it triggers during smooth scrolling.
+// https://lodash.com/docs/4.17.10#throttle
+// You could do like...
+// window.addEventListener("scroll", () => {
+//    _.throttle(doThatStuff, 100);
+// });
+// Only not doing it here to keep this Pen dependency-free.
+
+window.addEventListener("scroll", event => {
+  let fromTop = window.scrollY;
+
+  mainNavLinks.forEach((link, index) => {
+    let section = document.getElementById(decodeURI(link.hash).substring(1));
+    let nextSection = null
+    if (mainNavLinks[index + 1]) {
+      nextSection = document.getElementById(decodeURI(mainNavLinks[index + 1].hash).substring(1));
+    }
+    if (section.offsetTop <= fromTop) {
+      if (nextSection) {
+        if (nextSection.offsetTop > fromTop) {
+          link.classList.add("current");
+        } else {
+          link.classList.remove("current");    
+        }
+      } else {
+        link.classList.add("current");
+      }
+    } else {
+      link.classList.remove("current");
+    }
+  });
+});
+
+
+document.addEventListener("DOMContentLoaded", function() {
+  var lazyImages = [].slice.call(document.querySelectorAll(".post-feature-image.lazy"));
+
+  if ("IntersectionObserver" in window) {
+    let lazyImageObserver = new IntersectionObserver(function(entries, observer) {
+      entries.forEach(function(entry) {
+        if (entry.isIntersecting) {
+          let lazyImage = entry.target
+          lazyImage.style.backgroundImage = `url(${lazyImage.dataset.bg})`
+          lazyImage.classList.remove("lazy")
+          lazyImageObserver.unobserve(lazyImage)
+        }
+      });
+    });
+
+    lazyImages.forEach(function(lazyImage) {
+      lazyImageObserver.observe(lazyImage)
+    })
+  } else {
+    // Possibly fall back to a more compatible method here
+  }
+});
+
+const menuContainer = document.querySelector('.menu-container')
+const menus = document.querySelectorAll('.menu-container .menu')
+const mask = document.querySelector('.mask')
+const contentWrapper = document.querySelector('.content-wrapper')
+const latestArticle = document.querySelector('.latest-article')
+const readMore = document.querySelector('.read-more')
+const indexPage = document.querySelector('.index-page')
+
+const isHome = location.pathname === '/'
+if (latestArticle) {
+  latestArticle.style.display = isHome ? 'block' : 'none'
+  readMore.style.display = isHome ? 'block' : 'none'
+  indexPage.style.display = isHome ? 'none' : 'block'
+}
+
+const openMenu = () => {
+  menuContainer.classList.add('open')
+  menus.forEach(menu => {
+    menu.classList.add('animated', 'fadeInLeft')
+  })
+  mask.classList.add('open')
+  contentWrapper.classList.add('is-second')
+}
+
+const closeMenu = () => {
+  menuContainer.classList.remove('open')
+  menus.forEach(menu => {
+    menu.classList.remove('animated', 'fadeInLeft')
+  })
+  mask.classList.remove('open')
+  contentWrapper.classList.remove('is-second')
+}
+</script>
+  
+  </body>
+</html>
