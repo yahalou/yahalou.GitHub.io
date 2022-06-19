@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://yahalou.github.io</id>
     <title>long&apos;s blog</title>
-    <updated>2022-06-19T08:21:59.967Z</updated>
+    <updated>2022-06-19T16:08:23.546Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://yahalou.github.io"/>
     <link rel="self" href="https://yahalou.github.io/atom.xml"/>
@@ -10,6 +10,81 @@
     <logo>https://yahalou.github.io/images/avatar.png</logo>
     <icon>https://yahalou.github.io/favicon.ico</icon>
     <rights>All rights reserved 2022, long&apos;s blog</rights>
+    <entry>
+        <title type="html"><![CDATA[第三章 存储系统]]></title>
+        <id>https://yahalou.github.io/post/di-san-zhang-cun-chu-xi-tong/</id>
+        <link href="https://yahalou.github.io/post/di-san-zhang-cun-chu-xi-tong/">
+        </link>
+        <updated>2022-06-19T16:08:01.000Z</updated>
+        <content type="html"><![CDATA[<h1 id="存储器的层次结构">存储器的层次结构</h1>
+<img src="C:/Users/26033/AppData/Roaming/Typora/typora-user-images/image-20220619171315343.png" alt="image-20220619171315343" style="zoom:200%;" />
+<p>存取周期=存取时间+恢复时间<img src="https://myimagess.oss-cn-beijing.aliyuncs.com/202206191722268.png" alt="B1A6FF06DCC8CC4FB410807205367808" loading="lazy"></p>
+<h1 id="半导体随机存储器ram">半导体随机存储器（RAM）</h1>
+<p>主存用DRAM，cache用SRAM</p>
+<p><strong>DRAM</strong>一般2ms要<strong>刷新</strong>一次，因为DRAM上的电荷只能维持1~2ms，只有DRAM要刷新</p>
+<p><strong>地址分为行列地址</strong>，算地址线的时候要除2</p>
+<p>地址线计算：地址线+数据线+片选线+读写控制线（可以是同一根）</p>
+<p>DRAM一般<strong>按行刷新</strong></p>
+<figure data-type="image" tabindex="1"><img src="https://myimagess.oss-cn-beijing.aliyuncs.com/202206191727180.png" alt="image-20220619172747303" loading="lazy"></figure>
+<h1 id="只读存储器rom">只读存储器（ROM）</h1>
+<figure data-type="image" tabindex="2"><img src="https://myimagess.oss-cn-beijing.aliyuncs.com/202206191728198.png" alt="image-20220619172843031" loading="lazy"></figure>
+<p><strong>闪存</strong>要先擦除再写入，所以<strong>写速度 &lt; 读速度</strong></p>
+<h1 id="主存与cpu的连接">主存与CPU的连接</h1>
+<h2 id="主存容量的扩展">主存容量的扩展</h2>
+<p>位扩展：并联</p>
+<p>字扩展：串联<img src="https://myimagess.oss-cn-beijing.aliyuncs.com/202206191838811.png" alt="208E27E903D000E94F3E25ACF8CEE2BA" loading="lazy"></p>
+<h1 id="多模块存储器">多模块存储器</h1>
+<h2 id="单体多字系统">单体多字系统</h2>
+<h2 id="多体并行储存器">多体并行储存器</h2>
+<h2 id="目的">目的</h2>
+<p>一个存储器有一个存取周期，在一个存储器内顺序存取很浪费时间</p>
+<h4 id="高位交叉编址">高位交叉编址</h4>
+<figure data-type="image" tabindex="3"><img src="https://myimagess.oss-cn-beijing.aliyuncs.com/202206191912507.png" alt="697E3CE38C5C8B5027195EF5E85A9B6E" loading="lazy"></figure>
+<p>本质上还是顺序存储器，不能并行访问</p>
+<h4 id="低位交叉编址">低位交叉编址</h4>
+<figure data-type="image" tabindex="4"><img src="https://myimagess.oss-cn-beijing.aliyuncs.com/202206191912994.png" alt="4495B43E60373C3FCB391460BDF0227B" loading="lazy"></figure>
+<figure data-type="image" tabindex="5"><img src="https://myimagess.oss-cn-beijing.aliyuncs.com/202206191920681.png" alt="81845D93ED6BC26436F420FBC7AE05BE" loading="lazy"></figure>
+<h1 id="cache">Cache</h1>
+<h2 id="工作原理">工作原理</h2>
+<p>时间局部性：一旦一条指令执行，它就可能在不久的将来再被执行</p>
+<p>空间局部性：一旦一个存储单元被访问，它附近的存储单元也很快被访问</p>
+<p>Cache将主存分组，符合空间局部性</p>
+<p>写回法写命中（对Cache写命中时修改Cache的内容），符合空间局部性</p>
+<p><strong>提升效率</strong></p>
+<figure data-type="image" tabindex="6"><img src="https://myimagess.oss-cn-beijing.aliyuncs.com/202206191944145.png" alt="78E213B58D8A3F4CDE234853CA10E623" loading="lazy"></figure>
+<h2 id="cache和主存的映射关系">Cache和主存的映射关系</h2>
+<ul>
+<li>将主存地址分成多个字段</li>
+</ul>
+<ul>
+<li>
+<p>每个<strong>Cache行（块）<strong>大小和</strong>主存块</strong>相等</p>
+</li>
+<li>
+<p>Cache和主存之间以<strong>块</strong>为单位交换数据</p>
+</li>
+<li>
+<p>不命中<strong>先送到对应Cache中</strong>，再送到CPU中</p>
+</li>
+</ul>
+<h3 id="全相联映射">全相联映射</h3>
+<figure data-type="image" tabindex="7"><img src="https://myimagess.oss-cn-beijing.aliyuncs.com/202206192253448.png" alt="image-20220619225319140" loading="lazy"></figure>
+<p>前22位为主存块号，主存中处于同一块的地址主存块号相同</p>
+<h3 id="直接映射">直接映射</h3>
+<figure data-type="image" tabindex="8"><img src="https://myimagess.oss-cn-beijing.aliyuncs.com/202206192257586.png" alt="image-20220619225729512" loading="lazy"></figure>
+<p>这里主存块号%Cache总块数余了三位，就是行号，可以快速定位</p>
+<p>标记位变为19位，行号提前匹配了</p>
+<p><strong>行号不算在Cache的存储容量里</strong></p>
+<h3 id="组相联映射">组相联映射</h3>
+<figure data-type="image" tabindex="9"><img src="https://myimagess.oss-cn-beijing.aliyuncs.com/202206192305199.png" alt="image-20220619230510247" loading="lazy"></figure>
+<h2 id="cache替换算法">Cache替换算法</h2>
+<p>直接映射无需考虑，全相联或组相联需要考虑</p>
+<h3 id="lru-近期最少使用算法">LRU 近期最少使用算法</h3>
+<figure data-type="image" tabindex="10"><img src="https://myimagess.oss-cn-beijing.aliyuncs.com/202206192323824.png" alt="5A422F723C5ADE60380CC620D07B6ED8" loading="lazy"></figure>
+<h1 id="虚拟存储器">虚拟存储器</h1>
+<p>跳了</p>
+]]></content>
+    </entry>
     <entry>
         <title type="html"><![CDATA[第二章 数据的表示和运算]]></title>
         <id>https://yahalou.github.io/post/di-er-zhang-shu-ju-de-biao-shi-he-yun-suan/</id>
@@ -150,7 +225,7 @@
 <h4 id="指令字长">指令字长</h4>
 <p>一个指令包含的二进制代码的位数</p>
 <h4 id="存储字长">存储字长</h4>
-<p>一个存储单元存储的二进制代码的位数</p>
+<p>一个存储单元存储的二进制代码的位数，简称为字</p>
 <h3 id="主存容量">主存容量</h3>
 <h3 id="运算速度">运算速度</h3>
 <blockquote>
