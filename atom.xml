@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://yahalou.github.io</id>
     <title>long&apos;s blog</title>
-    <updated>2022-06-21T02:42:46.460Z</updated>
+    <updated>2022-06-21T02:43:34.230Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://yahalou.github.io"/>
     <link rel="self" href="https://yahalou.github.io/atom.xml"/>
@@ -16,7 +16,8 @@
         <link href="https://yahalou.github.io/post/xing-shi-yu-yan-yu-zi-dong-ji/">
         </link>
         <updated>2022-06-21T02:41:51.000Z</updated>
-        <content type="html"><![CDATA[<h1 id="文法">文法</h1>
+        <content type="html"><![CDATA[<p>结合 PPT 观看效果更好</p>
+<h1 id="文法">文法</h1>
 <figure data-type="image" tabindex="1"><img src="https://myimagess.oss-cn-beijing.aliyuncs.com/202206211041330.jpg" alt="形式语言笔记_页面_01" loading="lazy"></figure>
 <figure data-type="image" tabindex="2"><img src="https://myimagess.oss-cn-beijing.aliyuncs.com/202206211041332.jpg" alt="形式语言笔记_页面_02" loading="lazy"></figure>
 <h1 id="dfanfa正则表达式">DFA，NFA，正则表达式</h1>
