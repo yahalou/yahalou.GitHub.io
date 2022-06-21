@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://yahalou.github.io</id>
     <title>long&apos;s blog</title>
-    <updated>2022-06-20T01:10:25.521Z</updated>
+    <updated>2022-06-21T02:42:46.460Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://yahalou.github.io"/>
     <link rel="self" href="https://yahalou.github.io/atom.xml"/>
@@ -10,6 +10,27 @@
     <logo>https://yahalou.github.io/images/avatar.png</logo>
     <icon>https://yahalou.github.io/favicon.ico</icon>
     <rights>All rights reserved 2022, long&apos;s blog</rights>
+    <entry>
+        <title type="html"><![CDATA[形式语言与自动机]]></title>
+        <id>https://yahalou.github.io/post/xing-shi-yu-yan-yu-zi-dong-ji/</id>
+        <link href="https://yahalou.github.io/post/xing-shi-yu-yan-yu-zi-dong-ji/">
+        </link>
+        <updated>2022-06-21T02:41:51.000Z</updated>
+        <content type="html"><![CDATA[<h1 id="文法">文法</h1>
+<figure data-type="image" tabindex="1"><img src="https://myimagess.oss-cn-beijing.aliyuncs.com/202206211041330.jpg" alt="形式语言笔记_页面_01" loading="lazy"></figure>
+<figure data-type="image" tabindex="2"><img src="https://myimagess.oss-cn-beijing.aliyuncs.com/202206211041332.jpg" alt="形式语言笔记_页面_02" loading="lazy"></figure>
+<h1 id="dfanfa正则表达式">DFA，NFA，正则表达式</h1>
+<figure data-type="image" tabindex="3"><img src="https://myimagess.oss-cn-beijing.aliyuncs.com/202206211041333.jpg" alt="形式语言笔记_页面_03" loading="lazy"></figure>
+<figure data-type="image" tabindex="4"><img src="https://myimagess.oss-cn-beijing.aliyuncs.com/202206211041334.jpg" alt="" loading="lazy"></figure>
+<figure data-type="image" tabindex="5"><img src="https://myimagess.oss-cn-beijing.aliyuncs.com/202206211041335.jpg" alt="形式语言笔记_页面_05" loading="lazy"></figure>
+<figure data-type="image" tabindex="6"><img src="https://myimagess.oss-cn-beijing.aliyuncs.com/202206211041336.jpg" alt="形式语言笔记_页面_06" loading="lazy"></figure>
+<h1 id="cnfpda">CNF，PDA</h1>
+<figure data-type="image" tabindex="7"><img src="https://myimagess.oss-cn-beijing.aliyuncs.com/202206211041337.jpg" alt="形式语言笔记_页面_07" loading="lazy"></figure>
+<figure data-type="image" tabindex="8"><img src="https://myimagess.oss-cn-beijing.aliyuncs.com/202206211041338.jpg" alt="形式语言笔记_页面_08" loading="lazy"></figure>
+<figure data-type="image" tabindex="9"><img src="https://myimagess.oss-cn-beijing.aliyuncs.com/202206211041339.jpg" alt="形式语言笔记_页面_09" loading="lazy"></figure>
+<figure data-type="image" tabindex="10"><img src="https://myimagess.oss-cn-beijing.aliyuncs.com/202206211041340.jpg" alt="形式语言笔记_页面_10" loading="lazy"></figure>
+]]></content>
+    </entry>
     <entry>
         <title type="html"><![CDATA[第三章 存储系统]]></title>
         <id>https://yahalou.github.io/post/di-san-zhang-cun-chu-xi-tong/</id>
