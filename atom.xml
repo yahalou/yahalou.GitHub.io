@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://yahalou.github.io</id>
     <title>long&apos;s blog</title>
-    <updated>2022-06-21T02:44:13.013Z</updated>
+    <updated>2022-06-23T04:49:38.595Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://yahalou.github.io"/>
     <link rel="self" href="https://yahalou.github.io/atom.xml"/>
@@ -10,6 +10,220 @@
     <logo>https://yahalou.github.io/images/avatar.png</logo>
     <icon>https://yahalou.github.io/favicon.ico</icon>
     <rights>All rights reserved 2022, long&apos;s blog</rights>
+    <entry>
+        <title type="html"><![CDATA[第七章 IO]]></title>
+        <id>https://yahalou.github.io/post/di-qi-zhang-io/</id>
+        <link href="https://yahalou.github.io/post/di-qi-zhang-io/">
+        </link>
+        <updated>2022-06-23T04:49:17.000Z</updated>
+        <content type="html"><![CDATA[<h1 id="基本概念">基本概念</h1>
+<figure data-type="image" tabindex="1"><img src="https://myimagess.oss-cn-beijing.aliyuncs.com/202206222232266.png" alt="image-20220622223234970" loading="lazy"></figure>
+<h2 id="io控制方式">IO控制方式</h2>
+<h3 id="程序查询方式程序中断方式">程序查询方式，程序中断方式</h3>
+<figure data-type="image" tabindex="2"><img src="https://myimagess.oss-cn-beijing.aliyuncs.com/202206222241948.png" alt="image-20220622224104994" loading="lazy"></figure>
+<figure data-type="image" tabindex="3"><img src="https://myimagess.oss-cn-beijing.aliyuncs.com/202206222243876.png" alt="image-20220622224338964" loading="lazy"></figure>
+<p>程序查询方式也可以定时查询，上图表示的是独占查询</p>
+<h3 id="dma控制方式">DMA控制方式</h3>
+<figure data-type="image" tabindex="4"><img src="https://myimagess.oss-cn-beijing.aliyuncs.com/202206222244643.png" alt="image-20220622224443419" loading="lazy"></figure>
+<figure data-type="image" tabindex="5"><img src="https://myimagess.oss-cn-beijing.aliyuncs.com/202206222251123.png" alt="image-20220622225147199" loading="lazy"></figure>
+<p>与前两种的区别是：前两种是读到 CPU 的某个寄存器中，再读到主存中，DMA是直接读到主存中</p>
+<h3 id="通道控制方式">通道控制方式</h3>
+<figure data-type="image" tabindex="6"><img src="https://myimagess.oss-cn-beijing.aliyuncs.com/202206222255780.png" alt="image-20220622225532830" loading="lazy"></figure>
+<h2 id="io系统组成">IO系统组成</h2>
+<figure data-type="image" tabindex="7"><img src="https://myimagess.oss-cn-beijing.aliyuncs.com/202206222258390.png" alt="image-20220622225807984" loading="lazy"></figure>
+<p>驱动程序的作用</p>
+<h1 id="外部设备">外部设备</h1>
+<h2 id="输入设备">输入设备</h2>
+<p>键鼠</p>
+<h2 id="输出设备">输出设备</h2>
+<h4 id="显示器参数">显示器参数</h4>
+<p>屏幕大小是<strong>对角线长度</strong></p>
+<h4 id="vram的计算">VRAM的计算</h4>
+<figure data-type="image" tabindex="8"><img src="https://myimagess.oss-cn-beijing.aliyuncs.com/202206222334058.png" alt="image-20220622233405050" loading="lazy"></figure>
+<p>分辨率是像素个数，灰度位数是每个像素需要多少个bit表示</p>
+<h4 id="关于显卡">关于显卡</h4>
+<figure data-type="image" tabindex="9"><img src="https://myimagess.oss-cn-beijing.aliyuncs.com/202206222338287.png" alt="image-20220622233832301" loading="lazy"></figure>
+<p>集显和独显的区别：集显的显存用的是内存</p>
+<p>显存理论最小值：一帧的大小（VRAM容量）</p>
+<h2 id="外存储器">外存储器</h2>
+<h3 id="磁盘">磁盘</h3>
+<figure data-type="image" tabindex="10"><img src="https://myimagess.oss-cn-beijing.aliyuncs.com/202206222351497.png" alt="image-20220622235103654" loading="lazy"></figure>
+<figure data-type="image" tabindex="11"><img src="https://myimagess.oss-cn-beijing.aliyuncs.com/202206222353751.png" alt="image-20220622235310872" loading="lazy"></figure>
+<ul>
+<li>
+<p>一个硬盘有多个<strong>盘面</strong>，一个盘面有一个<strong>磁头</strong></p>
+</li>
+<li>
+<p>一个盘面会有很多圈磁性材质，叫做<strong>磁道</strong></p>
+</li>
+<li>
+<p>为了方便计算机读写，将每个磁道划分成多个<strong>扇区</strong></p>
+</li>
+<li>
+<p><strong>柱面号</strong>就是磁道号</p>
+</li>
+</ul>
+<h3 id="磁盘性能指标">磁盘性能指标</h3>
+<h4 id="磁盘的容量">磁盘的容量</h4>
+<figure data-type="image" tabindex="12"><img src="https://myimagess.oss-cn-beijing.aliyuncs.com/202206230000317.png" alt="image-20220623000020994" loading="lazy"></figure>
+<p>格式化后有些容量留作备用，所以会变小</p>
+<h4 id="记录密度">记录密度</h4>
+<figure data-type="image" tabindex="13"><img src="https://myimagess.oss-cn-beijing.aliyuncs.com/202206230001540.png" alt="image-20220623000124468" loading="lazy"></figure>
+<h3 id="平均存取时间">平均存取时间</h3>
+<figure data-type="image" tabindex="14"><img src="https://myimagess.oss-cn-beijing.aliyuncs.com/202206230003130.png" alt="image-20220623000259275" loading="lazy"></figure>
+<p>旋转延迟时间平均等于<strong>转半圈所需时间</strong></p>
+<h4 id="数据传输率">数据传输率</h4>
+<figure data-type="image" tabindex="15"><img src="https://myimagess.oss-cn-beijing.aliyuncs.com/202206230004728.png" alt="image-20220623000439942" loading="lazy"></figure>
+<h3 id="磁盘阵列">磁盘阵列</h3>
+<figure data-type="image" tabindex="16"><img src="https://myimagess.oss-cn-beijing.aliyuncs.com/202206230007979.png" alt="image-20220623000730850" loading="lazy"></figure>
+<p>RAID0<strong>没有</strong>容错能力，RAID1有容错能力，但是容量减少一半</p>
+<h3 id="光盘">光盘</h3>
+<figure data-type="image" tabindex="17"><img src="https://myimagess.oss-cn-beijing.aliyuncs.com/202206230009126.png" alt="image-20220623000950252" loading="lazy"></figure>
+<h1 id="中断">中断</h1>
+<figure data-type="image" tabindex="18"><img src="https://myimagess.oss-cn-beijing.aliyuncs.com/202206230826503.png" alt="image-20220623082612662" loading="lazy"></figure>
+<p>原子操作：要么不做要么做到底</p>
+<p>大多数中断都是可屏蔽中断</p>
+<h2 id="中断判优">中断判优</h2>
+<figure data-type="image" tabindex="19"><img src="https://myimagess.oss-cn-beijing.aliyuncs.com/202206230830060.png" alt="image-20220623083023351" loading="lazy"></figure>
+<figure data-type="image" tabindex="20"><img src="https://myimagess.oss-cn-beijing.aliyuncs.com/202206230831876.png" alt="image-20220623083122392" loading="lazy"></figure>
+<h2 id="中断处理过程">中断处理过程</h2>
+<figure data-type="image" tabindex="21"><img src="https://myimagess.oss-cn-beijing.aliyuncs.com/202206230834409.png" alt="image-20220623083403679" loading="lazy"></figure>
+<figure data-type="image" tabindex="22"><img src="https://myimagess.oss-cn-beijing.aliyuncs.com/202206230835936.png" alt="image-20220623083524084" loading="lazy"></figure>
+<p>中断服务程序：</p>
+<figure data-type="image" tabindex="23"><img src="https://myimagess.oss-cn-beijing.aliyuncs.com/202206230838543.png" alt="image-20220623083806348" loading="lazy"></figure>
+<h2 id="多重中断">多重中断</h2>
+<figure data-type="image" tabindex="24"><img src="https://myimagess.oss-cn-beijing.aliyuncs.com/202206230845657.png" alt="image-20220623084528949" loading="lazy"></figure>
+<p>屏蔽字：哪些中断请求应该被屏蔽，只保留更深一层的中断，1为屏蔽，0为不屏蔽，自己要屏蔽自己</p>
+<h2 id="中断细节">中断细节</h2>
+<p>启动后CPU可以继续干之前的事情，跟程序查询不一样</p>
+<figure data-type="image" tabindex="25"><img src="https://myimagess.oss-cn-beijing.aliyuncs.com/202206230909993.png" alt="image-20220623090954094" loading="lazy"></figure>
+]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[第六章 总线]]></title>
+        <id>https://yahalou.github.io/post/di-liu-zhang-zong-xian/</id>
+        <link href="https://yahalou.github.io/post/di-liu-zhang-zong-xian/">
+        </link>
+        <updated>2022-06-23T04:48:50.000Z</updated>
+        <content type="html"><![CDATA[<h1 id="总线概述">总线概述</h1>
+<h2 id="总线的分类">总线的分类</h2>
+<figure data-type="image" tabindex="1"><img src="https://myimagess.oss-cn-beijing.aliyuncs.com/202206212027615.png" alt="image-20220621202716444" loading="lazy"></figure>
+<figure data-type="image" tabindex="2"><img src="https://myimagess.oss-cn-beijing.aliyuncs.com/202206212038027.png" alt="image-20220621203820965" loading="lazy"></figure>
+<p>USB是串行总线</p>
+<h2 id="系统总线结构">系统总线结构</h2>
+<figure data-type="image" tabindex="3"><img src="https://myimagess.oss-cn-beijing.aliyuncs.com/202206212031177.png" alt="image-20220621203119257" loading="lazy"></figure>
+<figure data-type="image" tabindex="4"><img src="https://myimagess.oss-cn-beijing.aliyuncs.com/202206212031340.png" alt="image-20220621203133140" loading="lazy"></figure>
+<figure data-type="image" tabindex="5"><img src="https://myimagess.oss-cn-beijing.aliyuncs.com/202206212036859.png" alt="image-20220621203650141" loading="lazy"></figure>
+<p>突发（猝发）传送：送出一个地址，收到多个地址连续的数据</p>
+<p>DMA：Direct Memory Access 直接内存访问</p>
+<h1 id="总线的性能指标">总线的性能指标</h1>
+<figure data-type="image" tabindex="6"><img src="https://myimagess.oss-cn-beijing.aliyuncs.com/202206212039348.png" alt="image-20220621203947336" loading="lazy"></figure>
+<ul>
+<li>
+<p>总线周期的单位是总线时钟周期</p>
+</li>
+<li>
+<p>总线周期 -- 总线的工作频率，总线时钟周期 -- 总线的时钟频率</p>
+</li>
+<li>
+<p>总线带宽 = 总线工作频率 * 总线宽度（速度，10^3）</p>
+</li>
+</ul>
+<h1 id="仲裁">仲裁</h1>
+<p>选择一个主设备获得总线控制权</p>
+<figure data-type="image" tabindex="7"><img src="https://myimagess.oss-cn-beijing.aliyuncs.com/202206212124399.png" alt="image-20220621212403542" loading="lazy"></figure>
+<h2 id="集中仲裁">集中仲裁</h2>
+<figure data-type="image" tabindex="8"><img src="https://myimagess.oss-cn-beijing.aliyuncs.com/202206212125672.png" alt="image-20220621212546792" loading="lazy"></figure>
+<p>发BR是请求控制权，都能发</p>
+<p>发BS是控制权到自己手里了，通知总线控制部件</p>
+<figure data-type="image" tabindex="9"><img src="https://myimagess.oss-cn-beijing.aliyuncs.com/202206212130368.png" alt="image-20220621213055469" loading="lazy"></figure>
+<figure data-type="image" tabindex="10"><img src="https://myimagess.oss-cn-beijing.aliyuncs.com/202206212132666.png" alt="image-20220621213223440" loading="lazy"></figure>
+<h1 id="总线标准">总线标准</h1>
+<figure data-type="image" tabindex="11"><img src="https://myimagess.oss-cn-beijing.aliyuncs.com/202206212142757.png" alt="image-20220621214200940" loading="lazy"></figure>
+<figure data-type="image" tabindex="12"><img src="https://myimagess.oss-cn-beijing.aliyuncs.com/202206212140283.png" alt="image-20220621214021416" loading="lazy"></figure>
+]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[第五章 中央处理器]]></title>
+        <id>https://yahalou.github.io/post/di-wu-zhang-zhong-yang-chu-li-qi/</id>
+        <link href="https://yahalou.github.io/post/di-wu-zhang-zhong-yang-chu-li-qi/">
+        </link>
+        <updated>2022-06-23T04:48:17.000Z</updated>
+        <content type="html"><![CDATA[<h1 id="cpu的功能和基本结构">CPU的功能和基本结构</h1>
+<figure data-type="image" tabindex="1"><img src="https://myimagess.oss-cn-beijing.aliyuncs.com/202206211421291.png" alt="image-20220621142119145" loading="lazy"></figure>
+<h1 id="指令执行过程">指令执行过程</h1>
+<h2 id="指令周期">指令周期</h2>
+<p>CPU从主存中<strong>取出并执行</strong>一条指令的时间成为指令周期</p>
+<figure data-type="image" tabindex="2"><img src="https://myimagess.oss-cn-beijing.aliyuncs.com/202206211510422.png" alt="A076B27D01C648FF76E4C53A2FBDB017" loading="lazy"></figure>
+<p>中断周期是为了保存程序断点</p>
+<h2 id="指令周期的数据流">指令周期的数据流</h2>
+<figure data-type="image" tabindex="3"><img src="https://myimagess.oss-cn-beijing.aliyuncs.com/202206211526558.png" alt="image-20220621152648955" loading="lazy"></figure>
+<ul>
+<li>
+<p>PC在<strong>取值周期</strong>后就加1</p>
+</li>
+<li>
+<p>程序断点存入堆栈中<img src="C:/Users/26033/Documents/Tencent Files/2603381596/FileRecv/MobileFile/5809F87E11AE8CE08F6F321CDA0FCC20.png" alt="5809F87E11AE8CE08F6F321CDA0FCC20" style="zoom:25%;" /></p>
+</li>
+<li>
+<p>中断周期SP是寄存器，相当于指针，中断时把PC写入SP指向的存储单元</p>
+</li>
+</ul>
+<h1 id="数据通路">数据通路</h1>
+<ul>
+<li>在一个时钟周期内控制信号不会变化</li>
+<li>写的时候注意读写命令</li>
+</ul>
+<figure data-type="image" tabindex="4"><img src="https://myimagess.oss-cn-beijing.aliyuncs.com/202206211620425.png" alt="image-20220621162011530" loading="lazy"></figure>
+<h1 id="控制器">控制器</h1>
+<p>回忆细节可以看计组实验五</p>
+<h2 id="硬布线控制器">硬布线控制器</h2>
+<figure data-type="image" tabindex="5"><img src="https://myimagess.oss-cn-beijing.aliyuncs.com/202206211612087.png" alt="image-20220621161252155" loading="lazy"></figure>
+<h2 id="微程序控制器">微程序控制器</h2>
+<figure data-type="image" tabindex="6"><img src="https://myimagess.oss-cn-beijing.aliyuncs.com/202206211618176.png" alt="32C6B5FEF12333A9AE44E98FC38B0D40" loading="lazy"></figure>
+<h3 id="编码方式">编码方式</h3>
+<h4 id="直接编码">直接编码</h4>
+<figure data-type="image" tabindex="7"><img src="https://myimagess.oss-cn-beijing.aliyuncs.com/202206211735660.png" alt="4B64A4B32091CB204A58D822015E87D2" loading="lazy"></figure>
+<h4 id="字段直接编码">字段直接编码</h4>
+<figure data-type="image" tabindex="8"><img src="https://myimagess.oss-cn-beijing.aliyuncs.com/202206211734127.png" alt="49557156349559C903933E27941E2F7B" loading="lazy"></figure>
+<h1 id="指令流水线">指令流水线</h1>
+<h2 id="时空图">时空图</h2>
+<figure data-type="image" tabindex="9"><img src="https://myimagess.oss-cn-beijing.aliyuncs.com/202206211639060.png" alt="image-20220621163946108" loading="lazy"></figure>
+<figure data-type="image" tabindex="10"><img src="https://myimagess.oss-cn-beijing.aliyuncs.com/202206211640269.png" alt="8EACCFFED7D3D95D89242DC3FCC2232B" loading="lazy"></figure>
+<h2 id="性能指标">性能指标</h2>
+<h3 id="影响因素">影响因素</h3>
+<p>资源冲突，数据冲突，控制冲突</p>
+<h3 id="吞吐率">吞吐率</h3>
+<figure data-type="image" tabindex="11"><img src="https://myimagess.oss-cn-beijing.aliyuncs.com/202206211929077.png" alt="0E12114EFB53A786A01193717F06AC1E" loading="lazy"></figure>
+<h3 id="加速比">加速比</h3>
+<p>用流水线和不用流水线的比</p>
+<figure data-type="image" tabindex="12"><img src="https://myimagess.oss-cn-beijing.aliyuncs.com/202206211934137.png" alt="image-20220621193402069" loading="lazy"></figure>
+<h3 id="流水线效率">流水线效率</h3>
+<figure data-type="image" tabindex="13"><img src="https://myimagess.oss-cn-beijing.aliyuncs.com/202206211934072.png" alt="image-20220621193419289" loading="lazy"></figure>
+]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[第四章 指令系统]]></title>
+        <id>https://yahalou.github.io/post/di-si-zhang-zhi-ling-xi-tong/</id>
+        <link href="https://yahalou.github.io/post/di-si-zhang-zhi-ling-xi-tong/">
+        </link>
+        <updated>2022-06-23T04:47:51.000Z</updated>
+        <content type="html"><![CDATA[<h1 id="指令格式">指令格式</h1>
+<h2 id="数据寻址">数据寻址</h2>
+<figure data-type="image" tabindex="1"><img src="https://myimagess.oss-cn-beijing.aliyuncs.com/202206211312759.png" alt="A73C7E354325925BFCF27D5239F29ECD" loading="lazy"></figure>
+<figure data-type="image" tabindex="2"><img src="C:/Users/26033/AppData/Roaming/Typora/typora-user-images/image-20220621131540676.png" alt="image-20220621131540676" loading="lazy"></figure>
+<ul>
+<li>间接寻址 PC指向的是条指令</li>
+<li><strong>操作码</strong>不是<strong>操作数</strong>，操作数是你寻的那个数</li>
+<li>计算指令条数只看操作码</li>
+<li>寄存器寻址指令里会有寄存器的编号</li>
+</ul>
+<h1 id="cisc-risc">CISC、RISC</h1>
+<p>CISC -- Complex Instruction Set Computer -- 复杂指令系统计算机</p>
+<p>RISC -- Reduced Instruction Set Computer -- 精简指令系统计算机</p>
+<figure data-type="image" tabindex="3"><img src="https://myimagess.oss-cn-beijing.aliyuncs.com/202206211338906.png" alt="image-20220621133832410" loading="lazy"></figure>
+]]></content>
+    </entry>
     <entry>
         <title type="html"><![CDATA[形式语言与自动机]]></title>
         <id>https://yahalou.github.io/post/xing-shi-yu-yan-yu-zi-dong-ji/</id>
