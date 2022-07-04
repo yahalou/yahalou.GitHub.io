@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://yahalou.github.io</id>
     <title>long&apos;s blog</title>
-    <updated>2022-07-04T07:27:46.227Z</updated>
+    <updated>2022-07-04T07:45:58.474Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://yahalou.github.io"/>
     <link rel="self" href="https://yahalou.github.io/atom.xml"/>
@@ -10,6 +10,354 @@
     <logo>https://yahalou.github.io/images/avatar.png</logo>
     <icon>https://yahalou.github.io/favicon.ico</icon>
     <rights>All rights reserved 2022, long&apos;s blog</rights>
+    <entry>
+        <title type="html"><![CDATA[第六章 运输层]]></title>
+        <id>https://yahalou.github.io/post/di-liu-zhang-yun-shu-ceng/</id>
+        <link href="https://yahalou.github.io/post/di-liu-zhang-yun-shu-ceng/">
+        </link>
+        <updated>2022-07-04T07:44:21.000Z</updated>
+        <content type="html"><![CDATA[<h1 id="概述">概述</h1>
+<figure data-type="image" tabindex="1"><img src="https://myimagess.oss-cn-beijing.aliyuncs.com/202207041538745.png" alt="Untitled" loading="lazy"></figure>
+<h1 id="运输层端口号复用分用">运输层端口号，复用，分用</h1>
+<figure data-type="image" tabindex="2"><img src="https://myimagess.oss-cn-beijing.aliyuncs.com/202207041538746.png" alt="Untitled" loading="lazy"></figure>
+<figure data-type="image" tabindex="3"><img src="https://myimagess.oss-cn-beijing.aliyuncs.com/202207041538747.png" alt="Untitled" loading="lazy"></figure>
+<figure data-type="image" tabindex="4"><img src="https://myimagess.oss-cn-beijing.aliyuncs.com/202207041538748.png" alt="Untitled" loading="lazy"></figure>
+<h1 id="udp和tcp的对比">UDP和TCP的对比</h1>
+<figure data-type="image" tabindex="5"><img src="https://myimagess.oss-cn-beijing.aliyuncs.com/202207041538749.png" alt="Untitled" loading="lazy"></figure>
+<figure data-type="image" tabindex="6"><img src="https://myimagess.oss-cn-beijing.aliyuncs.com/202207041538750.png" alt="Untitled" loading="lazy"></figure>
+<figure data-type="image" tabindex="7"><img src="https://myimagess.oss-cn-beijing.aliyuncs.com/202207041538751.png" alt="Untitled" loading="lazy"></figure>
+<figure data-type="image" tabindex="8"><img src="https://myimagess.oss-cn-beijing.aliyuncs.com/202207041538752.png" alt="Untitled" loading="lazy"></figure>
+<figure data-type="image" tabindex="9"><img src="https://myimagess.oss-cn-beijing.aliyuncs.com/202207041538753.png" alt="Untitled" loading="lazy"></figure>
+<figure data-type="image" tabindex="10"><img src="https://myimagess.oss-cn-beijing.aliyuncs.com/202207041538754.png" alt="Untitled" loading="lazy"></figure>
+<h1 id="tcp的流量控制">TCP的流量控制</h1>
+<figure data-type="image" tabindex="11"><img src="https://myimagess.oss-cn-beijing.aliyuncs.com/202207041538755.png" alt="Untitled" loading="lazy"></figure>
+<h1 id="tcp的拥塞控制">TCP的拥塞控制</h1>
+<figure data-type="image" tabindex="12"><img src="https://myimagess.oss-cn-beijing.aliyuncs.com/202207041538756.png" alt="Untitled" loading="lazy"></figure>
+<p>四种算法看课件</p>
+<figure data-type="image" tabindex="13"><img src="https://myimagess.oss-cn-beijing.aliyuncs.com/202207041538757.png" alt="Untitled" loading="lazy"></figure>
+<h1 id="tcp超时重传">TCP超时重传</h1>
+<h1 id="tcp可靠传输的实现">TCP可靠传输的实现</h1>
+<p>窗口大小调整</p>
+<figure data-type="image" tabindex="14"><img src="https://myimagess.oss-cn-beijing.aliyuncs.com/202207041538758.png" alt="Untitled" loading="lazy"></figure>
+<p>确认报文和数据链路层不一样，是接收到的字节+1</p>
+<h1 id="tcp的连接建立和释放">TCP的连接建立和释放</h1>
+<figure data-type="image" tabindex="15"><img src="https://myimagess.oss-cn-beijing.aliyuncs.com/202207041538759.png" alt="Untitled" loading="lazy"></figure>
+<figure data-type="image" tabindex="16"><img src="https://myimagess.oss-cn-beijing.aliyuncs.com/202207041538760.png" alt="Untitled" loading="lazy"></figure>
+<figure data-type="image" tabindex="17"><img src="https://myimagess.oss-cn-beijing.aliyuncs.com/202207041538761.png" alt="Untitled" loading="lazy"></figure>
+<p>握手的第三条和挥手的第一条都可以携带数据，握手第三条如果不携带数据seq就不会加1，挥手第一条带不带都加1</p>
+<h1 id="tcp报文段的首部格式">TCP报文段的首部格式</h1>
+<figure data-type="image" tabindex="18"><img src="https://myimagess.oss-cn-beijing.aliyuncs.com/202207041538762.png" alt="Untitled" loading="lazy"></figure>
+]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[第五章 网络层]]></title>
+        <id>https://yahalou.github.io/post/di-wu-zhang-wang-luo-ceng/</id>
+        <link href="https://yahalou.github.io/post/di-wu-zhang-wang-luo-ceng/">
+        </link>
+        <updated>2022-07-04T07:43:48.000Z</updated>
+        <content type="html"><![CDATA[<h1 id="ip地址">IP地址</h1>
+<h3 id="mac地址和ip地址的区别">mac地址和ip地址的区别</h3>
+<p><strong>ip地址可以区分网络和网络上的不同接口</strong></p>
+<figure data-type="image" tabindex="1"><img src="https://myimagess.oss-cn-beijing.aliyuncs.com/202207041538234.png" alt="Untitled" loading="lazy"></figure>
+<figure data-type="image" tabindex="2"><img src="https://myimagess.oss-cn-beijing.aliyuncs.com/202207041538236.png" alt="Untitled" loading="lazy"></figure>
+<h3 id="地址解析协议arp">地址解析协议ARP</h3>
+<figure data-type="image" tabindex="3"><img src="https://myimagess.oss-cn-beijing.aliyuncs.com/202207041538237.png" alt="Untitled" loading="lazy"></figure>
+<p><strong>ARP只在同一个网络中使用</strong></p>
+<p>数据报在不同网络中 IP 地址不变，MAC 地址一直在变</p>
+<h1 id="网络层概述">网络层概述</h1>
+<p>二图等效</p>
+<figure data-type="image" tabindex="4"><img src="https://myimagess.oss-cn-beijing.aliyuncs.com/202207041538238.png" alt="Untitled" loading="lazy"></figure>
+<figure data-type="image" tabindex="5"><img src="https://myimagess.oss-cn-beijing.aliyuncs.com/202207041538239.png" alt="Untitled" loading="lazy"></figure>
+<p><strong>因特网</strong>是用户数量最多的<strong>互联网</strong></p>
+<p>由于TCP/IP协议栈的网络层使用<strong>网际协议IP</strong>，所以TCP/IP协议栈中网络层常称为<strong>网际层</strong></p>
+<p>网络层提供两种服务，面向连接的虚电路服务，无连接的数据报服务</p>
+<figure data-type="image" tabindex="6"><img src="https://myimagess.oss-cn-beijing.aliyuncs.com/202207041538240.png" alt="Untitled" loading="lazy"></figure>
+<h1 id="ipv4">IPv4</h1>
+<h2 id="概述">概述</h2>
+<h3 id="意思">意思</h3>
+<p>IPv4地址就是给因特网上的每一台主机、路由的每一个接口分配一个全世界范围内是唯一的32比特的标识符</p>
+<h3 id="书写">书写</h3>
+<figure data-type="image" tabindex="7"><img src="https://myimagess.oss-cn-beijing.aliyuncs.com/202207041538241.png" alt="Untitled" loading="lazy"></figure>
+<h2 id="分类编址的ipv4地址">分类编址的IPv4地址</h2>
+<figure data-type="image" tabindex="8"><img src="https://myimagess.oss-cn-beijing.aliyuncs.com/202207041538242.png" alt="Untitled" loading="lazy"></figure>
+<p><strong>不能指派给主机或路由器接口的地址</strong></p>
+<ol>
+<li>网络号0保留不指派，网络号127作为本地环回测试地址，不指派</li>
+</ol>
+<p>特指A类地址，网络号 00000000 和 11111111 都不行，别的类都没什么限制</p>
+<ol>
+<li>主机号全0</li>
+<li>主机号全1</li>
+</ol>
+<h2 id="划分子网的ipv4地址">划分子网的IPv4地址</h2>
+<p>在分类编址地址基础上借用一部分主机号作为子网号</p>
+<h3 id="子网掩码">子网掩码</h3>
+<figure data-type="image" tabindex="9"><img src="https://myimagess.oss-cn-beijing.aliyuncs.com/202207041538243.png" alt="Untitled" loading="lazy"></figure>
+<figure data-type="image" tabindex="10"><img src="https://myimagess.oss-cn-beijing.aliyuncs.com/202207041538244.png" alt="Untitled" loading="lazy"></figure>
+<h2 id="无分类编制的ipv4地址">无分类编制的IPv4地址</h2>
+<p>Classless Inter-Domain Routing 无分类域间路由选择CIDR</p>
+<figure data-type="image" tabindex="11"><img src="https://myimagess.oss-cn-beijing.aliyuncs.com/202207041538245.png" alt="Untitled" loading="lazy"></figure>
+<p>聚合C类网：可以表示多少个C类网，本来有24位表示网络地址，现在占了20个，只有4位表示网络地址</p>
+<figure data-type="image" tabindex="12"><img src="https://myimagess.oss-cn-beijing.aliyuncs.com/202207041538246.png" alt="Untitled" loading="lazy"></figure>
+<h2 id="ipv4地址的应用规划">IPv4地址的应用规划</h2>
+<p>定长的子网掩码、变长的子网掩码</p>
+<p>起点只能选取块大小整数倍的地址作为起点</p>
+<h1 id="ip数据报的发送和转发过程">IP数据报的发送和转发过程</h1>
+<figure data-type="image" tabindex="13"><img src="https://myimagess.oss-cn-beijing.aliyuncs.com/202207041538247.png" alt="Untitled" loading="lazy"></figure>
+<p>发现不在一个网络，发给<strong>默认网关</strong>来帮忙转发，可能有很多个路由器，默认网关就是默认的路由器接口</p>
+<p>ip地址&amp;子网掩码=网络地址，ip地址有具体的设备号，网络地址只有网络号</p>
+<figure data-type="image" tabindex="14"><img src="https://myimagess.oss-cn-beijing.aliyuncs.com/202207041538248.png" alt="Untitled" loading="lazy"></figure>
+<p><strong>路由器中不保存ip地址，保存网络地址</strong></p>
+<p><strong>路由器不转发任何广播数据报</strong></p>
+<h1 id="路由">路由</h1>
+<p><strong>网关=路由器</strong></p>
+<h2 id="静态路由配置及其问题">静态路由配置及其问题</h2>
+<p>路由器匹配细节：要看用的是哪种IPv4地址，下图用的是无分类编址的IPv4地址，匹配机制：<a href="https://www.notion.so/e56fee107ba6488299520417adaba67b">https://www.notion.so/e56fee107ba6488299520417adaba67b#43bb38e5a66a47739e48ed73fe913508</a>网络局和如果是划分子网的地址那要精确到子网地址匹配</p>
+<figure data-type="image" tabindex="15"><img src="https://myimagess.oss-cn-beijing.aliyuncs.com/202207041538249.png" alt="Untitled" loading="lazy"></figure>
+<h2 id="路由选择协议">路由选择协议</h2>
+<figure data-type="image" tabindex="16"><img src="https://myimagess.oss-cn-beijing.aliyuncs.com/202207041538250.png" alt="Untitled" loading="lazy"></figure>
+<h1 id="路由信息协议rip">路由信息协议RIP</h1>
+<h3 id="routing-information-protocol">routing information protocol</h3>
+<p>每一个路由器都要维护从它自己到自治系统AS内其他每一个网络的距离记录。距离用跳数表示，路由器到直连网络距离为1，每经过一个路由器加1，<strong>距离=16相当于不可达</strong></p>
+<p>如果路由器知道网络n1不可达，那么该路由器和n1是直连的</p>
+<figure data-type="image" tabindex="17"><img src="https://myimagess.oss-cn-beijing.aliyuncs.com/202207041538251.png" alt="Untitled" loading="lazy"></figure>
+<h3 id="交换信息规则">交换信息规则</h3>
+<figure data-type="image" tabindex="18"><img src="https://myimagess.oss-cn-beijing.aliyuncs.com/202207041538252.png" alt="Untitled" loading="lazy"></figure>
+<h3 id="路由环路问题">路由环路问题</h3>
+<figure data-type="image" tabindex="19"><img src="https://myimagess.oss-cn-beijing.aliyuncs.com/202207041538253.png" alt="Untitled" loading="lazy"></figure>
+<h1 id="开放最短路径优先ospf">开放最短路径优先OSPF</h1>
+<p>Open Shortest Path First</p>
+<h1 id="边界网关协议bgp">边界网关协议BGP</h1>
+<p>是外部网关协议，在不同自治系统之间</p>
+<h1 id="层级路由">层级路由</h1>
+<figure data-type="image" tabindex="20"><img src="https://myimagess.oss-cn-beijing.aliyuncs.com/202207041538254.png" alt="5DE2510B9E52E5997B9EEA858BEA0DD0.png" loading="lazy"></figure>
+<h1 id="ipv4数据报格式">IPv4数据报格式</h1>
+<h1 id="首部格式">首部格式</h1>
+<figure data-type="image" tabindex="21"><img src="https://myimagess.oss-cn-beijing.aliyuncs.com/202207041538255.png" alt="Untitled" loading="lazy"></figure>
+<p>标识、标志、片偏移共同用于IP数据报分片：</p>
+<figure data-type="image" tabindex="22"><img src="https://myimagess.oss-cn-beijing.aliyuncs.com/202207041538256.png" alt="Untitled" loading="lazy"></figure>
+<p>片偏移只能为<strong>整数</strong></p>
+<h1 id="网际控制报文协议icmp">网际控制报文协议ICMP</h1>
+<figure data-type="image" tabindex="23"><img src="https://myimagess.oss-cn-beijing.aliyuncs.com/202207041538257.png" alt="Untitled" loading="lazy"></figure>
+<figure data-type="image" tabindex="24"><img src="https://myimagess.oss-cn-beijing.aliyuncs.com/202207041538258.png" alt="Untitled" loading="lazy"></figure>
+<figure data-type="image" tabindex="25"><img src="https://myimagess.oss-cn-beijing.aliyuncs.com/202207041538259.png" alt="Untitled" loading="lazy"></figure>
+<h1 id="虚拟专用网vpn与网络地址转换nat">虚拟专用网VPN与网络地址转换NAT</h1>
+<figure data-type="image" tabindex="26"><img src="https://myimagess.oss-cn-beijing.aliyuncs.com/202207041538260.png" alt="Untitled" loading="lazy"></figure>
+<p>专有地址只能用于一个机构的内部通信，而不能用于和因特网上的主机通信。只能用作本地地址而不能用作全球地址，对目的地址是私有地址的IP数据报一律不转发</p>
+<p>NAT</p>
+<figure data-type="image" tabindex="27"><img src="https://myimagess.oss-cn-beijing.aliyuncs.com/202207041538261.png" alt="Untitled" loading="lazy"></figure>
+<figure data-type="image" tabindex="28"><img src="https://myimagess.oss-cn-beijing.aliyuncs.com/202207041538262.png" alt="Untitled" loading="lazy"></figure>
+<figure data-type="image" tabindex="29"><img src="https://myimagess.oss-cn-beijing.aliyuncs.com/202207041538263.png" alt="Untitled" loading="lazy"></figure>
+]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[第四章 MAC]]></title>
+        <id>https://yahalou.github.io/post/di-si-zhang-mac/</id>
+        <link href="https://yahalou.github.io/post/di-si-zhang-mac/">
+        </link>
+        <updated>2022-07-04T07:43:22.000Z</updated>
+        <content type="html"><![CDATA[<h1 id="macmedium-access-control-媒体接入控制">MAC:medium access control 媒体接入控制</h1>
+<p>一根总线就是一个共享传输媒体，协调发送接收站点对于一个共享传输媒体的占用就是媒体接入控制</p>
+<figure data-type="image" tabindex="1"><img src="https://myimagess.oss-cn-beijing.aliyuncs.com/202207041537188.png" alt="Untitled" loading="lazy"></figure>
+<p>有线局域网用CSMA/CD</p>
+<p>无线局域网用CSMA/CA（802.11 wlan）</p>
+<h1 id="静态划分信道">静态划分信道</h1>
+<h2 id="cdm的计算">CDM的计算</h2>
+<figure data-type="image" tabindex="2"><img src="https://myimagess.oss-cn-beijing.aliyuncs.com/202207041537190.png" alt="Untitled" loading="lazy"></figure>
+<h1 id="动态接入控制-随机接入">动态接入控制-随机接入</h1>
+<h2 id="csmacd-carrier-sense-multiple-accesscollision-detection">CSMA/CD carrier sense multiple access/collision detection</h2>
+<p>载波监听多址接入/碰撞检测</p>
+<h3 id="三个名词的意思"><strong>三个名词的意思</strong></h3>
+<figure data-type="image" tabindex="3"><img src="https://myimagess.oss-cn-beijing.aliyuncs.com/202207041537191.png" alt="Untitled" loading="lazy"></figure>
+<p>只有正在发送帧的站才会碰撞检测</p>
+<p>总线空闲96比特时间就是96比特时间都没收到帧了</p>
+<p><strong>为什么有了载波监听还会碰撞</strong></p>
+<p><code>在物理层所有东西传播速度都是一样的</code></p>
+<p>载波监听的原理是检测有没有数据传给自己，因为这是广播，所以传给别人的帧也会传给自己，如果没有帧传给自己，则信道空闲，所以当A发送的信号还没有传到B时，B认为信道是空闲的，就发帧，结果碰撞了</p>
+<p>如果A已经传到最远站点了，那所有站点都收到帧了，所有站点都知道A在发，信道不空闲，即A seize了信道，这所耗费的时间就是争用期</p>
+<h3 id="争用期"><strong>争用期</strong></h3>
+<p>如果**发了（一直在发）**争用期这么长时间还没检测到碰撞，就可以肯定没有碰撞</p>
+<p>最坏情况：快发到最远的站点了，最远的站点发了个帧，冲突，所以争用期为2t</p>
+<figure data-type="image" tabindex="4"><img src="https://myimagess.oss-cn-beijing.aliyuncs.com/202207041537192.png" alt="Untitled" loading="lazy"></figure>
+<h3 id="最小帧长"><strong>最小帧长</strong></h3>
+<p>发送帧至少要发满一个争用期</p>
+<p>10Mb/s以太网最小帧长：<strong>64字节</strong>，512比特（见上图最后一行）</p>
+<p>以太网<strong>规定争用期为512比特发送时间</strong>，所以要发满这么长时间，得512比特</p>
+<p>以太网规定争用期为512比特发送时间，即规定了传播时延，即规定了数据总线长度</p>
+<h3 id="最大帧长"><strong>最大帧长</strong></h3>
+<p>太长了缓冲区放不下</p>
+<figure data-type="image" tabindex="5"><img src="https://myimagess.oss-cn-beijing.aliyuncs.com/202207041537193.png" alt="Untitled" loading="lazy"></figure>
+<h3 id="退避时间"><strong>退避时间</strong></h3>
+<p>碰撞检测到之后退避一段时间再发送</p>
+<p>基本退避时间就是争用期，发送最小帧需要一个争用期时间</p>
+<figure data-type="image" tabindex="6"><img src="https://myimagess.oss-cn-beijing.aliyuncs.com/202207041537194.png" alt="Untitled" loading="lazy"></figure>
+<h3 id="信道利用率"><strong>信道利用率</strong></h3>
+<figure data-type="image" tabindex="7"><img src="https://myimagess.oss-cn-beijing.aliyuncs.com/202207041537195.png" alt="Untitled" loading="lazy"></figure>
+<p>图中情况是发送帧到最远站点的情况</p>
+<p>占用信道时间=最后一个字节出来时间+传播时延</p>
+<p><strong>不适用于无线网络</strong></p>
+<ul>
+<li>不容易检测冲突信号</li>
+<li>隐蔽站问题</li>
+</ul>
+<figure data-type="image" tabindex="8"><img src="https://myimagess.oss-cn-beijing.aliyuncs.com/202207041537196.png" alt="Untitled" loading="lazy"></figure>
+<h2 id="csmaca-carrier-sense-multiple-accesscollision-avoidance">CSMA/CA carrier sense multiple access/collision avoidance</h2>
+<p>载波监听多址接入/碰撞避免</p>
+<h3 id="帧间间隔ifs"><strong>帧间间隔IFS</strong></h3>
+<figure data-type="image" tabindex="9"><img src="https://myimagess.oss-cn-beijing.aliyuncs.com/202207041537197.png" alt="Untitled" loading="lazy"></figure>
+<h3 id="工作原理"><strong>工作原理</strong></h3>
+<figure data-type="image" tabindex="10"><img src="https://myimagess.oss-cn-beijing.aliyuncs.com/202207041537198.png" alt="Untitled" loading="lazy"></figure>
+<ul>
+<li>用的是停止等待协议</li>
+<li>源站在检测到信道空闲之后要再等待一段时间DIFS</li>
+</ul>
+<p>考虑到其他的站有高优先级的帧要发送，若有就让高优先级先发</p>
+<ul>
+<li>目的站正确接收数据帧后还要等待一段时间按SIFS才能发送ACK帧</li>
+</ul>
+<p>站点从接收状态转为发送状态需要一定时间</p>
+<ul>
+<li>图中问题</li>
+</ul>
+<figure data-type="image" tabindex="11"><img src="https://myimagess.oss-cn-beijing.aliyuncs.com/202207041537199.png" alt="Untitled" loading="lazy"></figure>
+<h3 id="退避算法"><strong>退避算法</strong></h3>
+<figure data-type="image" tabindex="12"><img src="https://myimagess.oss-cn-beijing.aliyuncs.com/202207041537200.png" alt="Untitled" loading="lazy"></figure>
+<p>例子：</p>
+<figure data-type="image" tabindex="13"><img src="https://myimagess.oss-cn-beijing.aliyuncs.com/202207041537201.png" alt="Untitled" loading="lazy"></figure>
+<h3 id="信道预约和虚拟载波监听"><strong>信道预约和虚拟载波监听</strong></h3>
+<figure data-type="image" tabindex="14"><img src="https://myimagess.oss-cn-beijing.aliyuncs.com/202207041537202.png" alt="Untitled" loading="lazy"></figure>
+<figure data-type="image" tabindex="15"><img src="https://myimagess.oss-cn-beijing.aliyuncs.com/202207041537203.png" alt="Untitled" loading="lazy"></figure>
+<figure data-type="image" tabindex="16"><img src="https://myimagess.oss-cn-beijing.aliyuncs.com/202207041537204.png" alt="Untitled" loading="lazy"></figure>
+<h1 id="mac地址">MAC地址</h1>
+<h2 id="别称"><strong>别称</strong></h2>
+<figure data-type="image" tabindex="17"><img src="https://myimagess.oss-cn-beijing.aliyuncs.com/202207041537205.png" alt="Untitled" loading="lazy"></figure>
+<h2 id="ieee-802局域网mac地址格式"><strong>IEEE 802局域网MAC地址格式</strong></h2>
+<p>xx-xx-xx-xx-xx-xx</p>
+<figure data-type="image" tabindex="18"><img src="https://myimagess.oss-cn-beijing.aliyuncs.com/202207041537206.png" alt="Untitled" loading="lazy"></figure>
+<p>多播地址：每个主机都有一个多播组列表，里面有很多多播地址</p>
+<h1 id="集线器和交换机">集线器和交换机</h1>
+<h2 id="集线器"><strong>集线器</strong></h2>
+<p>半双工：一个站点不能同时接收</p>
+<figure data-type="image" tabindex="19"><img src="https://myimagess.oss-cn-beijing.aliyuncs.com/202207041537207.png" alt="Untitled" loading="lazy"></figure>
+<h2 id="交换机">交换机</h2>
+<figure data-type="image" tabindex="20"><img src="https://myimagess.oss-cn-beijing.aliyuncs.com/202207041537208.png" alt="Untitled" loading="lazy"></figure>
+<p>全双工方式</p>
+<figure data-type="image" tabindex="21"><img src="https://myimagess.oss-cn-beijing.aliyuncs.com/202207041537209.png" alt="Untitled" loading="lazy"></figure>
+<figure data-type="image" tabindex="22"><img src="https://myimagess.oss-cn-beijing.aliyuncs.com/202207041537210.png" alt="Untitled" loading="lazy"></figure>
+<h2 id="交换机自学习和转发帧">交换机自学习和转发帧</h2>
+<p>看课件吧。。比较动态</p>
+<h2 id="交换机生成树协议stp">交换机生成树协议STP</h2>
+<figure data-type="image" tabindex="23"><img src="https://myimagess.oss-cn-beijing.aliyuncs.com/202207041537211.png" alt="Untitled" loading="lazy"></figure>
+<figure data-type="image" tabindex="24"><img src="https://myimagess.oss-cn-beijing.aliyuncs.com/202207041537212.png" alt="Untitled" loading="lazy"></figure>
+<h1 id="vlan-虚拟局域网">VLAN 虚拟局域网</h1>
+<p>将较大广播域分成多个小广播域，<strong>在交换机上实现</strong></p>
+<h2 id="ieee-8021q帧">IEEE 802.1Q帧</h2>
+<figure data-type="image" tabindex="25"><img src="https://myimagess.oss-cn-beijing.aliyuncs.com/202207041537213.png" alt="Untitled" loading="lazy"></figure>
+<h2 id="交换机的端口类型">交换机的端口类型</h2>
+<p>动态过程，见课件</p>
+]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[第三章 数据链路层]]></title>
+        <id>https://yahalou.github.io/post/di-san-zhang-shu-ju-lian-lu-ceng/</id>
+        <link href="https://yahalou.github.io/post/di-san-zhang-shu-ju-lian-lu-ceng/">
+        </link>
+        <updated>2022-07-04T07:42:47.000Z</updated>
+        <content type="html"><![CDATA[<h1 id="第三章-数据链路层">第三章 数据链路层</h1>
+<h1 id="封装成帧">封装成帧</h1>
+<p>以太网规定，帧间间隔为<strong>96比特时间</strong></p>
+<figure data-type="image" tabindex="1"><img src="https://myimagess.oss-cn-beijing.aliyuncs.com/202207041536999.png" alt="Untitled" loading="lazy"></figure>
+<figure data-type="image" tabindex="2"><img src="https://myimagess.oss-cn-beijing.aliyuncs.com/202207041537088.png" alt="Untitled" loading="lazy"></figure>
+<p>每5个连续的1后面插入一个比特0</p>
+<h1 id="差错检测">差错检测</h1>
+<p>循环冗余校验码CRC，详细例子见课件</p>
+<figure data-type="image" tabindex="3"><img src="https://myimagess.oss-cn-beijing.aliyuncs.com/202207041537090.png" alt="Untitled" loading="lazy"></figure>
+<p>余数添加到待发送信息的后面，<strong>余数的位数应该与生成式最高次数相同</strong></p>
+<figure data-type="image" tabindex="4"><img src="https://myimagess.oss-cn-beijing.aliyuncs.com/202207041537091.png" alt="Untitled" loading="lazy"></figure>
+<figure data-type="image" tabindex="5"><img src="https://myimagess.oss-cn-beijing.aliyuncs.com/202207041537092.png" alt="Untitled" loading="lazy"></figure>
+<h1 id="可靠传输">可靠传输</h1>
+<h2 id="停止等待协议swstop-and-wait">停止等待协议SW（stop-and-wait）</h2>
+<p>发送窗口Wt=1，接收窗口Wr=1</p>
+<p>ACK,NAK,超时计时器，数据分组（由于停等特性，1个比特编号就够了）</p>
+<figure data-type="image" tabindex="6"><img src="https://myimagess.oss-cn-beijing.aliyuncs.com/202207041537093.png" alt="Untitled" loading="lazy"></figure>
+<figure data-type="image" tabindex="7"><img src="https://myimagess.oss-cn-beijing.aliyuncs.com/202207041537094.png" alt="Untitled" loading="lazy"></figure>
+<h2 id="回退n帧协议gbngo-back-n">回退N帧协议GBN（go back n）</h2>
+<p>1&lt;Wt≤2^(n-1),Wr=1，这里的n是用n个比特给分组编号</p>
+<p>累计确认：ACKn表示序号为n<strong>及</strong>以前的数据分组都已正确接收了</p>
+<p>例：若5出现问题，接收方发现不匹配，丢弃1076，会发送ACK4，后面n帧也会重传</p>
+<figure data-type="image" tabindex="8"><img src="https://myimagess.oss-cn-beijing.aliyuncs.com/202207041537095.png" alt="Untitled" loading="lazy"></figure>
+<p>滑动的含义：</p>
+<figure data-type="image" tabindex="9"><img src="https://myimagess.oss-cn-beijing.aliyuncs.com/202207041537096.png" alt="Untitled" loading="lazy"></figure>
+<figure data-type="image" tabindex="10"><img src="https://myimagess.oss-cn-beijing.aliyuncs.com/202207041537097.png" alt="Untitled" loading="lazy"></figure>
+<figure data-type="image" tabindex="11"><img src="https://myimagess.oss-cn-beijing.aliyuncs.com/202207041537098.png" alt="Untitled" loading="lazy"></figure>
+<h2 id="选择重传协议srselective-request">选择重传协议SR（selective request）</h2>
+<p>不再累计确认，而是逐一确认</p>
+<p>1&lt;Wt≤2^(n-1),1&lt;Wr≤Wt</p>
+<p>详细例子看课件</p>
+]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[二 物理层]]></title>
+        <id>https://yahalou.github.io/post/er-wu-li-ceng/</id>
+        <link href="https://yahalou.github.io/post/er-wu-li-ceng/">
+        </link>
+        <updated>2022-07-04T07:42:18.000Z</updated>
+        <content type="html"><![CDATA[<h1 id="二-物理层">二 物理层</h1>
+<h1 id="传输方式">传输方式</h1>
+<figure data-type="image" tabindex="1"><img src="https://myimagess.oss-cn-beijing.aliyuncs.com/202207041535489.png" alt="Untitled" loading="lazy"></figure>
+<h1 id="编码与调制">编码与调制</h1>
+<figure data-type="image" tabindex="2"><img src="https://myimagess.oss-cn-beijing.aliyuncs.com/202207041535490.png" alt="Untitled" loading="lazy"></figure>
+<p>曼彻斯特编码：正跳变和负跳变表示0或者1不确定，需假设</p>
+<h1 id="信道的极限容量">信道的极限容量</h1>
+<h2 id="波特率">波特率</h2>
+<p>波特率 — 码元传输速率，等于<strong>2W</strong></p>
+<p>波特率转换为比特率需要知道1个码元携带几比特的信息量</p>
+<figure data-type="image" tabindex="3"><img src="https://myimagess.oss-cn-beijing.aliyuncs.com/202207041535491.png" alt="Untitled" loading="lazy"></figure>
+<h2 id="香农公式">香农公式</h2>
+<figure data-type="image" tabindex="4"><img src="https://myimagess.oss-cn-beijing.aliyuncs.com/202207041535492.png" alt="Untitled" loading="lazy"></figure>
+<figure data-type="image" tabindex="5"><img src="https://myimagess.oss-cn-beijing.aliyuncs.com/202207041535493.png" alt="Untitled" loading="lazy"></figure>
+]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[一 概述]]></title>
+        <id>https://yahalou.github.io/post/yi-gai-shu/</id>
+        <link href="https://yahalou.github.io/post/yi-gai-shu/">
+        </link>
+        <updated>2022-07-04T07:40:54.000Z</updated>
+        <content type="html"><![CDATA[<h1 id="一-概述">一 概述</h1>
+<h1 id="一些细节">一些细节</h1>
+<ol>
+<li>Internet 和 internet 的区别</li>
+</ol>
+<figure data-type="image" tabindex="1"><img src="https://myimagess.oss-cn-beijing.aliyuncs.com/202207041535976.png" alt="Untitled" loading="lazy"></figure>
+<ol>
+<li>计算机网络的定义</li>
+</ol>
+<figure data-type="image" tabindex="2"><img src="https://myimagess.oss-cn-beijing.aliyuncs.com/202207041535977.png" alt="Untitled" loading="lazy"></figure>
+<p>注意计算机网络是硬件组成的</p>
+<h1 id="性能指标">性能指标</h1>
+<h3 id="单位">单位</h3>
+<p>速率的 k，M，G，T 是 10^3</p>
+<p>大小的 K，M，G，T 是 2^10</p>
+<h3 id="带宽">带宽</h3>
+<p>是<strong>速度</strong></p>
+<h3 id="吞吐量">吞吐量</h3>
+<p>单位时间内通过某个网络（或信道、接口）的数据量，是<strong>大小</strong></p>
+<h3 id="时延">时延</h3>
+<p>发送时延是什么</p>
+<p>数据不是同时达到目的地的，想象成一串，第一个和最后一个到达的时间不一样，就是发送时延</p>
+<p>计算：轮到最后一个比特发送的时间，即 数据总比特/带宽</p>
+<p>可以画这个图方便理解</p>
+<figure data-type="image" tabindex="3"><img src="https://myimagess.oss-cn-beijing.aliyuncs.com/202207041535978.png" alt="Untitled" loading="lazy"></figure>
+<p>k段链路有k+1条横线</p>
+<h3 id="利用率">利用率</h3>
+<p>信道利用率越高，该信道引起的时延也会增加，所以并非越高越好</p>
+<h3 id="rtt">RTT</h3>
+<p>往返时间</p>
+<h1 id="计算机网络体系">计算机网络体系</h1>
+<figure data-type="image" tabindex="4"><img src="https://myimagess.oss-cn-beijing.aliyuncs.com/202207041535330.png" alt="Untitled" loading="lazy"></figure>
+]]></content>
+    </entry>
     <entry>
         <title type="html"><![CDATA[DNS相关格式转换]]></title>
         <id>https://yahalou.github.io/post/dns-xiang-guan-ge-shi-zhuan-huan/</id>
@@ -339,342 +687,6 @@ $ nslookup - 127.0.0.1 //指定dns服务器
 <h2 id="中断细节">中断细节</h2>
 <p>启动后CPU可以继续干之前的事情，跟程序查询不一样</p>
 <figure data-type="image" tabindex="25"><img src="https://myimagess.oss-cn-beijing.aliyuncs.com/202206230909993.png" alt="image-20220623090954094" loading="lazy"></figure>
-]]></content>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[第六章 总线]]></title>
-        <id>https://yahalou.github.io/post/di-liu-zhang-zong-xian/</id>
-        <link href="https://yahalou.github.io/post/di-liu-zhang-zong-xian/">
-        </link>
-        <updated>2022-06-23T04:48:50.000Z</updated>
-        <content type="html"><![CDATA[<h1 id="总线概述">总线概述</h1>
-<h2 id="总线的分类">总线的分类</h2>
-<figure data-type="image" tabindex="1"><img src="https://myimagess.oss-cn-beijing.aliyuncs.com/202206212027615.png" alt="image-20220621202716444" loading="lazy"></figure>
-<figure data-type="image" tabindex="2"><img src="https://myimagess.oss-cn-beijing.aliyuncs.com/202206212038027.png" alt="image-20220621203820965" loading="lazy"></figure>
-<p>USB是串行总线</p>
-<h2 id="系统总线结构">系统总线结构</h2>
-<figure data-type="image" tabindex="3"><img src="https://myimagess.oss-cn-beijing.aliyuncs.com/202206212031177.png" alt="image-20220621203119257" loading="lazy"></figure>
-<figure data-type="image" tabindex="4"><img src="https://myimagess.oss-cn-beijing.aliyuncs.com/202206212031340.png" alt="image-20220621203133140" loading="lazy"></figure>
-<figure data-type="image" tabindex="5"><img src="https://myimagess.oss-cn-beijing.aliyuncs.com/202206212036859.png" alt="image-20220621203650141" loading="lazy"></figure>
-<p>突发（猝发）传送：送出一个地址，收到多个地址连续的数据</p>
-<p>DMA：Direct Memory Access 直接内存访问</p>
-<h1 id="总线的性能指标">总线的性能指标</h1>
-<figure data-type="image" tabindex="6"><img src="https://myimagess.oss-cn-beijing.aliyuncs.com/202206212039348.png" alt="image-20220621203947336" loading="lazy"></figure>
-<ul>
-<li>
-<p>总线周期的单位是总线时钟周期</p>
-</li>
-<li>
-<p>总线周期 -- 总线的工作频率，总线时钟周期 -- 总线的时钟频率</p>
-</li>
-<li>
-<p>总线带宽 = 总线工作频率 * 总线宽度（速度，10^3）</p>
-</li>
-</ul>
-<h1 id="仲裁">仲裁</h1>
-<p>选择一个主设备获得总线控制权</p>
-<figure data-type="image" tabindex="7"><img src="https://myimagess.oss-cn-beijing.aliyuncs.com/202206212124399.png" alt="image-20220621212403542" loading="lazy"></figure>
-<h2 id="集中仲裁">集中仲裁</h2>
-<figure data-type="image" tabindex="8"><img src="https://myimagess.oss-cn-beijing.aliyuncs.com/202206212125672.png" alt="image-20220621212546792" loading="lazy"></figure>
-<p>发BR是请求控制权，都能发</p>
-<p>发BS是控制权到自己手里了，通知总线控制部件</p>
-<figure data-type="image" tabindex="9"><img src="https://myimagess.oss-cn-beijing.aliyuncs.com/202206212130368.png" alt="image-20220621213055469" loading="lazy"></figure>
-<figure data-type="image" tabindex="10"><img src="https://myimagess.oss-cn-beijing.aliyuncs.com/202206212132666.png" alt="image-20220621213223440" loading="lazy"></figure>
-<h1 id="总线标准">总线标准</h1>
-<figure data-type="image" tabindex="11"><img src="https://myimagess.oss-cn-beijing.aliyuncs.com/202206212142757.png" alt="image-20220621214200940" loading="lazy"></figure>
-<figure data-type="image" tabindex="12"><img src="https://myimagess.oss-cn-beijing.aliyuncs.com/202206212140283.png" alt="image-20220621214021416" loading="lazy"></figure>
-]]></content>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[第五章 中央处理器]]></title>
-        <id>https://yahalou.github.io/post/di-wu-zhang-zhong-yang-chu-li-qi/</id>
-        <link href="https://yahalou.github.io/post/di-wu-zhang-zhong-yang-chu-li-qi/">
-        </link>
-        <updated>2022-06-23T04:48:17.000Z</updated>
-        <content type="html"><![CDATA[<h1 id="cpu的功能和基本结构">CPU的功能和基本结构</h1>
-<figure data-type="image" tabindex="1"><img src="https://myimagess.oss-cn-beijing.aliyuncs.com/202206211421291.png" alt="image-20220621142119145" loading="lazy"></figure>
-<h1 id="指令执行过程">指令执行过程</h1>
-<h2 id="指令周期">指令周期</h2>
-<p>CPU从主存中<strong>取出并执行</strong>一条指令的时间成为指令周期</p>
-<figure data-type="image" tabindex="2"><img src="https://myimagess.oss-cn-beijing.aliyuncs.com/202206211510422.png" alt="A076B27D01C648FF76E4C53A2FBDB017" loading="lazy"></figure>
-<p>中断周期是为了保存程序断点</p>
-<h2 id="指令周期的数据流">指令周期的数据流</h2>
-<figure data-type="image" tabindex="3"><img src="https://myimagess.oss-cn-beijing.aliyuncs.com/202206211526558.png" alt="image-20220621152648955" loading="lazy"></figure>
-<ul>
-<li>
-<p>PC在<strong>取值周期</strong>后就加1</p>
-</li>
-<li>
-<p>程序断点存入堆栈中<img src="C:/Users/26033/Documents/Tencent Files/2603381596/FileRecv/MobileFile/5809F87E11AE8CE08F6F321CDA0FCC20.png" alt="5809F87E11AE8CE08F6F321CDA0FCC20" style="zoom:25%;" /></p>
-</li>
-<li>
-<p>中断周期SP是寄存器，相当于指针，中断时把PC写入SP指向的存储单元</p>
-</li>
-</ul>
-<h1 id="数据通路">数据通路</h1>
-<ul>
-<li>在一个时钟周期内控制信号不会变化</li>
-<li>写的时候注意读写命令</li>
-</ul>
-<figure data-type="image" tabindex="4"><img src="https://myimagess.oss-cn-beijing.aliyuncs.com/202206211620425.png" alt="image-20220621162011530" loading="lazy"></figure>
-<h1 id="控制器">控制器</h1>
-<p>回忆细节可以看计组实验五</p>
-<h2 id="硬布线控制器">硬布线控制器</h2>
-<figure data-type="image" tabindex="5"><img src="https://myimagess.oss-cn-beijing.aliyuncs.com/202206211612087.png" alt="image-20220621161252155" loading="lazy"></figure>
-<h2 id="微程序控制器">微程序控制器</h2>
-<figure data-type="image" tabindex="6"><img src="https://myimagess.oss-cn-beijing.aliyuncs.com/202206211618176.png" alt="32C6B5FEF12333A9AE44E98FC38B0D40" loading="lazy"></figure>
-<h3 id="编码方式">编码方式</h3>
-<h4 id="直接编码">直接编码</h4>
-<figure data-type="image" tabindex="7"><img src="https://myimagess.oss-cn-beijing.aliyuncs.com/202206211735660.png" alt="4B64A4B32091CB204A58D822015E87D2" loading="lazy"></figure>
-<h4 id="字段直接编码">字段直接编码</h4>
-<figure data-type="image" tabindex="8"><img src="https://myimagess.oss-cn-beijing.aliyuncs.com/202206211734127.png" alt="49557156349559C903933E27941E2F7B" loading="lazy"></figure>
-<h1 id="指令流水线">指令流水线</h1>
-<h2 id="时空图">时空图</h2>
-<figure data-type="image" tabindex="9"><img src="https://myimagess.oss-cn-beijing.aliyuncs.com/202206211639060.png" alt="image-20220621163946108" loading="lazy"></figure>
-<figure data-type="image" tabindex="10"><img src="https://myimagess.oss-cn-beijing.aliyuncs.com/202206211640269.png" alt="8EACCFFED7D3D95D89242DC3FCC2232B" loading="lazy"></figure>
-<h2 id="性能指标">性能指标</h2>
-<h3 id="影响因素">影响因素</h3>
-<p>资源冲突，数据冲突，控制冲突</p>
-<h3 id="吞吐率">吞吐率</h3>
-<figure data-type="image" tabindex="11"><img src="https://myimagess.oss-cn-beijing.aliyuncs.com/202206211929077.png" alt="0E12114EFB53A786A01193717F06AC1E" loading="lazy"></figure>
-<h3 id="加速比">加速比</h3>
-<p>用流水线和不用流水线的比</p>
-<figure data-type="image" tabindex="12"><img src="https://myimagess.oss-cn-beijing.aliyuncs.com/202206211934137.png" alt="image-20220621193402069" loading="lazy"></figure>
-<h3 id="流水线效率">流水线效率</h3>
-<figure data-type="image" tabindex="13"><img src="https://myimagess.oss-cn-beijing.aliyuncs.com/202206211934072.png" alt="image-20220621193419289" loading="lazy"></figure>
-]]></content>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[第四章 指令系统]]></title>
-        <id>https://yahalou.github.io/post/di-si-zhang-zhi-ling-xi-tong/</id>
-        <link href="https://yahalou.github.io/post/di-si-zhang-zhi-ling-xi-tong/">
-        </link>
-        <updated>2022-06-23T04:47:51.000Z</updated>
-        <content type="html"><![CDATA[<h1 id="指令格式">指令格式</h1>
-<h2 id="数据寻址">数据寻址</h2>
-<figure data-type="image" tabindex="1"><img src="https://myimagess.oss-cn-beijing.aliyuncs.com/202206211312759.png" alt="A73C7E354325925BFCF27D5239F29ECD" loading="lazy"></figure>
-<figure data-type="image" tabindex="2"><img src="C:/Users/26033/AppData/Roaming/Typora/typora-user-images/image-20220621131540676.png" alt="image-20220621131540676" loading="lazy"></figure>
-<ul>
-<li>间接寻址 PC指向的是条指令</li>
-<li><strong>操作码</strong>不是<strong>操作数</strong>，操作数是你寻的那个数</li>
-<li>计算指令条数只看操作码</li>
-<li>寄存器寻址指令里会有寄存器的编号</li>
-</ul>
-<h1 id="cisc-risc">CISC、RISC</h1>
-<p>CISC -- Complex Instruction Set Computer -- 复杂指令系统计算机</p>
-<p>RISC -- Reduced Instruction Set Computer -- 精简指令系统计算机</p>
-<figure data-type="image" tabindex="3"><img src="https://myimagess.oss-cn-beijing.aliyuncs.com/202206211338906.png" alt="image-20220621133832410" loading="lazy"></figure>
-]]></content>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[形式语言与自动机]]></title>
-        <id>https://yahalou.github.io/post/xing-shi-yu-yan-yu-zi-dong-ji/</id>
-        <link href="https://yahalou.github.io/post/xing-shi-yu-yan-yu-zi-dong-ji/">
-        </link>
-        <updated>2022-06-21T02:41:51.000Z</updated>
-        <content type="html"><![CDATA[<p>结合 PPT 观看效果更好</p>
-<h1 id="文法">文法</h1>
-<figure data-type="image" tabindex="1"><img src="https://myimagess.oss-cn-beijing.aliyuncs.com/202206211041330.jpg" alt="形式语言笔记_页面_01" loading="lazy"></figure>
-<figure data-type="image" tabindex="2"><img src="https://myimagess.oss-cn-beijing.aliyuncs.com/202206211041332.jpg" alt="形式语言笔记_页面_02" loading="lazy"></figure>
-<h1 id="dfanfa正则表达式">DFA，NFA，正则表达式</h1>
-<figure data-type="image" tabindex="3"><img src="https://myimagess.oss-cn-beijing.aliyuncs.com/202206211041333.jpg" alt="形式语言笔记_页面_03" loading="lazy"></figure>
-<figure data-type="image" tabindex="4"><img src="https://myimagess.oss-cn-beijing.aliyuncs.com/202206211041334.jpg" alt="" loading="lazy"></figure>
-<figure data-type="image" tabindex="5"><img src="https://myimagess.oss-cn-beijing.aliyuncs.com/202206211041335.jpg" alt="形式语言笔记_页面_05" loading="lazy"></figure>
-<figure data-type="image" tabindex="6"><img src="https://myimagess.oss-cn-beijing.aliyuncs.com/202206211041336.jpg" alt="形式语言笔记_页面_06" loading="lazy"></figure>
-<h1 id="cnfpda">CNF，PDA</h1>
-<figure data-type="image" tabindex="7"><img src="https://myimagess.oss-cn-beijing.aliyuncs.com/202206211041337.jpg" alt="形式语言笔记_页面_07" loading="lazy"></figure>
-<figure data-type="image" tabindex="8"><img src="https://myimagess.oss-cn-beijing.aliyuncs.com/202206211041338.jpg" alt="形式语言笔记_页面_08" loading="lazy"></figure>
-<figure data-type="image" tabindex="9"><img src="https://myimagess.oss-cn-beijing.aliyuncs.com/202206211041339.jpg" alt="形式语言笔记_页面_09" loading="lazy"></figure>
-<figure data-type="image" tabindex="10"><img src="https://myimagess.oss-cn-beijing.aliyuncs.com/202206211041340.jpg" alt="形式语言笔记_页面_10" loading="lazy"></figure>
-]]></content>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[第三章 存储系统]]></title>
-        <id>https://yahalou.github.io/post/di-san-zhang-cun-chu-xi-tong/</id>
-        <link href="https://yahalou.github.io/post/di-san-zhang-cun-chu-xi-tong/">
-        </link>
-        <updated>2022-06-19T16:08:01.000Z</updated>
-        <content type="html"><![CDATA[<h1 id="存储器的层次结构">存储器的层次结构</h1>
-<img src="C:/Users/26033/AppData/Roaming/Typora/typora-user-images/image-20220619171315343.png" alt="image-20220619171315343" style="zoom:200%;" />
-<p>存取周期=存取时间+恢复时间<img src="https://myimagess.oss-cn-beijing.aliyuncs.com/202206191722268.png" alt="B1A6FF06DCC8CC4FB410807205367808" loading="lazy"></p>
-<h1 id="半导体随机存储器ram">半导体随机存储器（RAM）</h1>
-<p>主存用DRAM，cache用SRAM</p>
-<p><strong>DRAM</strong>一般2ms要<strong>刷新</strong>一次，因为DRAM上的电荷只能维持1~2ms，只有DRAM要刷新</p>
-<p><strong>地址分为行列地址</strong>，算地址线的时候要除2</p>
-<p>地址线计算：地址线+数据线+片选线+读写控制线（可以是同一根）</p>
-<p>DRAM一般<strong>按行刷新</strong></p>
-<figure data-type="image" tabindex="1"><img src="https://myimagess.oss-cn-beijing.aliyuncs.com/202206191727180.png" alt="image-20220619172747303" loading="lazy"></figure>
-<h1 id="只读存储器rom">只读存储器（ROM）</h1>
-<figure data-type="image" tabindex="2"><img src="https://myimagess.oss-cn-beijing.aliyuncs.com/202206191728198.png" alt="image-20220619172843031" loading="lazy"></figure>
-<p><strong>闪存</strong>要先擦除再写入，所以<strong>写速度 &lt; 读速度</strong></p>
-<h1 id="主存与cpu的连接">主存与CPU的连接</h1>
-<h2 id="主存容量的扩展">主存容量的扩展</h2>
-<p>位扩展：并联</p>
-<p>字扩展：串联<img src="https://myimagess.oss-cn-beijing.aliyuncs.com/202206191838811.png" alt="208E27E903D000E94F3E25ACF8CEE2BA" loading="lazy"></p>
-<h1 id="多模块存储器">多模块存储器</h1>
-<h2 id="单体多字系统">单体多字系统</h2>
-<h2 id="多体并行储存器">多体并行储存器</h2>
-<h2 id="目的">目的</h2>
-<p>一个存储器有一个存取周期，在一个存储器内顺序存取很浪费时间</p>
-<h4 id="高位交叉编址">高位交叉编址</h4>
-<figure data-type="image" tabindex="3"><img src="https://myimagess.oss-cn-beijing.aliyuncs.com/202206191912507.png" alt="697E3CE38C5C8B5027195EF5E85A9B6E" loading="lazy"></figure>
-<p>本质上还是顺序存储器，不能并行访问</p>
-<h4 id="低位交叉编址">低位交叉编址</h4>
-<figure data-type="image" tabindex="4"><img src="https://myimagess.oss-cn-beijing.aliyuncs.com/202206191912994.png" alt="4495B43E60373C3FCB391460BDF0227B" loading="lazy"></figure>
-<figure data-type="image" tabindex="5"><img src="https://myimagess.oss-cn-beijing.aliyuncs.com/202206191920681.png" alt="81845D93ED6BC26436F420FBC7AE05BE" loading="lazy"></figure>
-<h1 id="cache">Cache</h1>
-<h2 id="工作原理">工作原理</h2>
-<p>时间局部性：一旦一条指令执行，它就可能在不久的将来再被执行</p>
-<p>空间局部性：一旦一个存储单元被访问，它附近的存储单元也很快被访问</p>
-<p>Cache将主存分组，符合空间局部性</p>
-<p>写回法写命中（对Cache写命中时修改Cache的内容），符合空间局部性</p>
-<p><strong>提升效率</strong></p>
-<figure data-type="image" tabindex="6"><img src="https://myimagess.oss-cn-beijing.aliyuncs.com/202206191944145.png" alt="78E213B58D8A3F4CDE234853CA10E623" loading="lazy"></figure>
-<h2 id="cache和主存的映射关系">Cache和主存的映射关系</h2>
-<ul>
-<li>将主存地址分成多个字段</li>
-</ul>
-<ul>
-<li>
-<p>每个<strong>Cache行（块）<strong>大小和</strong>主存块</strong>相等</p>
-</li>
-<li>
-<p>Cache和主存之间以<strong>块</strong>为单位交换数据</p>
-</li>
-<li>
-<p>不命中<strong>先送到对应Cache中</strong>，再送到CPU中</p>
-</li>
-</ul>
-<h3 id="全相联映射">全相联映射</h3>
-<figure data-type="image" tabindex="7"><img src="https://myimagess.oss-cn-beijing.aliyuncs.com/202206192253448.png" alt="image-20220619225319140" loading="lazy"></figure>
-<p>前22位为主存块号，主存中处于同一块的地址主存块号相同</p>
-<h3 id="直接映射">直接映射</h3>
-<figure data-type="image" tabindex="8"><img src="https://myimagess.oss-cn-beijing.aliyuncs.com/202206192257586.png" alt="image-20220619225729512" loading="lazy"></figure>
-<p>这里主存块号%Cache总块数余了三位，就是行号，可以快速定位</p>
-<p>标记位变为19位，行号提前匹配了</p>
-<p><strong>行号不算在Cache的存储容量里</strong></p>
-<h3 id="组相联映射">组相联映射</h3>
-<figure data-type="image" tabindex="9"><img src="https://myimagess.oss-cn-beijing.aliyuncs.com/202206192305199.png" alt="image-20220619230510247" loading="lazy"></figure>
-<h2 id="cache替换算法">Cache替换算法</h2>
-<p>直接映射无需考虑，全相联或组相联需要考虑</p>
-<h3 id="lru-近期最少使用算法">LRU 近期最少使用算法</h3>
-<figure data-type="image" tabindex="10"><img src="https://myimagess.oss-cn-beijing.aliyuncs.com/202206192323824.png" alt="5A422F723C5ADE60380CC620D07B6ED8" loading="lazy"></figure>
-<h1 id="虚拟存储器">虚拟存储器</h1>
-<p>跳了</p>
-]]></content>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[第二章 数据的表示和运算]]></title>
-        <id>https://yahalou.github.io/post/di-er-zhang-shu-ju-de-biao-shi-he-yun-suan/</id>
-        <link href="https://yahalou.github.io/post/di-er-zhang-shu-ju-de-biao-shi-he-yun-suan/">
-        </link>
-        <updated>2022-06-19T08:20:40.000Z</updated>
-        <content type="html"><![CDATA[<h1 id="数制与编码">数制与编码</h1>
-<h2 id="十进制转换为任意进制">十进制转换为任意进制</h2>
-<figure data-type="image" tabindex="1"><img src="https://myimagess.oss-cn-beijing.aliyuncs.com/202206191004723.png" alt="554DCF43991E684845EF094B25C15F76" loading="lazy"></figure>
-<h2 id="汉明码">汉明码</h2>
-<p>偶校验码</p>
-<figure data-type="image" tabindex="2"><img src="https://myimagess.oss-cn-beijing.aliyuncs.com/202206191019456.png" alt="image-20220619101946912" loading="lazy"></figure>
-<figure data-type="image" tabindex="3"><img src="https://myimagess.oss-cn-beijing.aliyuncs.com/202206191021842.png" alt="image-20220619102142960" loading="lazy"></figure>
-<figure data-type="image" tabindex="4"><img src="https://myimagess.oss-cn-beijing.aliyuncs.com/202206191022727.png" alt="image-20220619102241665" loading="lazy"></figure>
-<figure data-type="image" tabindex="5"><img src="https://myimagess.oss-cn-beijing.aliyuncs.com/202206191023511.png" alt="image-20220619102339773" loading="lazy"></figure>
-<p>最开头的bit的作用</p>
-<figure data-type="image" tabindex="6"><img src="https://myimagess.oss-cn-beijing.aliyuncs.com/202206191034644.png" alt="image-20220619103426389" loading="lazy"></figure>
-<p>例：画表格也可以，注意由低到高顺序 <img src="https://myimagess.oss-cn-beijing.aliyuncs.com/202206191101945.png" alt="97533D1A363E1A3429B3CB97408A4C41" loading="lazy"></p>
-<h1 id="定点数">定点数</h1>
-<h2 id="表示">表示</h2>
-<h3 id="定点小数">定点小数</h3>
-<figure data-type="image" tabindex="7"><img src="https://myimagess.oss-cn-beijing.aliyuncs.com/202206191109915.png" alt="image-20220619110951862" loading="lazy"></figure>
-<h3 id="定点整数">定点整数</h3>
-<figure data-type="image" tabindex="8"><img src="https://myimagess.oss-cn-beijing.aliyuncs.com/202206191110032.png" alt="image-20220619111004101" loading="lazy"></figure>
-<h3 id="原码">原码</h3>
-<p>符号位+绝对值</p>
-<figure data-type="image" tabindex="9"><img src="https://myimagess.oss-cn-beijing.aliyuncs.com/202206191112358.png" alt="image-20220619111221511" loading="lazy"></figure>
-<figure data-type="image" tabindex="10"><img src="https://myimagess.oss-cn-beijing.aliyuncs.com/202206191112388.png" alt="image-20220619111233909" loading="lazy"></figure>
-<h3 id="补码反码">补码，反码</h3>
-<figure data-type="image" tabindex="11"><img src="https://myimagess.oss-cn-beijing.aliyuncs.com/202206191119235.png" alt="E959C3F798B9C64BA4CAE91E44EAC102" loading="lazy"></figure>
-<p>转换最常用的是<strong>数值位取反加1</strong></p>
-<h3 id="移码">移码</h3>
-<p>见IEEE 754</p>
-<h2 id="计算">计算</h2>
-<h3 id="移位计算">移位计算</h3>
-<figure data-type="image" tabindex="12"><img src="https://myimagess.oss-cn-beijing.aliyuncs.com/202206191128769.png" alt="image-20220619112803831" loading="lazy"></figure>
-<h3 id="原码加减法">原码加减法</h3>
-<p><strong>当左边位出现溢出时，将溢出位丢掉</strong></p>
-<figure data-type="image" tabindex="13"><img src="https://myimagess.oss-cn-beijing.aliyuncs.com/202206191132078.png" alt="image-20220619113216287" loading="lazy"></figure>
-<h3 id="补码加减法">补码加减法</h3>
-<p>做加法，两数的补码直接相加</p>
-<p>做减法，将被减数与减数的<strong>机器负数</strong>（符号位取反，数值位取反+1）相加</p>
-<p>减法运算在机器中是用<strong>加法器</strong>实现的</p>
-<figure data-type="image" tabindex="14"><img src="https://myimagess.oss-cn-beijing.aliyuncs.com/202206191134674.png" alt="image-20220619113421627" loading="lazy"></figure>
-<h3 id="溢出判别">溢出判别</h3>
-<figure data-type="image" tabindex="15"><img src="https://myimagess.oss-cn-beijing.aliyuncs.com/202206191138335.png" alt="image-20220619113837482" loading="lazy"></figure>
-<p>变形补码（双符号位）负数符号位变为11，正数为00，相加后判断</p>
-<h3 id="乘法运算">乘法运算</h3>
-<h4 id="原码一位乘法间接补码">原码一位乘法（间接补码）</h4>
-<figure data-type="image" tabindex="16"><img src="https://myimagess.oss-cn-beijing.aliyuncs.com/202206191228417.png" alt="7E57F410854DFE82DF9B589E985A4BFC" loading="lazy"></figure>
-<h3 id="除法运算">除法运算</h3>
-<h4 id="原码除法运算不恢复余数法">原码除法运算（不恢复余数法）</h4>
-<figure data-type="image" tabindex="17"><img src="https://myimagess.oss-cn-beijing.aliyuncs.com/202206191239717.png" alt="C4D0B84354FCDE6C4555FA82251054F6" loading="lazy"></figure>
-<p>原理：先从被除数减去除数，看看能不能商1，不能就商0，加回去</p>
-<h3 id="强制类型转换">强制类型转换</h3>
-<p>c语言的数据在内存中为补码形式</p>
-<p>将所给数字写为二进制，然后按照转换成不同的码的规则进行读出</p>
-<h2 id="数据存储">数据存储</h2>
-<h3 id="大端小端">大端小端</h3>
-<p>大端小端不同数据的顺序不变，变得是每个数据内部的存储顺序</p>
-<figure data-type="image" tabindex="18"><img src="https://myimagess.oss-cn-beijing.aliyuncs.com/202206191305751.png" alt="F6C761DC02B13EBB0BEC87C4E67DFD98" loading="lazy"></figure>
-<h3 id="边界对齐">边界对齐</h3>
-<p>半字地址一定是 2 的整数倍，字地址一定是 4 的整数倍</p>
-<h1 id="浮点数">浮点数</h1>
-<h2 id="表示-2">表示</h2>
-<p>阶码：<strong>定点整数</strong></p>
-<p>尾数：<strong>定点小数</strong></p>
-<figure data-type="image" tabindex="19"><img src="https://myimagess.oss-cn-beijing.aliyuncs.com/202206191350281.png" alt="ABA0D65CA9F55261F981800CBAE92162" loading="lazy"></figure>
-<h2 id="浮点数规范化">浮点数规范化</h2>
-<p>尾数的最高数值必须是一个有效值，通过调整阶码实现规范化</p>
-<h2 id="ieee-754标准">IEEE 754标准</h2>
-<h3 id="转换">转换</h3>
-<p>阶码用<strong>移码</strong>表示</p>
-<p>移码=真值+偏置值</p>
-<p>尾数用<strong>原码</strong>表示</p>
-<p>默认最高位为1，免去规格化，所以尾数部分为 <strong>1.M</strong></p>
-<figure data-type="image" tabindex="20"><img src="https://myimagess.oss-cn-beijing.aliyuncs.com/202206191416708.png" alt="image-20220619141641715" loading="lazy"></figure>
-<figure data-type="image" tabindex="21"><img src="https://myimagess.oss-cn-beijing.aliyuncs.com/202206191424092.png" alt="1319835082B48CF397F37F3CC34667DB" loading="lazy"></figure>
-<h3 id="范围">范围</h3>
-<p>阶码 E 全 0 ，尾数M不全为0，表示非规格化小数</p>
-<figure data-type="image" tabindex="22"><img src="https://myimagess.oss-cn-beijing.aliyuncs.com/202206191438281.png" alt="9BC91E92E1BF48CD788A403057D97AF5" loading="lazy"></figure>
-<figure data-type="image" tabindex="23"><img src="https://myimagess.oss-cn-beijing.aliyuncs.com/202206191441781.png" alt="image-20220619144105833" loading="lazy"></figure>
-<h2 id="计算-2">计算</h2>
-<h3 id="加减运算">加减运算</h3>
-<figure data-type="image" tabindex="24"><img src="https://myimagess.oss-cn-beijing.aliyuncs.com/202206191448111.png" alt="image-20220619144808454" loading="lazy"></figure>
-<figure data-type="image" tabindex="25"><img src="https://myimagess.oss-cn-beijing.aliyuncs.com/202206191508027.png" alt="image-20220619150818281" loading="lazy"></figure>
-<h3 id="强制类型转换-2">强制类型转换</h3>
-<p>从 int 转为 float 可能发生精度损失和溢出</p>
-<p>从 float 转为 int 可能会发生数据舍入</p>
-<h3 id="日常写代码的帮助">日常写代码的帮助</h3>
-<pre><code class="language-c">计算2.0F-1.3F
-1.3F 规范化表示：	1.01001100110011001100110 * 2 ^ 0
-2.0F 规范化表示：	1.00000000000000000000000 * 2 ^ 1
-    
-首先对阶 1.3F变为 0.10100110011001100110011 * 2 ^ 1
-2.0F-1.3F =  	0.01011001100110011001101 * 2 ^ 1
-规范化表示：		1.01100110011001100110100 * 2 ^ -1
-    
-0.7F规范化表示： 	1.01100110011001100110011 * 2 ^ -1    
-    
-所以2.0F-1.3F!=0.7F
-    
-计算2.0F-1.4F
-2.0F-1.4F运算结果
-    规范化表示：	1.00110011001100110011010 * 2 ^ -1
-0.6F 规范化表示：	1.00110011001100110011010 * 2 ^ -1
-    
-2.0F-1.4F==0.7F
-</code></pre>
-<p><strong>浮点数计算，在存储和运算过程中都可能会有精度的丢失，故出现的结果和我们以为的结果就会有出入</strong></p>
-<p>比如1.3 F ，由于二进制为无限循环小数，精度限制后值就变了</p>
-<p>1.4 F ，值也变了，但舍入后相同，是巧合</p>
 ]]></content>
     </entry>
 </feed>

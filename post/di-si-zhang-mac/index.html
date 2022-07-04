@@ -1,0 +1,378 @@
+<html>
+  <head>
+    <meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>long&#39;s blog</title>
+<meta name="description" content="吾生也有涯，而知也无涯" />
+<link rel="shortcut icon" href="https://yahalou.github.io/favicon.ico?v=1656920687091">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
+<link href="https://cdn.jsdelivr.net/npm/remixicon@2.3.0/fonts/remixicon.css" rel="stylesheet">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Droid+Serif:400,700">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.min.css">
+
+<link rel="stylesheet" href="https://yahalou.github.io/styles/main.css">
+
+
+
+  </head>
+  <body>
+    <div id="app" class="main px-4 flex flex-col lg:flex-row">
+      <div id="sidebar" class="sidebar-wrapper lg:static lg:w-1/4">
+  <div class="lg:sticky top-0">
+    <div class="sidebar-content">
+      <div class="flex lg:block p-4 lg:px-0 items-center fixed lg:static lg:block top-0 right-0 left-0 bg-white z-50">
+        <i class="ri-menu-2-line lg:mt-4 text-2xl cursor-pointer animated fadeIn" onclick="openMenu()"></i>
+        <a href="https://yahalou.github.io">
+          <img class="animated fadeInLeft avatar rounded-lg mx-4 lg:mt-32 lg:mx-0 mt-0 lg:w-24 lg:h-24 w-12 w-12" src="https://yahalou.github.io/images/avatar.png?v=1656920687091" alt="">
+        </a>
+        <h1 class="animated fadeInLeft lg:text-4xl font-extrabold lg:mt-8 mt-0 text-xl" style="animation-delay: 0.2s">long&#39;s blog</h1>
+      </div>
+      
+        <div class="animated fadeInLeft" style="animation-delay: 0.4s">
+          <p class="my-4 text-gray-600 font-light hidden lg:block">
+            文章目录
+          </p>
+          <div class="toc-container hidden lg:block">
+            <ul class="markdownIt-TOC">
+<li><a href="#macmedium-access-control-%E5%AA%92%E4%BD%93%E6%8E%A5%E5%85%A5%E6%8E%A7%E5%88%B6">MAC:medium access control 媒体接入控制</a></li>
+<li><a href="#%E9%9D%99%E6%80%81%E5%88%92%E5%88%86%E4%BF%A1%E9%81%93">静态划分信道</a>
+<ul>
+<li><a href="#cdm%E7%9A%84%E8%AE%A1%E7%AE%97">CDM的计算</a></li>
+</ul>
+</li>
+<li><a href="#%E5%8A%A8%E6%80%81%E6%8E%A5%E5%85%A5%E6%8E%A7%E5%88%B6-%E9%9A%8F%E6%9C%BA%E6%8E%A5%E5%85%A5">动态接入控制-随机接入</a>
+<ul>
+<li><a href="#csmacd-carrier-sense-multiple-accesscollision-detection">CSMA/CD carrier sense multiple access/collision detection</a>
+<ul>
+<li><a href="#%E4%B8%89%E4%B8%AA%E5%90%8D%E8%AF%8D%E7%9A%84%E6%84%8F%E6%80%9D"><strong>三个名词的意思</strong></a></li>
+<li><a href="#%E4%BA%89%E7%94%A8%E6%9C%9F"><strong>争用期</strong></a></li>
+<li><a href="#%E6%9C%80%E5%B0%8F%E5%B8%A7%E9%95%BF"><strong>最小帧长</strong></a></li>
+<li><a href="#%E6%9C%80%E5%A4%A7%E5%B8%A7%E9%95%BF"><strong>最大帧长</strong></a></li>
+<li><a href="#%E9%80%80%E9%81%BF%E6%97%B6%E9%97%B4"><strong>退避时间</strong></a></li>
+<li><a href="#%E4%BF%A1%E9%81%93%E5%88%A9%E7%94%A8%E7%8E%87"><strong>信道利用率</strong></a></li>
+</ul>
+</li>
+<li><a href="#csmaca-carrier-sense-multiple-accesscollision-avoidance">CSMA/CA carrier sense multiple access/collision avoidance</a>
+<ul>
+<li><a href="#%E5%B8%A7%E9%97%B4%E9%97%B4%E9%9A%94ifs"><strong>帧间间隔IFS</strong></a></li>
+<li><a href="#%E5%B7%A5%E4%BD%9C%E5%8E%9F%E7%90%86"><strong>工作原理</strong></a></li>
+<li><a href="#%E9%80%80%E9%81%BF%E7%AE%97%E6%B3%95"><strong>退避算法</strong></a></li>
+<li><a href="#%E4%BF%A1%E9%81%93%E9%A2%84%E7%BA%A6%E5%92%8C%E8%99%9A%E6%8B%9F%E8%BD%BD%E6%B3%A2%E7%9B%91%E5%90%AC"><strong>信道预约和虚拟载波监听</strong></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#mac%E5%9C%B0%E5%9D%80">MAC地址</a>
+<ul>
+<li><a href="#%E5%88%AB%E7%A7%B0"><strong>别称</strong></a></li>
+<li><a href="#ieee-802%E5%B1%80%E5%9F%9F%E7%BD%91mac%E5%9C%B0%E5%9D%80%E6%A0%BC%E5%BC%8F"><strong>IEEE 802局域网MAC地址格式</strong></a></li>
+</ul>
+</li>
+<li><a href="#%E9%9B%86%E7%BA%BF%E5%99%A8%E5%92%8C%E4%BA%A4%E6%8D%A2%E6%9C%BA">集线器和交换机</a>
+<ul>
+<li><a href="#%E9%9B%86%E7%BA%BF%E5%99%A8"><strong>集线器</strong></a></li>
+<li><a href="#%E4%BA%A4%E6%8D%A2%E6%9C%BA">交换机</a></li>
+<li><a href="#%E4%BA%A4%E6%8D%A2%E6%9C%BA%E8%87%AA%E5%AD%A6%E4%B9%A0%E5%92%8C%E8%BD%AC%E5%8F%91%E5%B8%A7">交换机自学习和转发帧</a></li>
+<li><a href="#%E4%BA%A4%E6%8D%A2%E6%9C%BA%E7%94%9F%E6%88%90%E6%A0%91%E5%8D%8F%E8%AE%AEstp">交换机生成树协议STP</a></li>
+</ul>
+</li>
+<li><a href="#vlan-%E8%99%9A%E6%8B%9F%E5%B1%80%E5%9F%9F%E7%BD%91">VLAN 虚拟局域网</a>
+<ul>
+<li><a href="#ieee-8021q%E5%B8%A7">IEEE 802.1Q帧</a></li>
+<li><a href="#%E4%BA%A4%E6%8D%A2%E6%9C%BA%E7%9A%84%E7%AB%AF%E5%8F%A3%E7%B1%BB%E5%9E%8B">交换机的端口类型</a></li>
+</ul>
+</li>
+</ul>
+
+          </div>
+        </div>
+      
+    </div>
+  </div>
+</div>
+
+<div class="menu-container">
+  <i class="ri-arrow-left-line text-2xl cursor-pointer animated fadeIn close-menu-btn" onclick="closeMenu()"></i>
+  <div>
+    
+      
+        <a href="/" class="menu" style="animation-delay: 0s">
+          首页
+        </a>
+      
+    
+      
+        <a href="https://yahalou.github.io/archives" class="menu" style="animation-delay: 0.2s">
+          归档
+        </a>
+      
+    
+      
+        <a href="https://yahalou.github.io/tags" class="menu" style="animation-delay: 0.4s">
+          标签
+        </a>
+      
+    
+      
+        <a href="/post/about" class="menu" style="animation-delay: 0.6000000000000001s">
+          关于
+        </a>
+      
+    
+  </div>
+  <div class="site-footer">
+    <div class="py-4 text-gray-700">Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a></div>
+    <a class="rss" href="https://yahalou.github.io/atom.xml" target="_blank">RSS</a>
+  </div>
+</div>
+<div class="mask" onclick="closeMenu()">
+</div>
+      <div class="content-wrapper py-32 lg:p-8 lg:w-3/4 post-detail animated fadeIn">
+        <h1 class="text-3xl font-bold lg:mt-16">第四章 MAC</h1>
+        <div class="text-sm text-gray-700 lg:my-8">
+          2022-07-04 / 4 min read
+        </div>
+        
+        <div class="post-content yue">
+          <h1 id="macmedium-access-control-媒体接入控制">MAC:medium access control 媒体接入控制</h1>
+<p>一根总线就是一个共享传输媒体，协调发送接收站点对于一个共享传输媒体的占用就是媒体接入控制</p>
+<figure data-type="image" tabindex="1"><img src="https://myimagess.oss-cn-beijing.aliyuncs.com/202207041537188.png" alt="Untitled" loading="lazy"></figure>
+<p>有线局域网用CSMA/CD</p>
+<p>无线局域网用CSMA/CA（802.11 wlan）</p>
+<h1 id="静态划分信道">静态划分信道</h1>
+<h2 id="cdm的计算">CDM的计算</h2>
+<figure data-type="image" tabindex="2"><img src="https://myimagess.oss-cn-beijing.aliyuncs.com/202207041537190.png" alt="Untitled" loading="lazy"></figure>
+<h1 id="动态接入控制-随机接入">动态接入控制-随机接入</h1>
+<h2 id="csmacd-carrier-sense-multiple-accesscollision-detection">CSMA/CD carrier sense multiple access/collision detection</h2>
+<p>载波监听多址接入/碰撞检测</p>
+<h3 id="三个名词的意思"><strong>三个名词的意思</strong></h3>
+<figure data-type="image" tabindex="3"><img src="https://myimagess.oss-cn-beijing.aliyuncs.com/202207041537191.png" alt="Untitled" loading="lazy"></figure>
+<p>只有正在发送帧的站才会碰撞检测</p>
+<p>总线空闲96比特时间就是96比特时间都没收到帧了</p>
+<p><strong>为什么有了载波监听还会碰撞</strong></p>
+<p><code>在物理层所有东西传播速度都是一样的</code></p>
+<p>载波监听的原理是检测有没有数据传给自己，因为这是广播，所以传给别人的帧也会传给自己，如果没有帧传给自己，则信道空闲，所以当A发送的信号还没有传到B时，B认为信道是空闲的，就发帧，结果碰撞了</p>
+<p>如果A已经传到最远站点了，那所有站点都收到帧了，所有站点都知道A在发，信道不空闲，即A seize了信道，这所耗费的时间就是争用期</p>
+<h3 id="争用期"><strong>争用期</strong></h3>
+<p>如果**发了（一直在发）**争用期这么长时间还没检测到碰撞，就可以肯定没有碰撞</p>
+<p>最坏情况：快发到最远的站点了，最远的站点发了个帧，冲突，所以争用期为2t</p>
+<figure data-type="image" tabindex="4"><img src="https://myimagess.oss-cn-beijing.aliyuncs.com/202207041537192.png" alt="Untitled" loading="lazy"></figure>
+<h3 id="最小帧长"><strong>最小帧长</strong></h3>
+<p>发送帧至少要发满一个争用期</p>
+<p>10Mb/s以太网最小帧长：<strong>64字节</strong>，512比特（见上图最后一行）</p>
+<p>以太网<strong>规定争用期为512比特发送时间</strong>，所以要发满这么长时间，得512比特</p>
+<p>以太网规定争用期为512比特发送时间，即规定了传播时延，即规定了数据总线长度</p>
+<h3 id="最大帧长"><strong>最大帧长</strong></h3>
+<p>太长了缓冲区放不下</p>
+<figure data-type="image" tabindex="5"><img src="https://myimagess.oss-cn-beijing.aliyuncs.com/202207041537193.png" alt="Untitled" loading="lazy"></figure>
+<h3 id="退避时间"><strong>退避时间</strong></h3>
+<p>碰撞检测到之后退避一段时间再发送</p>
+<p>基本退避时间就是争用期，发送最小帧需要一个争用期时间</p>
+<figure data-type="image" tabindex="6"><img src="https://myimagess.oss-cn-beijing.aliyuncs.com/202207041537194.png" alt="Untitled" loading="lazy"></figure>
+<h3 id="信道利用率"><strong>信道利用率</strong></h3>
+<figure data-type="image" tabindex="7"><img src="https://myimagess.oss-cn-beijing.aliyuncs.com/202207041537195.png" alt="Untitled" loading="lazy"></figure>
+<p>图中情况是发送帧到最远站点的情况</p>
+<p>占用信道时间=最后一个字节出来时间+传播时延</p>
+<p><strong>不适用于无线网络</strong></p>
+<ul>
+<li>不容易检测冲突信号</li>
+<li>隐蔽站问题</li>
+</ul>
+<figure data-type="image" tabindex="8"><img src="https://myimagess.oss-cn-beijing.aliyuncs.com/202207041537196.png" alt="Untitled" loading="lazy"></figure>
+<h2 id="csmaca-carrier-sense-multiple-accesscollision-avoidance">CSMA/CA carrier sense multiple access/collision avoidance</h2>
+<p>载波监听多址接入/碰撞避免</p>
+<h3 id="帧间间隔ifs"><strong>帧间间隔IFS</strong></h3>
+<figure data-type="image" tabindex="9"><img src="https://myimagess.oss-cn-beijing.aliyuncs.com/202207041537197.png" alt="Untitled" loading="lazy"></figure>
+<h3 id="工作原理"><strong>工作原理</strong></h3>
+<figure data-type="image" tabindex="10"><img src="https://myimagess.oss-cn-beijing.aliyuncs.com/202207041537198.png" alt="Untitled" loading="lazy"></figure>
+<ul>
+<li>用的是停止等待协议</li>
+<li>源站在检测到信道空闲之后要再等待一段时间DIFS</li>
+</ul>
+<p>考虑到其他的站有高优先级的帧要发送，若有就让高优先级先发</p>
+<ul>
+<li>目的站正确接收数据帧后还要等待一段时间按SIFS才能发送ACK帧</li>
+</ul>
+<p>站点从接收状态转为发送状态需要一定时间</p>
+<ul>
+<li>图中问题</li>
+</ul>
+<figure data-type="image" tabindex="11"><img src="https://myimagess.oss-cn-beijing.aliyuncs.com/202207041537199.png" alt="Untitled" loading="lazy"></figure>
+<h3 id="退避算法"><strong>退避算法</strong></h3>
+<figure data-type="image" tabindex="12"><img src="https://myimagess.oss-cn-beijing.aliyuncs.com/202207041537200.png" alt="Untitled" loading="lazy"></figure>
+<p>例子：</p>
+<figure data-type="image" tabindex="13"><img src="https://myimagess.oss-cn-beijing.aliyuncs.com/202207041537201.png" alt="Untitled" loading="lazy"></figure>
+<h3 id="信道预约和虚拟载波监听"><strong>信道预约和虚拟载波监听</strong></h3>
+<figure data-type="image" tabindex="14"><img src="https://myimagess.oss-cn-beijing.aliyuncs.com/202207041537202.png" alt="Untitled" loading="lazy"></figure>
+<figure data-type="image" tabindex="15"><img src="https://myimagess.oss-cn-beijing.aliyuncs.com/202207041537203.png" alt="Untitled" loading="lazy"></figure>
+<figure data-type="image" tabindex="16"><img src="https://myimagess.oss-cn-beijing.aliyuncs.com/202207041537204.png" alt="Untitled" loading="lazy"></figure>
+<h1 id="mac地址">MAC地址</h1>
+<h2 id="别称"><strong>别称</strong></h2>
+<figure data-type="image" tabindex="17"><img src="https://myimagess.oss-cn-beijing.aliyuncs.com/202207041537205.png" alt="Untitled" loading="lazy"></figure>
+<h2 id="ieee-802局域网mac地址格式"><strong>IEEE 802局域网MAC地址格式</strong></h2>
+<p>xx-xx-xx-xx-xx-xx</p>
+<figure data-type="image" tabindex="18"><img src="https://myimagess.oss-cn-beijing.aliyuncs.com/202207041537206.png" alt="Untitled" loading="lazy"></figure>
+<p>多播地址：每个主机都有一个多播组列表，里面有很多多播地址</p>
+<h1 id="集线器和交换机">集线器和交换机</h1>
+<h2 id="集线器"><strong>集线器</strong></h2>
+<p>半双工：一个站点不能同时接收</p>
+<figure data-type="image" tabindex="19"><img src="https://myimagess.oss-cn-beijing.aliyuncs.com/202207041537207.png" alt="Untitled" loading="lazy"></figure>
+<h2 id="交换机">交换机</h2>
+<figure data-type="image" tabindex="20"><img src="https://myimagess.oss-cn-beijing.aliyuncs.com/202207041537208.png" alt="Untitled" loading="lazy"></figure>
+<p>全双工方式</p>
+<figure data-type="image" tabindex="21"><img src="https://myimagess.oss-cn-beijing.aliyuncs.com/202207041537209.png" alt="Untitled" loading="lazy"></figure>
+<figure data-type="image" tabindex="22"><img src="https://myimagess.oss-cn-beijing.aliyuncs.com/202207041537210.png" alt="Untitled" loading="lazy"></figure>
+<h2 id="交换机自学习和转发帧">交换机自学习和转发帧</h2>
+<p>看课件吧。。比较动态</p>
+<h2 id="交换机生成树协议stp">交换机生成树协议STP</h2>
+<figure data-type="image" tabindex="23"><img src="https://myimagess.oss-cn-beijing.aliyuncs.com/202207041537211.png" alt="Untitled" loading="lazy"></figure>
+<figure data-type="image" tabindex="24"><img src="https://myimagess.oss-cn-beijing.aliyuncs.com/202207041537212.png" alt="Untitled" loading="lazy"></figure>
+<h1 id="vlan-虚拟局域网">VLAN 虚拟局域网</h1>
+<p>将较大广播域分成多个小广播域，<strong>在交换机上实现</strong></p>
+<h2 id="ieee-8021q帧">IEEE 802.1Q帧</h2>
+<figure data-type="image" tabindex="25"><img src="https://myimagess.oss-cn-beijing.aliyuncs.com/202207041537213.png" alt="Untitled" loading="lazy"></figure>
+<h2 id="交换机的端口类型">交换机的端口类型</h2>
+<p>动态过程，见课件</p>
+
+        </div>
+
+        
+          <a class="animated fadeInUp p-2 items-center text-sm text-gray-700 border hover:bg-gray-300 leading-none rounded-full flex lg:inline-flex m-4 " href="https://yahalou.github.io/tag/RMh2iwcbv/">
+            <span class="flex-auto">计算机网络</span>
+          </a>
+        
+          <a class="animated fadeInUp p-2 items-center text-sm text-gray-700 border hover:bg-gray-300 leading-none rounded-full flex lg:inline-flex m-4 " href="https://yahalou.github.io/tag/CyGuQjdfm/">
+            <span class="flex-auto">大二下</span>
+          </a>
+        
+
+
+        <div class="flex justify-between py-8">
+          
+            <div class="prev-post">
+              <a href="https://yahalou.github.io/post/di-wu-zhang-wang-luo-ceng/">
+                <h3 class="post-title">
+                  <i class="ri-arrow-left-line"></i>
+                  第五章 网络层
+                </h3>
+              </a>
+            </div>
+          
+
+          
+            <div class="next-post">
+              <a href="https://yahalou.github.io/post/di-san-zhang-shu-ju-lian-lu-ceng/">
+                <h3 class="post-title">
+                  第三章 数据链路层
+                  <i class="ri-arrow-right-line"></i>
+                </h3>
+              </a>
+            </div>
+          
+        </div>
+
+        
+
+      </div>
+    </div>
+
+    <script src="https://yahalou.github.io/media/prism.js"></script>  
+<script>
+
+Prism.highlightAll()
+let mainNavLinks = document.querySelectorAll(".markdownIt-TOC a");
+
+// This should probably be throttled.
+// Especially because it triggers during smooth scrolling.
+// https://lodash.com/docs/4.17.10#throttle
+// You could do like...
+// window.addEventListener("scroll", () => {
+//    _.throttle(doThatStuff, 100);
+// });
+// Only not doing it here to keep this Pen dependency-free.
+
+window.addEventListener("scroll", event => {
+  let fromTop = window.scrollY;
+
+  mainNavLinks.forEach((link, index) => {
+    let section = document.getElementById(decodeURI(link.hash).substring(1));
+    let nextSection = null
+    if (mainNavLinks[index + 1]) {
+      nextSection = document.getElementById(decodeURI(mainNavLinks[index + 1].hash).substring(1));
+    }
+    if (section.offsetTop <= fromTop) {
+      if (nextSection) {
+        if (nextSection.offsetTop > fromTop) {
+          link.classList.add("current");
+        } else {
+          link.classList.remove("current");    
+        }
+      } else {
+        link.classList.add("current");
+      }
+    } else {
+      link.classList.remove("current");
+    }
+  });
+});
+
+
+document.addEventListener("DOMContentLoaded", function() {
+  var lazyImages = [].slice.call(document.querySelectorAll(".post-feature-image.lazy"));
+
+  if ("IntersectionObserver" in window) {
+    let lazyImageObserver = new IntersectionObserver(function(entries, observer) {
+      entries.forEach(function(entry) {
+        if (entry.isIntersecting) {
+          let lazyImage = entry.target
+          lazyImage.style.backgroundImage = `url(${lazyImage.dataset.bg})`
+          lazyImage.classList.remove("lazy")
+          lazyImageObserver.unobserve(lazyImage)
+        }
+      });
+    });
+
+    lazyImages.forEach(function(lazyImage) {
+      lazyImageObserver.observe(lazyImage)
+    })
+  } else {
+    // Possibly fall back to a more compatible method here
+  }
+});
+
+const menuContainer = document.querySelector('.menu-container')
+const menus = document.querySelectorAll('.menu-container .menu')
+const mask = document.querySelector('.mask')
+const contentWrapper = document.querySelector('.content-wrapper')
+const latestArticle = document.querySelector('.latest-article')
+const readMore = document.querySelector('.read-more')
+const indexPage = document.querySelector('.index-page')
+
+const isHome = location.pathname === '/'
+if (latestArticle) {
+  latestArticle.style.display = isHome ? 'block' : 'none'
+  readMore.style.display = isHome ? 'block' : 'none'
+  indexPage.style.display = isHome ? 'none' : 'block'
+}
+
+const openMenu = () => {
+  menuContainer.classList.add('open')
+  menus.forEach(menu => {
+    menu.classList.add('animated', 'fadeInLeft')
+  })
+  mask.classList.add('open')
+  contentWrapper.classList.add('is-second')
+}
+
+const closeMenu = () => {
+  menuContainer.classList.remove('open')
+  menus.forEach(menu => {
+    menu.classList.remove('animated', 'fadeInLeft')
+  })
+  mask.classList.remove('open')
+  contentWrapper.classList.remove('is-second')
+}
+</script>
+  
+  </body>
+</html>
