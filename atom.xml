@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://yahalou.github.io</id>
     <title>long&apos;s blog</title>
-    <updated>2022-06-23T04:51:58.891Z</updated>
+    <updated>2022-07-04T07:25:07.303Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://yahalou.github.io"/>
     <link rel="self" href="https://yahalou.github.io/atom.xml"/>
@@ -10,6 +10,248 @@
     <logo>https://yahalou.github.io/images/avatar.png</logo>
     <icon>https://yahalou.github.io/favicon.ico</icon>
     <rights>All rights reserved 2022, long&apos;s blog</rights>
+    <entry>
+        <title type="html"><![CDATA[DNS相关格式转换]]></title>
+        <id>https://yahalou.github.io/post/dns-xiang-guan-ge-shi-zhuan-huan/</id>
+        <link href="https://yahalou.github.io/post/dns-xiang-guan-ge-shi-zhuan-huan/">
+        </link>
+        <updated>2022-07-04T07:24:36.000Z</updated>
+        <content type="html"><![CDATA[<h1 id="用到的结构体">用到的结构体</h1>
+<pre><code class="language-c">struct in_addr 
+{
+ 	in_addr_t s_addr;//in_addr_t 一般为 32位的unsigned int，其字节顺序为网络顺序
+};
+
+typedef struct addrinfo {
+  int             ai_flags;
+  int             ai_family;
+  int             ai_socktype;
+  int             ai_protocol;
+  size_t          ai_addrlen;//sockaddr中sa_data[14]中ip地址的长度
+  char            *ai_canonname;
+  struct sockaddr *ai_addr;
+  struct addrinfo *ai_next;
+} ADDRINFOA, *PADDRINFOA;
+
+sockaddr和sockaddr_in本质上等价，后者将7字节拆了
+    
+struct sockaddr {
+        ushort  sa_family;//同addrinfo
+        char    sa_data[14];//16进制，可表示7字节
+};
+
+struct sockaddr_in {
+        short   sin_family;
+        u_short sin_port;//端口号，2字节
+        struct  in_addr sin_addr;//ip地址，4字节
+        char    sin_zero[8];//填充，1字节
+};
+</code></pre>
+<h1 id="大端和小端">大端和小端</h1>
+<table>
+<thead>
+<tr>
+<th>序号</th>
+<th>英文名</th>
+<th>中文名</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>big-endian</td>
+<td>大尾顺序</td>
+<td>地址的低位存储值的高位</td>
+</tr>
+<tr>
+<td>2</td>
+<td>little-endian</td>
+<td>小尾顺序</td>
+<td>地址的低位存储值的低位</td>
+</tr>
+</tbody>
+</table>
+<p>12345678大端存储顺序</p>
+<figure data-type="image" tabindex="1"><img src="https://img-blog.csdnimg.cn/20210429171813889.png" alt="在这里插入图片描述" loading="lazy"></figure>
+<p>小端存储顺序，反人类</p>
+<figure data-type="image" tabindex="2"><img src="https://img-blog.csdnimg.cn/20210429172017425.png" alt="在这里插入图片描述" loading="lazy"></figure>
+<h1 id="网络字节顺序">网络字节顺序</h1>
+<h2 id="网络字节顺序nbonetwork-byte-order">网络字节顺序NBO（Network Byte Order</h2>
+<p>大尾顺序</p>
+<h2 id="主机字节顺序hbohost-byte-order">主机字节顺序HBO	(Host Byte Order)</h2>
+<p>我的计算机是小端，本程序应该只能在小端上跑</p>
+<p>判断计算机大小端的方式</p>
+<figure data-type="image" tabindex="3"><img src="../../../AppData/Roaming/Typora/typora-user-images/image-20220703190805153.png" alt="image-20220703190805153" loading="lazy"></figure>
+<pre><code class="language-c">#include&lt;stdio.h&gt;
+int main()
+{
+	union {
+		short s;
+		char a[2];
+	};
+	s = 0x1234;
+	printf(&quot;%x&quot;, a[0]);//34
+    printf(&quot;%x&quot;, a[1]);//1
+	return 0;
+}
+</code></pre>
+<h1 id="结构体内存对齐">结构体内存对齐</h1>
+<figure data-type="image" tabindex="4"><img src="../../../AppData/Roaming/Typora/typora-user-images/image-20220704111225536.png" alt="image-20220704111225536" loading="lazy"></figure>
+<pre><code class="language-c++">#pragma pack(push) //保存对齐状态
+
+#pragma pack(4)//设定为4字节对齐
+
+相当于 #pragma  pack (push,4) 
+struct sample
+{
+char a;
+double b;
+};
+#pragma pack(pop)
+
+如果不加，结构体将按照最长的double 8位进行对齐，char占8个字节
+</code></pre>
+<h1 id="位域">位域</h1>
+<p><strong>字节内也有大小端</strong></p>
+<p>对于定义如下的结构体:</p>
+<pre><code class="language-c">struct yaabou_com{
+int a:1;
+int b:2;
+int c:3;
+int d:4;
+int e:5;
+int f:6;
+int g:11;
+};
+大端：
+地址：[00000000][00000001][00000002][00000003]
+数据：|abbcccdd||ddeeeeef||fffffggg||gggggggg|
+小端：
+地址：[00000000][00000001][00000002][00000003]
+数据：|ddcccbba||feeeeedd||gggfffff||gggggggg|
+</code></pre>
+<h2 id="填充步骤">填充步骤</h2>
+<p>大端小端的填充步骤</p>
+<p>大端模式<br>
+内存地址	内存值	步骤<br>
+0x10000000	0x12	4.依次取值<br>
+0x10000001	0x34	3.依次取值<br>
+0x10000002	0x56	2.依次取值<br>
+0x10000003	0x78	1.高地址存放低位<br>
+小端模式<br>
+内存地址	内存值	步骤<br>
+0x10000000	0x78	4.依次取值<br>
+0x10000001	0x56	3.依次取值<br>
+0x10000002	0x34	2.依次取值<br>
+0x10000003	0x12	1.高地址存放高位</p>
+<p>对于该位域，对于<strong>第一个字节</strong>，<strong>从右往左</strong>填入a,b,b,c,c,c,d,d</p>
+<p>再填<strong>第二个字节</strong>，从右往左填入d,d,e,e,e,e,e,f</p>
+<p>依次下去</p>
+<h1 id="htons等函数">htons等函数</h1>
+<p>以字节为单位，将小端调整为大端</p>
+<p>htonl()--&quot;Host to Network Long&quot;<br>
+ntohl()--&quot;Network to Host Long&quot;<br>
+htons()--&quot;Host to Network Short&quot;<br>
+ntohs()--&quot;Network to Host Short&quot;</p>
+<p>例如ttl是int，用htons会变成两个字节，得用htonl，后续截断</p>
+<h1 id="ip地址转换">ip地址转换</h1>
+<pre><code class="language-c">char a[100]=&quot;1.2.3.4&quot;;
+ip1 = inet_addr(a);//将字符变为数字，同时调整大小端
+printf(&quot;ip1:%x\n&quot;, ip1);//0x04030201
+
+struct in_addr addr1；
+memcpy(&amp;addr1, &amp;ip1, 4);
+printf(&quot;%s\n&quot;, inet_ntoa(addr1));//1.2.3.4
+</code></pre>
+]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[nslookup]]></title>
+        <id>https://yahalou.github.io/post/nslookup/</id>
+        <link href="https://yahalou.github.io/post/nslookup/">
+        </link>
+        <updated>2022-07-04T07:23:21.000Z</updated>
+        <content type="html"><![CDATA[<h1 id="非交互模式">非交互模式</h1>
+<p>常见操作：</p>
+<pre><code>$ nslookup www.baidu.com
+$ nslookup www.baidu.com 127.0.0.1 //指定dns服务器
+</code></pre>
+<h1 id="交互模式">交互模式</h1>
+<h2 id="进入交互模式">进入交互模式</h2>
+<p>常见操作：</p>
+<pre><code>$ nslookup
+$ nslookup - 127.0.0.1 //指定dns服务器
+</code></pre>
+<h2 id="在交互模式">在交互模式</h2>
+<p>常见操作：</p>
+<pre><code>&gt; www.baidu.com
+&gt; set type = A
+</code></pre>
+]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[DNS格式]]></title>
+        <id>https://yahalou.github.io/post/dns-ge-shi/</id>
+        <link href="https://yahalou.github.io/post/dns-ge-shi/">
+        </link>
+        <updated>2022-07-04T07:20:44.000Z</updated>
+        <summary type="html"><![CDATA[<h1 id="dns报文格式">DNS报文格式</h1>
+<figure data-type="image" tabindex="1"><img src="https://myimagess.oss-cn-beijing.aliyuncs.com/202207041521338.png" alt="image-20220701133810119" loading="lazy"></figure>
+<h1 id="标签">标签</h1>
+<p>每一格一个字节，数字是数字，不是asc</p>
+<figure data-type="image" tabindex="2"><img src="https://myimagess.oss-cn-beijing.aliyuncs.com/202207041521522.png" alt="image-20220701133923057" loading="lazy"></figure>
+<figure data-type="image" tabindex="3"><img src="https://myimagess.oss-cn-beijing.aliyuncs.com/202207041521523.png" alt="image-20220704113044709" loading="lazy"></figure>
+<p>报文中如果出现了重复的域名，会用压缩标签</p>
+<figure data-type="image" tabindex="4"><img src="https://myimagess.oss-cn-beijing.aliyuncs.com/202207041521524.png" alt="image-20220701182100293" loading="lazy"></figure>
+<p><strong>前两个高位是11</strong>，用于指明是指针</p>
+<p>后面14位标识偏移量，从DNS消息开始处</p>
+<figure data-type="image" tabindex="5"><img src="https://myimagess.oss-cn-beijing.aliyuncs.com/202207041521525.png" alt="image-20220704113138301" loading="lazy"></figure>
+<p>0xc00c=0b1100000000001100,偏移量为12字节，dns报文头刚好12字节，指向查询部分的开头</p>
+<h1 id="查询报文">查询报文</h1>
+<figure data-type="image" tabindex="6"><img src="https://myimagess.oss-cn-beijing.aliyuncs.com/202207041521526.png" alt="image-20220701134044037" loading="lazy"></figure>
+<p>查询名称即标签</p>
+<p>查询类型</p>
+<img src="https://myimagess.oss-cn-beijing.aliyuncs.com/202207041521527.png" alt="image-20220701134135273"  />
+<p>查询类</p>
+<figure data-type="image" tabindex="7"><img src="https://myimagess.oss-cn-beijing.aliyuncs.com/202207041521528.png" alt="image-20220701134306130" loading="lazy"></figure>
+<h1 id="回答报文">回答报文</h1>
+<figure data-type="image" tabindex="8"><img src="https://myimagess.oss-cn-beijing.aliyuncs.com/202207041521529.png" alt="image-20220701134337042" loading="lazy"></figure>
+<p>前三个同查询报文</p>
+<figure data-type="image" tabindex="9"><img src="https://myimagess.oss-cn-beijing.aliyuncs.com/202207041521032.png" alt="image-20220701134436502" loading="lazy"></figure>
+<p>RDATA中是想要的IP地址</p>
+<figure data-type="image" tabindex="10"><img src="https://myimagess.oss-cn-beijing.aliyuncs.com/202207041521530.png" alt="image-20220704114129777" loading="lazy"></figure>
+<p>转换过程见格式转换</p>
+]]></summary>
+        <content type="html"><![CDATA[<h1 id="dns报文格式">DNS报文格式</h1>
+<figure data-type="image" tabindex="1"><img src="https://myimagess.oss-cn-beijing.aliyuncs.com/202207041521338.png" alt="image-20220701133810119" loading="lazy"></figure>
+<h1 id="标签">标签</h1>
+<p>每一格一个字节，数字是数字，不是asc</p>
+<figure data-type="image" tabindex="2"><img src="https://myimagess.oss-cn-beijing.aliyuncs.com/202207041521522.png" alt="image-20220701133923057" loading="lazy"></figure>
+<figure data-type="image" tabindex="3"><img src="https://myimagess.oss-cn-beijing.aliyuncs.com/202207041521523.png" alt="image-20220704113044709" loading="lazy"></figure>
+<p>报文中如果出现了重复的域名，会用压缩标签</p>
+<figure data-type="image" tabindex="4"><img src="https://myimagess.oss-cn-beijing.aliyuncs.com/202207041521524.png" alt="image-20220701182100293" loading="lazy"></figure>
+<p><strong>前两个高位是11</strong>，用于指明是指针</p>
+<p>后面14位标识偏移量，从DNS消息开始处</p>
+<figure data-type="image" tabindex="5"><img src="https://myimagess.oss-cn-beijing.aliyuncs.com/202207041521525.png" alt="image-20220704113138301" loading="lazy"></figure>
+<p>0xc00c=0b1100000000001100,偏移量为12字节，dns报文头刚好12字节，指向查询部分的开头</p>
+<h1 id="查询报文">查询报文</h1>
+<figure data-type="image" tabindex="6"><img src="https://myimagess.oss-cn-beijing.aliyuncs.com/202207041521526.png" alt="image-20220701134044037" loading="lazy"></figure>
+<p>查询名称即标签</p>
+<p>查询类型</p>
+<img src="https://myimagess.oss-cn-beijing.aliyuncs.com/202207041521527.png" alt="image-20220701134135273"  />
+<p>查询类</p>
+<figure data-type="image" tabindex="7"><img src="https://myimagess.oss-cn-beijing.aliyuncs.com/202207041521528.png" alt="image-20220701134306130" loading="lazy"></figure>
+<h1 id="回答报文">回答报文</h1>
+<figure data-type="image" tabindex="8"><img src="https://myimagess.oss-cn-beijing.aliyuncs.com/202207041521529.png" alt="image-20220701134337042" loading="lazy"></figure>
+<p>前三个同查询报文</p>
+<figure data-type="image" tabindex="9"><img src="https://myimagess.oss-cn-beijing.aliyuncs.com/202207041521032.png" alt="image-20220701134436502" loading="lazy"></figure>
+<p>RDATA中是想要的IP地址</p>
+<figure data-type="image" tabindex="10"><img src="https://myimagess.oss-cn-beijing.aliyuncs.com/202207041521530.png" alt="image-20220704114129777" loading="lazy"></figure>
+<p>转换过程见格式转换</p>
+<!-- more -->
+]]></content>
+    </entry>
     <entry>
         <title type="html"><![CDATA[第七章 IO]]></title>
         <id>https://yahalou.github.io/post/di-qi-zhang-io/</id>
@@ -433,57 +675,6 @@
 <p><strong>浮点数计算，在存储和运算过程中都可能会有精度的丢失，故出现的结果和我们以为的结果就会有出入</strong></p>
 <p>比如1.3 F ，由于二进制为无限循环小数，精度限制后值就变了</p>
 <p>1.4 F ，值也变了，但舍入后相同，是巧合</p>
-]]></content>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[第一章 计算机系统概述]]></title>
-        <id>https://yahalou.github.io/post/di-yi-zhang-ji-suan-ji-xi-tong-gai-shu/</id>
-        <link href="https://yahalou.github.io/post/di-yi-zhang-ji-suan-ji-xi-tong-gai-shu/">
-        </link>
-        <updated>2022-06-18T13:58:45.000Z</updated>
-        <content type="html"><![CDATA[<h1 id="第一章-计算机系统概述">第一章 计算机系统概述</h1>
-<h2 id="计算机的多级层次结构">计算机的多级层次结构</h2>
-<img src="https://myimagess.oss-cn-beijing.aliyuncs.com/202206181601396.png" alt="2DAB8ACC8D90DE5CD5B0E8EF24B30B7A" style="zoom: 33%;" />
-<h3 id="软硬件在逻辑上是等效的">软硬件在逻辑上是等效的</h3>
-<p>任何可以用软件实现的操作也可以用硬件来实现</p>
-<h3 id="编译器">编译器</h3>
-<figure data-type="image" tabindex="1"><img src="https://myimagess.oss-cn-beijing.aliyuncs.com/202206181601232.png" alt="95CF069E0447AC65B27B822AFD46FC87" loading="lazy"></figure>
-<p><strong>编译程序</strong>将高级语言程序<strong>文件</strong>翻译成机器语言程序<strong>文件</strong>后执行</p>
-<p><strong>解释程序</strong>一句一句的翻译高级语言程序<strong>文件</strong>，翻译后立即执行，不生成机器语言程序<strong>文件</strong></p>
-<h3 id="机器语言是唯一机器可以识别与执行的语言">机器语言是唯一机器可以识别与执行的语言</h3>
-<h2 id="计算机的性能指标">计算机的性能指标</h2>
-<h3 id="机器字长指令字长存储字长">机器字长，指令字长，存储字长</h3>
-<blockquote>
-<p>都是字长的整数倍</p>
-</blockquote>
-<h4 id="机器字长">机器字长</h4>
-<figure data-type="image" tabindex="2"><img src="https://myimagess.oss-cn-beijing.aliyuncs.com/AD108F07A0414A597D677829DA73894D.png" alt="AD108F07A0414A597D677829DA73894D" loading="lazy"></figure>
-<h4 id="指令字长">指令字长</h4>
-<p>一个指令包含的二进制代码的位数</p>
-<h4 id="存储字长">存储字长</h4>
-<p>一个存储单元存储的二进制代码的位数，简称为字</p>
-<h3 id="主存容量">主存容量</h3>
-<h3 id="运算速度">运算速度</h3>
-<blockquote>
-<figure data-type="image" tabindex="3"><img src="https://myimagess.oss-cn-beijing.aliyuncs.com/202206181600268.png" alt="111FB39F3EEFDB21B1842D3C91015FCD" loading="lazy"></figure>
-</blockquote>
-<blockquote>
-<p><strong>在计算过程中标注单位C(circle),I(instruct),S(second)</strong></p>
-</blockquote>
-<h4 id="主频-cs-cpu时钟周期">主频 c/s CPU时钟周期</h4>
-<p>CPU最小的时间单位，执行指令的每个动作至少需要1个时钟周期</p>
-<p>主频=速度，一秒多少个时钟周期</p>
-<h4 id="cpi-ci">CPI <strong>c/i</strong></h4>
-<p>执行一条指令所需的时钟周期数(clock cycle per instruction)</p>
-<figure data-type="image" tabindex="4"><img src="https://myimagess.oss-cn-beijing.aliyuncs.com/202206181559433.png" alt="2" loading="lazy"></figure>
-<h4 id="cpu执行时间-s">CPU执行时间 s</h4>
-<p>运行一个程序所花费的时间</p>
-<p>CPU执行时间=指令条数*CPI/主频</p>
-<h4 id="mips-is">MIPS <strong>i/s</strong></h4>
-<p>每秒执行多少百万条指令，million instruction <strong>per</strong> second</p>
-<p>MIPS=指令条数/(执行时间*10^6)=主频/( CPI *10^6)</p>
-<h4 id="浮点数">浮点数</h4>
-<figure data-type="image" tabindex="5"><img src="https://myimagess.oss-cn-beijing.aliyuncs.com/202206181559605.png" alt="1" loading="lazy"></figure>
 ]]></content>
     </entry>
 </feed>

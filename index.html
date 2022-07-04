@@ -4,7 +4,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>long&#39;s blog</title>
 <meta name="description" content="吾生也有涯，而知也无涯" />
-<link rel="shortcut icon" href="https://yahalou.github.io/favicon.ico?v=1655959882596">
+<link rel="shortcut icon" href="https://yahalou.github.io/favicon.ico?v=1656919496882">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
 <link href="https://cdn.jsdelivr.net/npm/remixicon@2.3.0/fonts/remixicon.css" rel="stylesheet">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Droid+Serif:400,700">
@@ -23,7 +23,7 @@
       <div class="flex lg:block p-4 lg:px-0 items-center fixed lg:static lg:block top-0 right-0 left-0 bg-white z-50">
         <i class="ri-menu-2-line lg:mt-4 text-2xl cursor-pointer animated fadeIn" onclick="openMenu()"></i>
         <a href="https://yahalou.github.io">
-          <img class="animated fadeInLeft avatar rounded-lg mx-4 lg:mt-32 lg:mx-0 mt-0 lg:w-24 lg:h-24 w-12 w-12" src="https://yahalou.github.io/images/avatar.png?v=1655959882596" alt="">
+          <img class="animated fadeInLeft avatar rounded-lg mx-4 lg:mt-32 lg:mx-0 mt-0 lg:w-24 lg:h-24 w-12 w-12" src="https://yahalou.github.io/images/avatar.png?v=1656919496882" alt="">
         </a>
         <h1 class="animated fadeInLeft lg:text-4xl font-extrabold lg:mt-8 mt-0 text-xl" style="animation-delay: 0.2s">long&#39;s blog</h1>
       </div>
@@ -106,6 +106,71 @@
   <section class="post-item md:flex pb-12 animated fadeIn" :style="{ 'animation-delay': `${0 * 0.2}s` }">
     
     <div class="content">
+      <a href="https://yahalou.github.io/post/dns-xiang-guan-ge-shi-zhuan-huan/">
+        <h2 class="post-title text-xl font-extrabold mt-5 md:mt-0">DNS相关格式转换</h2>
+      </a>
+      <div class="post-abstract text-gray-700 font-light my-4">
+        
+      </div>
+      <div class="text-gray-400 text-sm font-light">2022-07-04 / 4 min read</div>
+    </div>
+  </section>
+
+  <section class="post-item md:flex pb-12 animated fadeIn" :style="{ 'animation-delay': `${1 * 0.2}s` }">
+    
+    <div class="content">
+      <a href="https://yahalou.github.io/post/nslookup/">
+        <h2 class="post-title text-xl font-extrabold mt-5 md:mt-0">nslookup</h2>
+      </a>
+      <div class="post-abstract text-gray-700 font-light my-4">
+        
+      </div>
+      <div class="text-gray-400 text-sm font-light">2022-07-04 / 1 min read</div>
+    </div>
+  </section>
+
+  <section class="post-item md:flex pb-12 animated fadeIn" :style="{ 'animation-delay': `${2 * 0.2}s` }">
+    
+    <div class="content">
+      <a href="https://yahalou.github.io/post/dns-ge-shi/">
+        <h2 class="post-title text-xl font-extrabold mt-5 md:mt-0">DNS格式</h2>
+      </a>
+      <div class="post-abstract text-gray-700 font-light my-4">
+        <h1 id="dns报文格式">DNS报文格式</h1>
+<figure data-type="image" tabindex="1"><img src="https://myimagess.oss-cn-beijing.aliyuncs.com/202207041521338.png" alt="image-20220701133810119" loading="lazy"></figure>
+<h1 id="标签">标签</h1>
+<p>每一格一个字节，数字是数字，不是asc</p>
+<figure data-type="image" tabindex="2"><img src="https://myimagess.oss-cn-beijing.aliyuncs.com/202207041521522.png" alt="image-20220701133923057" loading="lazy"></figure>
+<figure data-type="image" tabindex="3"><img src="https://myimagess.oss-cn-beijing.aliyuncs.com/202207041521523.png" alt="image-20220704113044709" loading="lazy"></figure>
+<p>报文中如果出现了重复的域名，会用压缩标签</p>
+<figure data-type="image" tabindex="4"><img src="https://myimagess.oss-cn-beijing.aliyuncs.com/202207041521524.png" alt="image-20220701182100293" loading="lazy"></figure>
+<p><strong>前两个高位是11</strong>，用于指明是指针</p>
+<p>后面14位标识偏移量，从DNS消息开始处</p>
+<figure data-type="image" tabindex="5"><img src="https://myimagess.oss-cn-beijing.aliyuncs.com/202207041521525.png" alt="image-20220704113138301" loading="lazy"></figure>
+<p>0xc00c=0b1100000000001100,偏移量为12字节，dns报文头刚好12字节，指向查询部分的开头</p>
+<h1 id="查询报文">查询报文</h1>
+<figure data-type="image" tabindex="6"><img src="https://myimagess.oss-cn-beijing.aliyuncs.com/202207041521526.png" alt="image-20220701134044037" loading="lazy"></figure>
+<p>查询名称即标签</p>
+<p>查询类型</p>
+<img src="https://myimagess.oss-cn-beijing.aliyuncs.com/202207041521527.png" alt="image-20220701134135273"  />
+<p>查询类</p>
+<figure data-type="image" tabindex="7"><img src="https://myimagess.oss-cn-beijing.aliyuncs.com/202207041521528.png" alt="image-20220701134306130" loading="lazy"></figure>
+<h1 id="回答报文">回答报文</h1>
+<figure data-type="image" tabindex="8"><img src="https://myimagess.oss-cn-beijing.aliyuncs.com/202207041521529.png" alt="image-20220701134337042" loading="lazy"></figure>
+<p>前三个同查询报文</p>
+<figure data-type="image" tabindex="9"><img src="https://myimagess.oss-cn-beijing.aliyuncs.com/202207041521032.png" alt="image-20220701134436502" loading="lazy"></figure>
+<p>RDATA中是想要的IP地址</p>
+<figure data-type="image" tabindex="10"><img src="https://myimagess.oss-cn-beijing.aliyuncs.com/202207041521530.png" alt="image-20220704114129777" loading="lazy"></figure>
+<p>转换过程见格式转换</p>
+
+      </div>
+      <div class="text-gray-400 text-sm font-light">2022-07-04 / 1 min read</div>
+    </div>
+  </section>
+
+  <section class="post-item md:flex pb-12 animated fadeIn" :style="{ 'animation-delay': `${3 * 0.2}s` }">
+    
+    <div class="content">
       <a href="https://yahalou.github.io/post/di-qi-zhang-io/">
         <h2 class="post-title text-xl font-extrabold mt-5 md:mt-0">第七章 IO</h2>
       </a>
@@ -116,7 +181,7 @@
     </div>
   </section>
 
-  <section class="post-item md:flex pb-12 animated fadeIn" :style="{ 'animation-delay': `${1 * 0.2}s` }">
+  <section class="post-item md:flex pb-12 animated fadeIn" :style="{ 'animation-delay': `${4 * 0.2}s` }">
     
     <div class="content">
       <a href="https://yahalou.github.io/post/di-liu-zhang-zong-xian/">
@@ -129,7 +194,7 @@
     </div>
   </section>
 
-  <section class="post-item md:flex pb-12 animated fadeIn" :style="{ 'animation-delay': `${2 * 0.2}s` }">
+  <section class="post-item md:flex pb-12 animated fadeIn" :style="{ 'animation-delay': `${5 * 0.2}s` }">
     
     <div class="content">
       <a href="https://yahalou.github.io/post/di-wu-zhang-zhong-yang-chu-li-qi/">
@@ -142,7 +207,7 @@
     </div>
   </section>
 
-  <section class="post-item md:flex pb-12 animated fadeIn" :style="{ 'animation-delay': `${3 * 0.2}s` }">
+  <section class="post-item md:flex pb-12 animated fadeIn" :style="{ 'animation-delay': `${6 * 0.2}s` }">
     
     <div class="content">
       <a href="https://yahalou.github.io/post/di-si-zhang-zhi-ling-xi-tong/">
@@ -155,7 +220,7 @@
     </div>
   </section>
 
-  <section class="post-item md:flex pb-12 animated fadeIn" :style="{ 'animation-delay': `${4 * 0.2}s` }">
+  <section class="post-item md:flex pb-12 animated fadeIn" :style="{ 'animation-delay': `${7 * 0.2}s` }">
     
     <div class="content">
       <a href="https://yahalou.github.io/post/xing-shi-yu-yan-yu-zi-dong-ji/">
@@ -168,7 +233,7 @@
     </div>
   </section>
 
-  <section class="post-item md:flex pb-12 animated fadeIn" :style="{ 'animation-delay': `${5 * 0.2}s` }">
+  <section class="post-item md:flex pb-12 animated fadeIn" :style="{ 'animation-delay': `${8 * 0.2}s` }">
     
     <div class="content">
       <a href="https://yahalou.github.io/post/di-san-zhang-cun-chu-xi-tong/">
@@ -181,7 +246,7 @@
     </div>
   </section>
 
-  <section class="post-item md:flex pb-12 animated fadeIn" :style="{ 'animation-delay': `${6 * 0.2}s` }">
+  <section class="post-item md:flex pb-12 animated fadeIn" :style="{ 'animation-delay': `${9 * 0.2}s` }">
     
     <div class="content">
       <a href="https://yahalou.github.io/post/di-er-zhang-shu-ju-de-biao-shi-he-yun-suan/">
@@ -194,25 +259,19 @@
     </div>
   </section>
 
-  <section class="post-item md:flex pb-12 animated fadeIn" :style="{ 'animation-delay': `${7 * 0.2}s` }">
-    
-    <div class="content">
-      <a href="https://yahalou.github.io/post/di-yi-zhang-ji-suan-ji-xi-tong-gai-shu/">
-        <h2 class="post-title text-xl font-extrabold mt-5 md:mt-0">第一章 计算机系统概述</h2>
-      </a>
-      <div class="post-abstract text-gray-700 font-light my-4">
-        
-      </div>
-      <div class="text-gray-400 text-sm font-light">2022-06-18 / 2 min read</div>
-    </div>
-  </section>
-
         <div class="read-more">
+          
+            <a href="https://yahalou.github.io/page/2" class="animated fadeIn font-extrabold text-gray-700 hover:text-gray-900 more-btn">
+              阅读更多
+              <i class="ri-arrow-right-line"></i>
+            </a>
           
         </div>
         <div class="index-page">
           <div class="pagination-container animated fadeIn">
   
+  
+    <a href="https://yahalou.github.io/page/2" class="page-btn">下一页 <i class="ri-arrow-right-line"></i></a>
   
 </div>
 

@@ -1,0 +1,390 @@
+<html>
+  <head>
+    <meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>long&#39;s blog</title>
+<meta name="description" content="吾生也有涯，而知也无涯" />
+<link rel="shortcut icon" href="https://yahalou.github.io/favicon.ico?v=1656919496882">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
+<link href="https://cdn.jsdelivr.net/npm/remixicon@2.3.0/fonts/remixicon.css" rel="stylesheet">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Droid+Serif:400,700">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.min.css">
+
+<link rel="stylesheet" href="https://yahalou.github.io/styles/main.css">
+
+
+
+  </head>
+  <body>
+    <div id="app" class="main px-4 flex flex-col lg:flex-row">
+      <div id="sidebar" class="sidebar-wrapper lg:static lg:w-1/4">
+  <div class="lg:sticky top-0">
+    <div class="sidebar-content">
+      <div class="flex lg:block p-4 lg:px-0 items-center fixed lg:static lg:block top-0 right-0 left-0 bg-white z-50">
+        <i class="ri-menu-2-line lg:mt-4 text-2xl cursor-pointer animated fadeIn" onclick="openMenu()"></i>
+        <a href="https://yahalou.github.io">
+          <img class="animated fadeInLeft avatar rounded-lg mx-4 lg:mt-32 lg:mx-0 mt-0 lg:w-24 lg:h-24 w-12 w-12" src="https://yahalou.github.io/images/avatar.png?v=1656919496882" alt="">
+        </a>
+        <h1 class="animated fadeInLeft lg:text-4xl font-extrabold lg:mt-8 mt-0 text-xl" style="animation-delay: 0.2s">long&#39;s blog</h1>
+      </div>
+      
+        <div class="animated fadeInLeft" style="animation-delay: 0.4s">
+          <p class="my-4 text-gray-600 font-light hidden lg:block">
+            文章目录
+          </p>
+          <div class="toc-container hidden lg:block">
+            <ul class="markdownIt-TOC">
+<li><a href="#%E7%94%A8%E5%88%B0%E7%9A%84%E7%BB%93%E6%9E%84%E4%BD%93">用到的结构体</a></li>
+<li><a href="#%E5%A4%A7%E7%AB%AF%E5%92%8C%E5%B0%8F%E7%AB%AF">大端和小端</a></li>
+<li><a href="#%E7%BD%91%E7%BB%9C%E5%AD%97%E8%8A%82%E9%A1%BA%E5%BA%8F">网络字节顺序</a>
+<ul>
+<li><a href="#%E7%BD%91%E7%BB%9C%E5%AD%97%E8%8A%82%E9%A1%BA%E5%BA%8Fnbonetwork-byte-order">网络字节顺序NBO（Network Byte Order</a></li>
+<li><a href="#%E4%B8%BB%E6%9C%BA%E5%AD%97%E8%8A%82%E9%A1%BA%E5%BA%8Fhbohost-byte-order">主机字节顺序HBO	(Host Byte Order)</a></li>
+</ul>
+</li>
+<li><a href="#%E7%BB%93%E6%9E%84%E4%BD%93%E5%86%85%E5%AD%98%E5%AF%B9%E9%BD%90">结构体内存对齐</a></li>
+<li><a href="#%E4%BD%8D%E5%9F%9F">位域</a>
+<ul>
+<li><a href="#%E5%A1%AB%E5%85%85%E6%AD%A5%E9%AA%A4">填充步骤</a></li>
+</ul>
+</li>
+<li><a href="#htons%E7%AD%89%E5%87%BD%E6%95%B0">htons等函数</a></li>
+<li><a href="#ip%E5%9C%B0%E5%9D%80%E8%BD%AC%E6%8D%A2">ip地址转换</a></li>
+</ul>
+
+          </div>
+        </div>
+      
+    </div>
+  </div>
+</div>
+
+<div class="menu-container">
+  <i class="ri-arrow-left-line text-2xl cursor-pointer animated fadeIn close-menu-btn" onclick="closeMenu()"></i>
+  <div>
+    
+      
+        <a href="/" class="menu" style="animation-delay: 0s">
+          首页
+        </a>
+      
+    
+      
+        <a href="https://yahalou.github.io/archives" class="menu" style="animation-delay: 0.2s">
+          归档
+        </a>
+      
+    
+      
+        <a href="https://yahalou.github.io/tags" class="menu" style="animation-delay: 0.4s">
+          标签
+        </a>
+      
+    
+      
+        <a href="/post/about" class="menu" style="animation-delay: 0.6000000000000001s">
+          关于
+        </a>
+      
+    
+  </div>
+  <div class="site-footer">
+    <div class="py-4 text-gray-700">Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a></div>
+    <a class="rss" href="https://yahalou.github.io/atom.xml" target="_blank">RSS</a>
+  </div>
+</div>
+<div class="mask" onclick="closeMenu()">
+</div>
+      <div class="content-wrapper py-32 lg:p-8 lg:w-3/4 post-detail animated fadeIn">
+        <h1 class="text-3xl font-bold lg:mt-16">DNS相关格式转换</h1>
+        <div class="text-sm text-gray-700 lg:my-8">
+          2022-07-04 / 4 min read
+        </div>
+        
+        <div class="post-content yue">
+          <h1 id="用到的结构体">用到的结构体</h1>
+<pre><code class="language-c">struct in_addr 
+{
+ 	in_addr_t s_addr;//in_addr_t 一般为 32位的unsigned int，其字节顺序为网络顺序
+};
+
+typedef struct addrinfo {
+  int             ai_flags;
+  int             ai_family;
+  int             ai_socktype;
+  int             ai_protocol;
+  size_t          ai_addrlen;//sockaddr中sa_data[14]中ip地址的长度
+  char            *ai_canonname;
+  struct sockaddr *ai_addr;
+  struct addrinfo *ai_next;
+} ADDRINFOA, *PADDRINFOA;
+
+sockaddr和sockaddr_in本质上等价，后者将7字节拆了
+    
+struct sockaddr {
+        ushort  sa_family;//同addrinfo
+        char    sa_data[14];//16进制，可表示7字节
+};
+
+struct sockaddr_in {
+        short   sin_family;
+        u_short sin_port;//端口号，2字节
+        struct  in_addr sin_addr;//ip地址，4字节
+        char    sin_zero[8];//填充，1字节
+};
+</code></pre>
+<h1 id="大端和小端">大端和小端</h1>
+<table>
+<thead>
+<tr>
+<th>序号</th>
+<th>英文名</th>
+<th>中文名</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>big-endian</td>
+<td>大尾顺序</td>
+<td>地址的低位存储值的高位</td>
+</tr>
+<tr>
+<td>2</td>
+<td>little-endian</td>
+<td>小尾顺序</td>
+<td>地址的低位存储值的低位</td>
+</tr>
+</tbody>
+</table>
+<p>12345678大端存储顺序</p>
+<figure data-type="image" tabindex="1"><img src="https://img-blog.csdnimg.cn/20210429171813889.png" alt="在这里插入图片描述" loading="lazy"></figure>
+<p>小端存储顺序，反人类</p>
+<figure data-type="image" tabindex="2"><img src="https://img-blog.csdnimg.cn/20210429172017425.png" alt="在这里插入图片描述" loading="lazy"></figure>
+<h1 id="网络字节顺序">网络字节顺序</h1>
+<h2 id="网络字节顺序nbonetwork-byte-order">网络字节顺序NBO（Network Byte Order</h2>
+<p>大尾顺序</p>
+<h2 id="主机字节顺序hbohost-byte-order">主机字节顺序HBO	(Host Byte Order)</h2>
+<p>我的计算机是小端，本程序应该只能在小端上跑</p>
+<p>判断计算机大小端的方式</p>
+<figure data-type="image" tabindex="3"><img src="../../../AppData/Roaming/Typora/typora-user-images/image-20220703190805153.png" alt="image-20220703190805153" loading="lazy"></figure>
+<pre><code class="language-c">#include&lt;stdio.h&gt;
+int main()
+{
+	union {
+		short s;
+		char a[2];
+	};
+	s = 0x1234;
+	printf(&quot;%x&quot;, a[0]);//34
+    printf(&quot;%x&quot;, a[1]);//1
+	return 0;
+}
+</code></pre>
+<h1 id="结构体内存对齐">结构体内存对齐</h1>
+<figure data-type="image" tabindex="4"><img src="../../../AppData/Roaming/Typora/typora-user-images/image-20220704111225536.png" alt="image-20220704111225536" loading="lazy"></figure>
+<pre><code class="language-c++">#pragma pack(push) //保存对齐状态
+
+#pragma pack(4)//设定为4字节对齐
+
+相当于 #pragma  pack (push,4) 
+struct sample
+{
+char a;
+double b;
+};
+#pragma pack(pop)
+
+如果不加，结构体将按照最长的double 8位进行对齐，char占8个字节
+</code></pre>
+<h1 id="位域">位域</h1>
+<p><strong>字节内也有大小端</strong></p>
+<p>对于定义如下的结构体:</p>
+<pre><code class="language-c">struct yaabou_com{
+int a:1;
+int b:2;
+int c:3;
+int d:4;
+int e:5;
+int f:6;
+int g:11;
+};
+大端：
+地址：[00000000][00000001][00000002][00000003]
+数据：|abbcccdd||ddeeeeef||fffffggg||gggggggg|
+小端：
+地址：[00000000][00000001][00000002][00000003]
+数据：|ddcccbba||feeeeedd||gggfffff||gggggggg|
+</code></pre>
+<h2 id="填充步骤">填充步骤</h2>
+<p>大端小端的填充步骤</p>
+<p>大端模式<br>
+内存地址	内存值	步骤<br>
+0x10000000	0x12	4.依次取值<br>
+0x10000001	0x34	3.依次取值<br>
+0x10000002	0x56	2.依次取值<br>
+0x10000003	0x78	1.高地址存放低位<br>
+小端模式<br>
+内存地址	内存值	步骤<br>
+0x10000000	0x78	4.依次取值<br>
+0x10000001	0x56	3.依次取值<br>
+0x10000002	0x34	2.依次取值<br>
+0x10000003	0x12	1.高地址存放高位</p>
+<p>对于该位域，对于<strong>第一个字节</strong>，<strong>从右往左</strong>填入a,b,b,c,c,c,d,d</p>
+<p>再填<strong>第二个字节</strong>，从右往左填入d,d,e,e,e,e,e,f</p>
+<p>依次下去</p>
+<h1 id="htons等函数">htons等函数</h1>
+<p>以字节为单位，将小端调整为大端</p>
+<p>htonl()--&quot;Host to Network Long&quot;<br>
+ntohl()--&quot;Network to Host Long&quot;<br>
+htons()--&quot;Host to Network Short&quot;<br>
+ntohs()--&quot;Network to Host Short&quot;</p>
+<p>例如ttl是int，用htons会变成两个字节，得用htonl，后续截断</p>
+<h1 id="ip地址转换">ip地址转换</h1>
+<pre><code class="language-c">char a[100]=&quot;1.2.3.4&quot;;
+ip1 = inet_addr(a);//将字符变为数字，同时调整大小端
+printf(&quot;ip1:%x\n&quot;, ip1);//0x04030201
+
+struct in_addr addr1；
+memcpy(&amp;addr1, &amp;ip1, 4);
+printf(&quot;%s\n&quot;, inet_ntoa(addr1));//1.2.3.4
+</code></pre>
+
+        </div>
+
+        
+          <a class="animated fadeInUp p-2 items-center text-sm text-gray-700 border hover:bg-gray-300 leading-none rounded-full flex lg:inline-flex m-4 " href="https://yahalou.github.io/tag/RMh2iwcbv/">
+            <span class="flex-auto">计算机网络</span>
+          </a>
+        
+          <a class="animated fadeInUp p-2 items-center text-sm text-gray-700 border hover:bg-gray-300 leading-none rounded-full flex lg:inline-flex m-4 " href="https://yahalou.github.io/tag/iEw-bgx2nU/">
+            <span class="flex-auto">DNS</span>
+          </a>
+        
+          <a class="animated fadeInUp p-2 items-center text-sm text-gray-700 border hover:bg-gray-300 leading-none rounded-full flex lg:inline-flex m-4 " href="https://yahalou.github.io/tag/2CK5P4Vxbe/">
+            <span class="flex-auto">网络编程</span>
+          </a>
+        
+
+
+        <div class="flex justify-between py-8">
+          
+
+          
+            <div class="next-post">
+              <a href="https://yahalou.github.io/post/nslookup/">
+                <h3 class="post-title">
+                  nslookup
+                  <i class="ri-arrow-right-line"></i>
+                </h3>
+              </a>
+            </div>
+          
+        </div>
+
+        
+
+      </div>
+    </div>
+
+    <script src="https://yahalou.github.io/media/prism.js"></script>  
+<script>
+
+Prism.highlightAll()
+let mainNavLinks = document.querySelectorAll(".markdownIt-TOC a");
+
+// This should probably be throttled.
+// Especially because it triggers during smooth scrolling.
+// https://lodash.com/docs/4.17.10#throttle
+// You could do like...
+// window.addEventListener("scroll", () => {
+//    _.throttle(doThatStuff, 100);
+// });
+// Only not doing it here to keep this Pen dependency-free.
+
+window.addEventListener("scroll", event => {
+  let fromTop = window.scrollY;
+
+  mainNavLinks.forEach((link, index) => {
+    let section = document.getElementById(decodeURI(link.hash).substring(1));
+    let nextSection = null
+    if (mainNavLinks[index + 1]) {
+      nextSection = document.getElementById(decodeURI(mainNavLinks[index + 1].hash).substring(1));
+    }
+    if (section.offsetTop <= fromTop) {
+      if (nextSection) {
+        if (nextSection.offsetTop > fromTop) {
+          link.classList.add("current");
+        } else {
+          link.classList.remove("current");    
+        }
+      } else {
+        link.classList.add("current");
+      }
+    } else {
+      link.classList.remove("current");
+    }
+  });
+});
+
+
+document.addEventListener("DOMContentLoaded", function() {
+  var lazyImages = [].slice.call(document.querySelectorAll(".post-feature-image.lazy"));
+
+  if ("IntersectionObserver" in window) {
+    let lazyImageObserver = new IntersectionObserver(function(entries, observer) {
+      entries.forEach(function(entry) {
+        if (entry.isIntersecting) {
+          let lazyImage = entry.target
+          lazyImage.style.backgroundImage = `url(${lazyImage.dataset.bg})`
+          lazyImage.classList.remove("lazy")
+          lazyImageObserver.unobserve(lazyImage)
+        }
+      });
+    });
+
+    lazyImages.forEach(function(lazyImage) {
+      lazyImageObserver.observe(lazyImage)
+    })
+  } else {
+    // Possibly fall back to a more compatible method here
+  }
+});
+
+const menuContainer = document.querySelector('.menu-container')
+const menus = document.querySelectorAll('.menu-container .menu')
+const mask = document.querySelector('.mask')
+const contentWrapper = document.querySelector('.content-wrapper')
+const latestArticle = document.querySelector('.latest-article')
+const readMore = document.querySelector('.read-more')
+const indexPage = document.querySelector('.index-page')
+
+const isHome = location.pathname === '/'
+if (latestArticle) {
+  latestArticle.style.display = isHome ? 'block' : 'none'
+  readMore.style.display = isHome ? 'block' : 'none'
+  indexPage.style.display = isHome ? 'none' : 'block'
+}
+
+const openMenu = () => {
+  menuContainer.classList.add('open')
+  menus.forEach(menu => {
+    menu.classList.add('animated', 'fadeInLeft')
+  })
+  mask.classList.add('open')
+  contentWrapper.classList.add('is-second')
+}
+
+const closeMenu = () => {
+  menuContainer.classList.remove('open')
+  menus.forEach(menu => {
+    menu.classList.remove('animated', 'fadeInLeft')
+  })
+  mask.classList.remove('open')
+  contentWrapper.classList.remove('is-second')
+}
+</script>
+  
+  </body>
+</html>

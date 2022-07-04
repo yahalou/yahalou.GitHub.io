@@ -34,12 +34,13 @@
           </p>
           <div class="toc-container hidden lg:block">
             <ul class="markdownIt-TOC">
-<li><a href="#%E6%8C%87%E4%BB%A4%E6%A0%BC%E5%BC%8F">指令格式</a>
+<li><a href="#%E9%9D%9E%E4%BA%A4%E4%BA%92%E6%A8%A1%E5%BC%8F">非交互模式</a></li>
+<li><a href="#%E4%BA%A4%E4%BA%92%E6%A8%A1%E5%BC%8F">交互模式</a>
 <ul>
-<li><a href="#%E6%95%B0%E6%8D%AE%E5%AF%BB%E5%9D%80">数据寻址</a></li>
+<li><a href="#%E8%BF%9B%E5%85%A5%E4%BA%A4%E4%BA%92%E6%A8%A1%E5%BC%8F">进入交互模式</a></li>
+<li><a href="#%E5%9C%A8%E4%BA%A4%E4%BA%92%E6%A8%A1%E5%BC%8F">在交互模式</a></li>
 </ul>
 </li>
-<li><a href="#cisc-risc">CISC、RISC</a></li>
 </ul>
 
           </div>
@@ -86,36 +87,42 @@
 <div class="mask" onclick="closeMenu()">
 </div>
       <div class="content-wrapper py-32 lg:p-8 lg:w-3/4 post-detail animated fadeIn">
-        <h1 class="text-3xl font-bold lg:mt-16">第四章 指令系统</h1>
+        <h1 class="text-3xl font-bold lg:mt-16">nslookup</h1>
         <div class="text-sm text-gray-700 lg:my-8">
-          2022-06-23 / 1 min read
+          2022-07-04 / 1 min read
         </div>
         
         <div class="post-content yue">
-          <h1 id="指令格式">指令格式</h1>
-<h2 id="数据寻址">数据寻址</h2>
-<figure data-type="image" tabindex="1"><img src="https://myimagess.oss-cn-beijing.aliyuncs.com/202206211312759.png" alt="A73C7E354325925BFCF27D5239F29ECD" loading="lazy"></figure>
-<figure data-type="image" tabindex="2"><img src="C:/Users/26033/AppData/Roaming/Typora/typora-user-images/image-20220621131540676.png" alt="image-20220621131540676" loading="lazy"></figure>
-<ul>
-<li>间接寻址 PC指向的是条指令</li>
-<li><strong>操作码</strong>不是<strong>操作数</strong>，操作数是你寻的那个数</li>
-<li>计算指令条数只看操作码</li>
-<li>寄存器寻址指令里会有寄存器的编号</li>
-</ul>
-<h1 id="cisc-risc">CISC、RISC</h1>
-<p>CISC -- Complex Instruction Set Computer -- 复杂指令系统计算机</p>
-<p>RISC -- Reduced Instruction Set Computer -- 精简指令系统计算机</p>
-<figure data-type="image" tabindex="3"><img src="https://myimagess.oss-cn-beijing.aliyuncs.com/202206211338906.png" alt="image-20220621133832410" loading="lazy"></figure>
+          <h1 id="非交互模式">非交互模式</h1>
+<p>常见操作：</p>
+<pre><code>$ nslookup www.baidu.com
+$ nslookup www.baidu.com 127.0.0.1 //指定dns服务器
+</code></pre>
+<h1 id="交互模式">交互模式</h1>
+<h2 id="进入交互模式">进入交互模式</h2>
+<p>常见操作：</p>
+<pre><code>$ nslookup
+$ nslookup - 127.0.0.1 //指定dns服务器
+</code></pre>
+<h2 id="在交互模式">在交互模式</h2>
+<p>常见操作：</p>
+<pre><code>&gt; www.baidu.com
+&gt; set type = A
+</code></pre>
 
         </div>
 
         
-          <a class="animated fadeInUp p-2 items-center text-sm text-gray-700 border hover:bg-gray-300 leading-none rounded-full flex lg:inline-flex m-4 " href="https://yahalou.github.io/tag/CyGuQjdfm/">
-            <span class="flex-auto">大二下</span>
+          <a class="animated fadeInUp p-2 items-center text-sm text-gray-700 border hover:bg-gray-300 leading-none rounded-full flex lg:inline-flex m-4 " href="https://yahalou.github.io/tag/RMh2iwcbv/">
+            <span class="flex-auto">计算机网络</span>
           </a>
         
-          <a class="animated fadeInUp p-2 items-center text-sm text-gray-700 border hover:bg-gray-300 leading-none rounded-full flex lg:inline-flex m-4 " href="https://yahalou.github.io/tag/nfyJZMoNz/">
-            <span class="flex-auto">计算机组成原理</span>
+          <a class="animated fadeInUp p-2 items-center text-sm text-gray-700 border hover:bg-gray-300 leading-none rounded-full flex lg:inline-flex m-4 " href="https://yahalou.github.io/tag/iEw-bgx2nU/">
+            <span class="flex-auto">DNS</span>
+          </a>
+        
+          <a class="animated fadeInUp p-2 items-center text-sm text-gray-700 border hover:bg-gray-300 leading-none rounded-full flex lg:inline-flex m-4 " href="https://yahalou.github.io/tag/2CK5P4Vxbe/">
+            <span class="flex-auto">网络编程</span>
           </a>
         
 
@@ -123,10 +130,10 @@
         <div class="flex justify-between py-8">
           
             <div class="prev-post">
-              <a href="https://yahalou.github.io/post/di-wu-zhang-zhong-yang-chu-li-qi/">
+              <a href="https://yahalou.github.io/post/dns-xiang-guan-ge-shi-zhuan-huan/">
                 <h3 class="post-title">
                   <i class="ri-arrow-left-line"></i>
-                  第五章 中央处理器
+                  DNS相关格式转换
                 </h3>
               </a>
             </div>
@@ -134,9 +141,9 @@
 
           
             <div class="next-post">
-              <a href="https://yahalou.github.io/post/xing-shi-yu-yan-yu-zi-dong-ji/">
+              <a href="https://yahalou.github.io/post/dns-ge-shi/">
                 <h3 class="post-title">
-                  形式语言与自动机
+                  DNS格式
                   <i class="ri-arrow-right-line"></i>
                 </h3>
               </a>
